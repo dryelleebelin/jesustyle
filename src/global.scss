@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Taviraj:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://use.typekit.net/fcv5cfo.css");
+
+*{
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  font-family: var(--subtitle-font);
+}
+
+:root{
+  --black: #1a1a1a;
+  --background: #4d4d4d;
+  --foreground: #ededed;
+  --accent-1: #33b9c7;
+  --accent-2: #71cad4;
+  --accent-3: #afdce0;
+
+  --title-font: 'cooper-black-std', serif;
+  --subtitle-font: 'Taviraj', EB Garamond;
+
+  --font-color: #000000;
+  --font-color-white: #ffffff;
+}
+
+h1{
+  font-family: var(--title-font);
+}
+
+button{
+  cursor: pointer;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar{
+  width: 7px;
+  background-color: var(--background);
+  border: none;
+}
+::-webkit-scrollbar-thumb{
+  background-color: var(--foreground);
+  border-radius: 50px;
+  height: 10vh;
+}
