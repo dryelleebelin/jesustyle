@@ -16,6 +16,7 @@
     img{
       width: auto;
       height: 80%;
+      cursor: pointer;
     }
 
     nav{
@@ -67,6 +68,54 @@
       height: 100%;
       background-size: cover;
       filter: blur(1.5px) brightness(60%);
+    }
+  }
+
+  .purpose{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10vh 5vw;
+
+    img{
+      width: 180px;
+      height: auto;
+      margin-bottom: 2%;
+    }
+
+    aside{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      h2{
+        margin-bottom: 1%;
+        font-weight: 600;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+      }
+
+      p{
+        width: 80%;
+        margin-bottom: 1%;
+      }
+    }
+  }
+
+  .podcast{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10vh 5vw;
+
+    h2{
+      margin-bottom: 1%;
+      font-weight: 600;
+      font-size: 1.8rem;
+      text-transform: uppercase;
     }
   }
 
@@ -128,7 +177,7 @@
           border-radius: 8px;
         }
 
-        span{
+        a{
           position: absolute;
           bottom: 8vh;
           display: flex;
@@ -194,7 +243,7 @@
     .top{
       border-bottom: 2px solid rgb(255 255 255 / 20%);
       padding-bottom: 5vh;
-      width: 60vw;
+      width: 70vw;
       display: flex;
       justify-content: space-between;
 
@@ -224,7 +273,7 @@
       }
 
       .socials-column{
-        width: 50%;
+        width: 40%;
 
         p{
           opacity: 0.8;
@@ -236,8 +285,8 @@
           margin-top: 2vh;
 
           a{
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             background-color: var(--background);
             border-radius: 50%;
             display: flex;
@@ -246,7 +295,7 @@
             transition: 0.3s ease-in;
 
             svg{
-              font-size: 22px;
+              font-size: 20px;
             }
 
             &:hover{
@@ -258,10 +307,10 @@
     }
 
     .bottom{
-      width: 60vw;
+      width: 70vw;
       padding-top: 3vh;
       display: flex;
-      gap: 1.5vw;
+      gap: 2vw;
       font-size: 0.8rem;
 
       .legal{
