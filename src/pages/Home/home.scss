@@ -104,6 +104,21 @@
     }
   }
 
+  .actions{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10vh 5vw;
+
+    h2{
+      margin-bottom: 1%;
+      font-weight: 600;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+    } 
+  }
+
   .podcast{
     height: 100vh;
     display: flex;

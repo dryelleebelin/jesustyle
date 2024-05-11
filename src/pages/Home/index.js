@@ -80,7 +80,7 @@ export default function Home(){
       <span id="actions"/>
       
       <section className="actions">
-
+        <h2>Ações</h2>
       </section>
 
       <span id="podcast"/>

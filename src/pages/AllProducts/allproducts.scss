@@ -1,0 +1,215 @@
+.banner-all-products {
+  position: relative;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../images/mockups/boxes4.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(1px); 
+  }
+
+  h1{
+    font-size: 2.5rem;
+    z-index: 1;
+  }
+}
+
+.all-products{
+  display: flex;
+  background-color: var(--background);
+  color: var(--font-color-white);
+  height: 100%;
+  padding: 8vh 5vw;
+
+  aside{
+    width: 20vw;
+
+    .filters{
+      display: flex;
+      justify-content: space-between;
+      align-items: self-end;
+      margin: 2vh 0 3vh 0;
+      border-bottom: 1px solid var(--foreground);
+      padding-bottom: 1.5vh;
+
+      p{
+        display: flex;
+        align-items: center;
+
+        svg{
+          margin-right: 0.5vw;
+        }
+
+        span{
+          font-size: 0.8rem;
+          margin-bottom: -0.2vh;
+          opacity: 0.8;
+          margin-left: 0.2vw;
+        }
+      }
+
+      span{
+        font-size: 0.8rem;
+        opacity: 0.7;
+        cursor: pointer;
+      }
+    }
+
+    .category{
+      p{
+        display: flex;
+        align-items: center;
+        gap: 0.3vw;
+
+        svg{
+          font-size: 24px;
+          opacity: 0.9;
+          cursor: pointer;
+        }
+
+        span{
+          font-size: 0.8rem;
+          opacity: 0.8;
+        }
+      }
+    }
+
+    .container-size{
+      border-top: 1px solid var(--foreground);
+      margin-top: 3vh;
+      padding: 3vh 0;
+
+      h2{
+        font-size: 1rem;
+      }
+
+      div{
+        display: flex;
+        gap: 0.5vw;
+        margin-top: 1vh;
+      }
+
+      .size{
+        border: 1px solid var(--foreground);
+        border-radius: 50%;
+        font-size: 0.9rem;
+        width: 2.2vw;
+        height: 2.2vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      
+      .size.selected {
+        background-color: var(--foreground);
+        color: var(--font-color);
+      }
+    }
+  }
+
+  section{
+    padding-left: 2vw;
+    width: 100%;
+
+    .sort-container{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.5vw;
+
+      p{
+        opacity: 0.8;
+        font-size: 0.9rem;
+      }
+
+      select{
+        background-color: transparent;
+        border: none;
+        color: var(--font-color-white);
+
+        option{
+          background-color: var(--black);
+        }
+      }
+    }
+
+    .items-container{
+      display: flex;
+      flex-wrap: wrap;
+
+      .item{
+        width: 26%;
+        margin: 2.5vw;
+
+        img{
+          width: 100%;
+          border-radius: 25px;
+        }
+
+        h6{
+          font-size: 1.1rem;
+          margin-top: 1vh;
+        }
+
+        p{
+          font-size: 0.8rem;
+          opacity: 0.7;
+          margin: 1vh 0 0 0;
+          height: 6vh;
+        }
+        
+        div{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 1.5vh;
+          height: 6vh;
+
+          button{
+            width: 78%;
+            background-color: transparent;
+            border: 1px solid var(--foreground);
+            color: var(--font-color-white);
+            height: 100%;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s ease-in-out;
+
+            &:hover{
+              background-color: var(--background);
+              filter: brightness(0.9);
+            }
+          }
+
+          svg{
+            border: 1px solid var(--foreground);
+            height: 100%;
+            width: 3vw;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+
+            &:hover{
+              background-color: var(--background);
+              filter: brightness(0.9);
+            }
+          }
+        }
+      }
+    }
+  }
+}
