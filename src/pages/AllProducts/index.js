@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import './allproducts.scss'
 import { useNavigate } from "react-router-dom"
 
-import shirt1 from '../../images/mockups/shirt3.png'
-import shirt2 from '../../images/mockups/shirt4.png'
-import shirt3 from '../../images/mockups/shirt.png'
+import shirt1 from '../../assets/mockups/shirt3.png'
+import shirt2 from '../../assets/mockups/shirt4.png'
+import shirt3 from '../../assets/mockups/shirt.png'
 
 import { FaListUl } from "react-icons/fa"
 import { MdOutlineCircle, MdCheckCircle } from "react-icons/md"
@@ -53,6 +53,10 @@ export default function AllProducts(){
     { id: 8, name: "Camiseta", price: "R$60,00", description: "Conforto e sofisticação em uma peça única.", src: shirt1 },
     { id: 9, name: "Camiseta", price: "R$80,00", description: "Destaque-se com um design ousado e moderno.", src: shirt3 }
   ]
+
+  useEffect(() => {
+    document.title = "Jesustyle | Descubra Nossa Coleção de Moda"
+  }, [])
 
   return(
     <>

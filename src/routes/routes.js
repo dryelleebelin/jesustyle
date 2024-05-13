@@ -4,13 +4,15 @@ import { Routes, Route } from 'react-router-dom'
 import Home from "../pages/Home"
 import AllProducts from "../pages/AllProducts"
 import ProductDetails from "../pages/ProductDetails"
+import Payment from "../pages/Payment"
 
 export default function RoutesApp(){
   return(
     <Routes>
-      <Route exact path="/" element={<Home/>}/>
+      <Route path="/" element={<Home/>}/>
       <Route path="/products" element={<AllProducts/>}/>
       <Route path="/product/:productId" element={<ProductDetails/>} />
+      <Route path="/payment" element={<Payment/>} />
     </Routes>
   )
 }
