@@ -1,13 +1,15 @@
 import React, { useState } from "react"
 import './login.scss'
 import Modal from 'react-modal'
+import { useNavigate } from "react-router-dom"
+
 import { IoClose } from "react-icons/io5"
 import { CgSpinner } from "react-icons/cg"
 
-export default function Login({ isOpen, closeModal }) {
+export default function Login({ isOpen, closeModal }){
+  const navigate = useNavigate()
   const [user, setUser] = useState('')
   const [birthday, setBirthday] = useState('')
-  const [CPF, setCPF] = useState('')
   const [address, setAddress] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -28,7 +30,19 @@ export default function Login({ isOpen, closeModal }) {
   }
 
   const handleRegisterClick = () => {
-    setIsRegistering(true);
+    setIsRegistering(true)
+  }
+
+  const handleForgotPasswordClick = () => {
+    setForgotPassword(true)
+  }
+
+  const handleBackToLoginClick = () => {
+    setForgotPassword(false)
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
@@ -39,15 +53,13 @@ export default function Login({ isOpen, closeModal }) {
             <p>Cadastre-se</p>
             <IoClose onClick={closeModal}/>
           </div>
-          <form>
+          <form onSubmit={(e) => {e.preventDefault(); navigate('/products'); scrollToTop();}}>
             <label>Nome completo:</label>
             <input type="text" onChange={(e) => setUser(e.target.value)} placeholder="Digite seu nome completo"/>
             <label>Data de nascimento:</label>
             <input type="date" onChange={(e) => setBirthday(e.target.value)}/>
-            <label>CPF:</label>
-            <input type="text" onChange={(e) => setCPF(e.target.value)} placeholder="Digite seu CPF"/>
             <label>Email:</label>
-            <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="example@gmail.com"/>
+            <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email"/>
             <label>Senha:</label>
             <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="********"/>
             <button type="submit">
@@ -57,23 +69,43 @@ export default function Login({ isOpen, closeModal }) {
           </form>
         </div>
       ) : (
-        <div className="login">
-          <div>
-            <p>Login</p>
-            <IoClose onClick={closeModal}/>
-          </div>
-          <form>
-            <label>Email:</label>
-            <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="example@gmail.com"/>
-            <label>Senha:</label>
-            <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="********"/>
-            <a>Esqueceu a senha?</a>
-            <button type="submit">
-              {loading ? <div className="spinner-button"><CgSpinner/></div> : "ENTRAR"}
-            </button>
-            <a className="link">Ainda não possui uma conta? <span onClick={handleRegisterClick}>Cadastre-se</span></a>
-          </form>
-        </div>
+        <>
+          {forgotPassword ? (
+            <div className="forgot-password login">
+              <div>
+                <p>Login</p>
+                <IoClose onClick={closeModal}/>
+              </div>
+              <p>Nos conte algumas informações sobre sua conta.</p>
+              <form onSubmit={(e) => {e.preventDefault(); closeModal();}}>
+                <label>Email:</label>
+                <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email"/>
+                <button type="submit">
+                  {loading ? <div className="spinner-button"><CgSpinner/></div> : "ENVIAR"}
+                </button>
+                <a className="link" onClick={handleBackToLoginClick}>Voltar para login</a>
+              </form>
+            </div>
+          ) : (
+            <div className="login">
+              <div>
+                <p>Login</p>
+                <IoClose onClick={closeModal}/>
+              </div>
+              <form onSubmit={(e) => {e.preventDefault(); navigate('/products'); scrollToTop();}}>
+                <label>Email:</label>
+                <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email"/>
+                <label>Senha:</label>
+                <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="********"/>
+                <a onClick={handleForgotPasswordClick}>Esqueceu a senha?</a>
+                <button type="submit">
+                  {loading ? <div className="spinner-button"><CgSpinner/></div> : "ENTRAR"}
+                </button>
+                <a className="link">Ainda não possui uma conta? <span onClick={handleRegisterClick}>Cadastre-se</span></a>
+              </form>
+            </div>
+          )}
+        </>
       )}
     </Modal>
   )

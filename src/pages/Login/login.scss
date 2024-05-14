@@ -5,16 +5,17 @@
   flex-direction: column;
   border-radius: 10px;
   padding: 10%;
-  height: 65vh;
+  height: 100%;
   width: 28vw;
   gap: 6%;
   overflow-y: hidden;
-  z-index: 99;
+  z-index: 9 !important;
 
   div{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 3vh;
 
     p{
       font-size: 1.3rem;
@@ -48,7 +49,7 @@
 
       &::placeholder{
         color: var(--font-color-white);
-        opacity: 0.7;
+        opacity: 0.5;
         font-weight: 300;
       }
     }
@@ -84,10 +85,16 @@
   }
 }
 
-.register{
-  height: 90vh;
+.login{
+  padding-bottom: 15vh;
+}
 
-  div{
-    margin-bottom: -1vh;
+.forgot-password{
+  p{
+    margin-bottom: 2.5vh;
+  }
+
+  a{
+    text-decoration: underline !important;
   }
 }
