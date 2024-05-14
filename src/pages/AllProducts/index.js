@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import './allproducts.scss'
 import { useNavigate } from "react-router-dom"
 
+import Header from "../../components/Header"
+
 import shirt1 from '../../assets/mockups/shirt3.png'
 import shirt2 from '../../assets/mockups/shirt4.png'
 import shirt3 from '../../assets/mockups/shirt.png'
@@ -60,9 +62,9 @@ export default function AllProducts(){
 
   return(
     <>
-      <section className="banner-all-products">
-        <h1>Explore nossa coleção</h1>
-      </section>
+      <Header/>
+
+      <section className="banner-all-products"></section>
 
       <main className="all-products">
         <aside>

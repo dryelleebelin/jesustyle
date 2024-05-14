@@ -1,0 +1,169 @@
+.header{
+  background-color: var(--black);
+  color: var(--font-color-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  height: 10vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+
+  .container-logo{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  img{
+    width: auto;
+    height: 80%;
+  }
+
+  .input{
+    border: 1px solid var(--background);
+    border-radius: 20px;
+    width: 40%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1vw;
+
+    input{
+      background-color: transparent;
+      width: 95%;
+      color: var(--font-color-white);
+      height: 100%;
+      border: none;
+    }
+  }
+
+  nav{
+    display: flex;
+    width: 30%;
+    gap: 1.2vw;
+    justify-content: flex-end;
+
+    .btn-cart{
+      background-color: transparent;
+      border: none;
+      color: var(--font-color-white);
+      display: flex;
+      align-items: center;
+      gap: 0.3vw;
+
+      svg{
+        font-size: 20px;
+      }
+    }
+
+    .btn-login{
+      background-color: var(--font-color-white);
+      color: var(--font-color);
+      border: none;
+      font-weight: 500;
+      padding: 0.5vh 2vw;
+      border-radius: 16px;
+      opacity: 0.9;
+      transition: 0.3s ease-in;
+      box-shadow: 2px 2px 10px var(--shadow);
+
+      svg{
+        color: var(--font-color);
+        font-size: 18px;
+      }
+
+      &:hover{
+        opacity: 1;
+      }
+    }
+
+    p{
+      display: flex;
+      align-items: center;
+      gap: 0.4vw;
+      cursor: pointer;
+
+      .avatar{
+        font-size: 20px;
+      }
+    }
+  }
+
+  .dropdown_wrapper{
+    max-width: 10rem;
+    width: 100%;
+    top: 11vh;
+    position: absolute;
+    right: 5vw;
+    background-color: var(--black);
+    border-radius: 0.5rem;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    box-shadow: 0px 2px 8px 0px var(--shadow);
+    animation: fadeInAnimation 0.5s ease-in-out forwards;
+  
+    .content{
+      display: flex;
+      flex-direction: column;
+
+      button{
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: var(--font-color-white);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5vw;
+        padding: 0.6rem 1.5rem;
+        border-radius: 6px;
+        transition: 0.3s ease-in-out;
+
+        svg{
+          font-size: 20px;
+        }
+
+        &:hover{
+          background-color: #202020;
+        }
+      }
+    }
+  }
+  
+  .dropdown_wrapper--fade-in{
+    animation: fadeInAnimation 0.5s ease-in-out forwards;
+  }
+  
+  .none{
+    display: none;
+  }
+  
+  .hide{
+    animation: fadeOutAnimation 0.5s ease-in-out forwards;
+  }
+}
+
+@keyframes fadeInAnimation{
+  0%{
+    max-height: 0rem;
+  }
+  100%{
+    max-height: 40rem;
+  }
+}
+
+@keyframes fadeOutAnimation{
+  0%{
+    max-height: 40rem;
+  }
+  100%{
+    max-height: 0rem;
+  }
+}
