@@ -2,11 +2,11 @@ import React, { useState, useRef, useEffect } from "react"
 import './header.scss'
 
 import Login from '../../pages/Login'
+import Cart from '../Cart'
 
 import logo from '../../assets/logos/transparent.png'
 
 import { IoSearch, IoPersonOutline } from "react-icons/io5"
-import { RiShoppingBag3Fill } from "react-icons/ri"
 import { BsPersonCircle } from "react-icons/bs"
 import { IoIosArrowDown, IoIosLogOut } from "react-icons/io"
 
@@ -60,7 +60,7 @@ export default function Header(){
         <IoSearch/>
       </div>
       <nav>
-        <button type="button" className="btn-cart"><RiShoppingBag3Fill/> Carrinho</button>
+        <Cart/>
         <button type="button" className="btn-login" onClick={handleOpenModalLogin}>Login</button>
         <p ref={notificationsRef}>Dryelle <BsPersonCircle className="avatar"/> <IoIosArrowDown/></p>
       </nav>

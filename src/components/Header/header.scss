@@ -48,19 +48,6 @@
     gap: 1.2vw;
     justify-content: flex-end;
 
-    .btn-cart{
-      background-color: transparent;
-      border: none;
-      color: var(--font-color-white);
-      display: flex;
-      align-items: center;
-      gap: 0.3vw;
-
-      svg{
-        font-size: 20px;
-      }
-    }
-
     .btn-login{
       background-color: var(--font-color-white);
       color: var(--font-color);

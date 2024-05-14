@@ -1,0 +1,127 @@
+.btn-cart{
+  background-color: transparent;
+  border: none;
+  color: var(--font-color-white);
+  display: flex;
+  align-items: center;
+  gap: 0.3vw;
+
+  svg{
+    font-size: 20px;
+  }
+}
+
+.cart-content{
+  background-color: var(--black) !important;
+  max-width: 35vw;
+  padding-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .cart-btn-close{
+    height: 6vh;
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 2vw;
+    background-color: transparent;
+    border: none;
+    color: var(--font-color-white);
+    border-top: 1px solid var(--background);
+    border-bottom: 1px solid var(--background);
+    opacity: 0.6;
+  }
+
+  .empty-cart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--font-color-white);
+    gap: 2vh;
+
+    svg{
+      font-size: 70px;
+    }
+
+    p{
+      font-weight: 300;
+    }
+  }
+
+  .cart-header{
+    padding: 2vh 2vw;
+    color: var(--font-color-white);
+    display: flex;
+    align-items: last baseline;
+    gap: 0.6vw;
+
+    h1{
+      font-size: 1.5rem;
+    }
+
+    span{
+      font-size: 0.8rem;
+      opacity: 0.6;
+      font-weight: 300;
+    }
+  }
+
+  .cart-body{
+    color: var(--font-color-white);
+    height: 100%;
+    padding: 0 2vw;
+
+    ul {
+      list-style-type: none;
+
+      li{
+        display: flex;
+        border-bottom: 1px solid var(--background);
+        padding: 3vh 2vw;
+
+        img{
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+  }
+
+  .cart-footer{
+    height: 12vh;
+    padding: 0 2vw;
+    border-top: 1px solid var(--background);
+    border-bottom: 1px solid var(--background);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--font-color-white);
+
+    p{
+      display: flex;
+      flex-direction: column;
+      font-size: 0.7rem;
+
+      span{
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+    }
+
+    button{
+      background-color: var(--foreground);
+      border: none;
+      opacity: 0.9;
+      border-radius: 4px;
+      padding: 0.8vh 2vw;
+      font-weight: 600;
+      transition: 0.3s ease-in-out;
+
+      &:hover{
+        opacity: 1;
+      }
+    }
+  }
+}
