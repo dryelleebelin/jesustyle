@@ -3,10 +3,13 @@ import './allproducts.scss'
 import { useNavigate } from "react-router-dom"
 
 import Header from "../../components/Header"
+import Footer from "../../components/Footer"
 
 import shirt1 from '../../assets/mockups/shirt3.png'
 import shirt2 from '../../assets/mockups/shirt4.png'
 import shirt3 from '../../assets/mockups/shirt.png'
+import shirt4 from '../../assets/mockups/shirt1.png'
+import shirt5 from '../../assets/mockups/shirt2.png'
 
 import { FaListUl } from "react-icons/fa"
 import { MdOutlineCircle, MdCheckCircle } from "react-icons/md"
@@ -45,19 +48,15 @@ export default function AllProducts(){
   const sizes = ["S", "M", "L", "XL"]
 
   const items = [
-    { id: 1, name: "Camiseta", price: "R$77,00", description: "Estilo e conforto em uma camiseta de qualidade.", src: shirt1 },
-    { id: 2, name: "Camiseta", price: "R$55,00", description: "Clássica e elegante, ideal para o dia a dia.", src: shirt2 },
-    { id: 3, name: "Camiseta", price: "R$99,00", description: "Trendy e único, feito para se destacar.", src: shirt3 },
-    { id: 4, name: "Camiseta", price: "R$120,00", description: "Premium e confortável, para um estilo elevado.", src: shirt1 },
-    { id: 5, name: "Camiseta", price: "R$45,00", description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: shirt3 },
-    { id: 6, name: "Camiseta", price: "R$85,00", description: "Moderno e na moda, para quem segue as tendências.", src: shirt1 },
-    { id: 7, name: "Camiseta", price: "R$70,00", description: "Estilo sem esforço para combinar com tudo.", src: shirt2 },
-    { id: 8, name: "Camiseta", price: "R$60,00", description: "Conforto e sofisticação em uma peça única.", src: shirt1 },
-    { id: 9, name: "Camiseta", price: "R$80,00", description: "Destaque-se com um design ousado e moderno.", src: shirt3 }
+    { id: 1, name: "Camiseta", price: 77, description: "Estilo e conforto em uma camiseta de qualidade.", src: shirt1 },
+    { id: 2, name: "Camiseta", price: 55, description: "Clássica e elegante, ideal para o dia a dia.", src: shirt2 },
+    { id: 3, name: "Camiseta", price: 99, description: "Trendy e único, feito para se destacar.", src: shirt3 },
+    { id: 4, name: "Camiseta", price: 120, description: "Premium e confortável, para um estilo elevado.", src: shirt4 },
+    { id: 5, name: "Camiseta", price: 45, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: shirt5 }
   ]
 
   useEffect(() => {
-    document.title = "Jesustyle | Descubra Nossa Coleção de Moda"
+    document.title = "Jesustyle | Descubra Nossa Coleção"
   }, [])
 
   return(
@@ -106,7 +105,7 @@ export default function AllProducts(){
                 <img src={item.src} alt="Item"/>
                 <h6>{item.name}</h6>
                 <p>{item.description}</p>
-                <span>{item.price}</span>
+                <span>R$ {parseFloat(item.price).toFixed(2).replace('.', ',')}</span>
                 <div>
                   <button type="button" onClick={() => navigate(`/product/${item.id}`)}>COMPRAR</button>
                   <HiOutlineShoppingBag/>
@@ -116,6 +115,8 @@ export default function AllProducts(){
           </div>
         </section>
       </main>
+
+      <Footer/>
     </>
   )
 }

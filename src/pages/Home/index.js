@@ -147,7 +147,7 @@ export default function Home(){
         </section>
 
         <section className="bottom">
-          <p className="copyright">© 2024 Todos os direitos reservados</p>
+          <p className="copyright">© 2024 Jesustyle. Todos os direitos reservados</p>
           <div className="legal">
             <a href="#">Termos</a>
             <a href="#">Privacidade</a>

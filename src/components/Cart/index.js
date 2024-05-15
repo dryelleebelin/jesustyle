@@ -24,6 +24,7 @@ export default function Cart(){
   ])
 
   const total = products.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
+  const cartQuantity = products.reduce((acc, curr) => acc + curr.quantity, 0)
 
   const increaseQuantity = (productId) => {
     setProducts(products.map(product => {
@@ -56,7 +57,10 @@ export default function Cart(){
 
   return (
     <>
-      <Button className='btn-cart' ref={btnRef} onClick={onOpen}><RiShoppingBag3Fill /> Carrinho</Button>
+      <Button className='btn-cart' ref={btnRef} onClick={onOpen}>
+        <RiShoppingBag3Fill/>
+        {cartQuantity >= 1 && <span className="cart-quantity">{cartQuantity}</span>}
+      </Button>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef}>
         <DrawerOverlay />
         <DrawerContent className="cart-content">
@@ -70,7 +74,7 @@ export default function Cart(){
           <DrawerBody className="cart-body">
             {products.length === 0 ? (
               <div className='empty-cart'>
-                <RiShoppingBag3Fill />
+                <RiShoppingBag3Fill/>
                 <p>Seu carrinho está vazio</p>
               </div>
             ) : (

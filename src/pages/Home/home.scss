@@ -326,6 +326,10 @@
       .legal{
         display: flex;
         gap: 1vw;
+
+        a:hover{
+          text-decoration: underline;
+        }
       }
     }
   }
