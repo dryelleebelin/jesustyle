@@ -59,6 +59,10 @@ export default function AllProducts(){
     document.title = "Jesustyle | Descubra Nossa Coleção"
   }, [])
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return(
     <>
       <Header/>
@@ -107,7 +111,7 @@ export default function AllProducts(){
                 <p>{item.description}</p>
                 <span>R$ {parseFloat(item.price).toFixed(2).replace('.', ',')}</span>
                 <div>
-                  <button type="button" onClick={() => navigate(`/product/${item.id}`)}>COMPRAR</button>
+                  <button type="button" onClick={() => {navigate(`/product/${item.id}`); scrollToTop();}}>DETALHES</button>
                   <HiOutlineShoppingBag/>
                 </div>
               </div>

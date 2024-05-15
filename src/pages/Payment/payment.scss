@@ -1,4 +1,11 @@
 .body-pagamento-online{
+  background-color: #2f3037;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  padding: 7% 7% 4% 7%;
+
   .body-trocar-pagamento{
     padding: 7% 7% 1% 7% !important;
   }
@@ -27,16 +34,6 @@
   .trocar-pagamento .btn-active{
     border-color: #05d9cf;
     transform: scale(1.08);
-  }
-  
-  
-  .body-pagamento-online {
-    background-color: #2f3037;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    color: #fff;
-    padding: 7% 7% 4% 7%;
   }
   
   .body-pagamento-online nav {

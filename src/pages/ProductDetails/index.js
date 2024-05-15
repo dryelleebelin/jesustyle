@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react"
-import './productdetails.scss'
+import "./productdetails.scss"
 import { Link } from "react-router-dom"
-import { Breadcrumb, BreadcrumbItem } from '@chakra-ui/react'
+import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/react"
 
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import Header from "../../components/Header"
+import Footer from "../../components/Footer"
 
-import shirt1 from '../../assets/mockups/shirt4.png'
-import seloPagar from '../../assets/seloPagarX.png'
+import shirt1 from "../../assets/mockups/shirt4.png"
+import seloPagar from "../../assets/seloPagarX.png"
 
 import { RiShoppingBag4Line } from "react-icons/ri"
 import { FaAngleRight } from "react-icons/fa"
 
 export default function ProductDetails(){
   const [selectedSize, setSelectedSize] = useState(null)
+  const [quantity, setQuantity] = useState(1)
 
   const handleSizeSelection = (size) => {
     setSelectedSize(size)
+  }
+
+  const handleIncrement = () => {
+    setQuantity(quantity + 1)
+  }
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1)
+    }
   }
 
   const sizes = ["S", "M", "L", "XL"]
@@ -25,16 +36,19 @@ export default function ProductDetails(){
     document.title = "Jesustyle | Detalhes do Produto"
   }, [])
 
-  return(
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  return (
     <>
-      <Header/>
+      <Header />
 
       <main className="product-details">
-        <Breadcrumb className="breadcrumb" spacing='8px' separator={<FaAngleRight/>}>
+        <Breadcrumb className="breadcrumb" spacing="8px" separator={<FaAngleRight/>}>
           <BreadcrumbItem className="breadcrumb-item">
             <Link to={`/products`}>Products</Link>
           </BreadcrumbItem>
-
           <BreadcrumbItem className="breadcrumb-item">
             <Link className="active">Product Detail</Link>
           </BreadcrumbItem>
@@ -42,7 +56,7 @@ export default function ProductDetails(){
 
         <section>
           <article>
-            <img src={shirt1} alt="Image Product"/>
+            <img src={shirt1} alt="Image Product" />
           </article>
 
           <aside>
@@ -54,25 +68,27 @@ export default function ProductDetails(){
               <h2>Size</h2>
               <div>
                 {sizes.map((size, index) => (
-                  <p key={index} className={`size ${selectedSize === size ? "selected" : ""}`} onClick={() => handleSizeSelection(size)}>{size}</p>
+                  <p key={index} className={`size ${selectedSize === size ? "selected" : ""}`} onClick={() => handleSizeSelection(size)}>
+                    {size}
+                  </p>
                 ))}
               </div>
             </div>
             <div className="container-add">
               <div className="add">
-                <button>-</button>
-                <p>1</p>
-                <button>+</button>
+                <button onClick={handleDecrement}>-</button>
+                <p>{quantity}</p>
+                <button onClick={handleIncrement}>+</button>
               </div>
-              <button className="add-cart"><RiShoppingBag4Line/> add to cart</button>
+              <button className="add-cart"><RiShoppingBag4Line /> Adicionar ao Carrinho</button>
             </div>
-            <Link to={`/payment`}><button className="buy">buy now</button></Link>
+            <Link to={`/payment`}><button className="buy" onClick={scrollToTop}>COMPRAR AGORA</button></Link>
             <img src={seloPagar}/>
           </aside>
         </section>
       </main>
 
-      <Footer/>
+      <Footer />
     </>
   )
 }

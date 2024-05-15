@@ -6,7 +6,7 @@
   color: var(--font-color-white);
   margin-top: 10vh;
   padding: 5vh 10vw;
-  height: 100%;
+  height: 90vh;
 
   .css-syhbcg {
     display: flex;
@@ -37,7 +37,12 @@
 
   section{
     display: flex;
-    padding: 5vh 10vw;
+    margin: 4vh 8vw;
+    padding: 1vh 2vw;
+    background-color: var(--background);
+    filter: brightness(0.9);
+    border-radius: 6px;
+    border: 1px solid var(--shadow);
 
     article{
       width: 50%;
@@ -46,7 +51,7 @@
       img{
         width: 100%;
         height: 420px;
-        border-radius: 15px;
+        border-radius: 8px;
       }
     }
 
@@ -61,13 +66,13 @@
       }
   
       p{
-        opacity: 0.7;
+        opacity: 0.8;
         margin-top: 1.5vh;
       }
   
       h2{
         margin: 1vh 0;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 1.3rem;
       }
   
@@ -120,8 +125,7 @@
           justify-content: space-between;
           width: 6vw;
           border: 1px solid var(--foreground);
-          padding: 1% 2%;
-          opacity: 0.6;
+          padding: 0.8% 3%;
           border-radius: 3px;
   
           button{
@@ -134,29 +138,36 @@
           p{
             opacity: 1;
             margin-top: 0;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
           }
         }
   
         .add-cart{
           background-color: transparent;
           border: 1px solid var(--foreground);
-          width: 10vw;
           color: var(--font-color-white);
+          padding: 0 1.2vw;
           border-radius: 3px;
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 0.5vw;
+          transition: 0.3s ease-in-out;
   
           svg{
-            font-size: 18px;
+            font-size: 20px;
+          }
+
+          &:hover{
+            background-color: var(--background);
+            filter: brightness(0.9);
           }
         }
       }
   
       .buy{
         background-color: var(--black);
+        margin-top: 1vh;
         opacity: 0.8;
         border: 1px solid var(--font-color);
         border-radius: 4px;
@@ -165,11 +176,18 @@
         font-weight: 400;
         font-size: 1rem;
         width: 80%;
+        text-transform: uppercase;
+        transition: 0.3s ease-in-out;
+
+        &:hover{
+          filter: brightness(1.2);
+        }
       }
   
       img{
         width: 200px;
-        margin-top: 2vh;
+        height: auto;
+        margin-top: 3vh;
       }
     }
   }
