@@ -49,6 +49,10 @@
       height: 100%;
       border: none;
     }
+
+    svg{
+      cursor: pointer;
+    }
   }
 
   nav{
@@ -109,6 +113,7 @@
       flex-direction: column;
 
       button{
+        width: 100%;
         background-color: transparent;
         border: none;
         outline: none;

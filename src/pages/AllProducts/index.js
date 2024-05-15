@@ -41,11 +41,10 @@ export default function AllProducts(){
   const categories = [
     { name: "Camisetas", count: 5 },
     { name: "Blusas", count: 3 },
-    { name: "Moletons", count: 7 },
-    { name: "Bolsas", count: 2 }
+    { name: "Moletons", count: 7 }
   ]
 
-  const sizes = ["S", "M", "L", "XL"]
+  const sizes = ["PP", "P", "M", "G"]
 
   const items = [
     { id: 1, name: "Camiseta", price: 77, description: "Estilo e conforto em uma camiseta de qualidade.", src: shirt1 },

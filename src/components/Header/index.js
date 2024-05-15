@@ -73,8 +73,8 @@ export default function Header(){
 
       <div ref={dropdownRef} className="dropdown_wrapper hide dropdown_wrapper--fade-in none">
         <div className="content">
-          <button type="button">Ver perfil <IoPersonOutline/></button>
-          <button type="button">Sair <IoIosLogOut/></button>
+          <Link><button type="button">Ver perfil <IoPersonOutline/></button></Link>
+          <Link to={`/`}><button type="button" onClick={scrollToTop}>Sair <IoIosLogOut/></button></Link>
         </div>
       </div>
 
