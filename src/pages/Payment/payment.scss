@@ -1,334 +1,172 @@
-.body-pagamento-online{
-  background-color: #2f3037;
+.payment{
+  background-color: var(--background);
   height: 100%;
   display: flex;
   flex-direction: column;
   color: #fff;
   padding: 7% 7% 4% 7%;
 
-  .body-trocar-pagamento{
-    padding: 7% 7% 1% 7% !important;
-  }
-  .trocar-pagamento h4{
-  font-weight: 600;  
-  margin-top: 2%;
-  }
-  .trocar-pagamento div{
-    width: 55%;
-    height: 6vh;
+  .payment-container{
     display: flex;
-    align-items: center;
-    gap: 2.5%;
-    margin-top: 2%;
-  }
-  .trocar-pagamento div button{
-    background-color: #393a41;
-    height: 100%;
-    border: 1px solid;
-    border-color: #ffffff1a;
-    border-radius: 4px;
-    padding: 0 8% 0 3.6%;
-    text-align: start;
-    transition: 0.3s ease-in-out;
-  }
-  .trocar-pagamento .btn-active{
-    border-color: #05d9cf;
-    transform: scale(1.08);
-  }
-  
-  .body-pagamento-online nav {
-    --bs-breadcrumb-divider: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E");
-  }
-  
-  .body-pagamento-online nav ol li a {
-    font-weight: 500;
-  }
-  
-  .body-pagamento-online nav ol li {
-    font-weight: 500;
-  }
-  
-  .conteudo-pagamento {
-    display: flex;
-  }
-  
-  .conteudo-pagamento section:first-child {
-    width: 55%;
-    margin: 0% 0 3% 0;
-    border-bottom: 1px solid;
-    border-color: #ffffff1a;
-  }
-  
-  .conteudo-pagamento section:first-child h1 {
-    font-size: 26px;
-    font-weight: 700;
-    margin-bottom: 3%;
-  }
-  
-  .body-pagamento-online .formulario-pagamento {
-    margin: 0 0 0 0;
-    background-color: #393a41;
-    border: 1px solid;
-    border-color: #ffffff1a;
-    padding: 0 2% 2% 3.5%;
-    border-radius: 3px;
-  }
-  
-  .formulario-pagamento section {
-    width: 100% !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2.5% 2% 2% 0;
-  }
-  
-  .formulario-pagamento .section2 {
-    width: 100% !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2.5% 2% 2% 0;
-  }
-  
-  .formulario-pagamento .section2 h5 {
-    margin-bottom: 0;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    border-bottom: 1px solid;
-    border-color: #ffffff1a;
-    width: 100%;
-    padding-bottom: 2%;
-  }
-  
-  .formulario-pagamento section h5 {
-    margin-bottom: 0;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
-  
-  .formulario-pagamento section h5 svg {
-    margin-right: 0.5vw;
-    font-size: 25px;
-  }
-  
-  .formulario-pagamento section span {
-    font-size: 11px;
-  }
-  
-  .formulario-pagamento div {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .parcela select {
-    width: 5em !important;
-    background-color: #2f3037;
-    border: none;
-    color: #fff;
-    width: 5vw;
-    padding-right: 10px;
-    text-align: right;
-    font-weight: 300;
-  }
-  
-  .formulario-pagamento div input,
-  div select {
-    margin-bottom: 1.7vh;
-    background-color: transparent;
-    border: 1px solid #fff;
-    color: #fff;
-    outline: none;
-    padding: 1.5vh 1vw;
-    border-radius: 5px;
-  }
-  
-  .formulario-pagamento div select option {
-    color: #000000f7;
-  }
-  
-  .formulario-pagamento div select option:hover {
-    color: #000000f7;
-  }
-  
-  
-  .conteudo-pagamento .section-detalhes {
-    width: 45%;
-    margin: 0;
-    padding-left: 14%;
-    padding-right: 5%;
-  }
-  
-  .conteudo-pagamento .section-detalhes h5 {
-    font-size: 26px;
-    font-weight: 700;
-  }
-  .conteudo-pagamento .section-detalhes p{
-    font-weight: 700;
-    margin-bottom: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .conteudo-pagamento .section-detalhes p select{
-    padding: 0 6px 0 0;
-    margin-top: 12px;
-  }
-  
-  .conteudo-pagamento .section-detalhes span {
-    font-weight: 400;
-  }
-  
-  .section-detalhes .total-diviser {
-    width: 100% !important;
-    margin-top: 1vh;
-  }
-  
-  .conteudo-pagamento .section-detalhes div {
-    display: flex;
-  }
-  .conteudo-pagamento .section-detalhes div label{
-    font-size: 12px;
-    margin: 5% 0 2% 0;
-    color: var(--1-gray-color);
-  }
-  .conteudo-pagamento .section-detalhes div label input{
-    margin-right: 1%;
-  }
-  
-  .conteudo-pagamento .section-detalhes div label a {
-    color: #05d9cf;
-    text-decoration: underline;
-  }
-  .section-detalhes .total span span{
-    margin-right: 0.4vw;
-  }
-  .conteudo-pagamento .section-detalhes button {
-    margin-bottom: 0px;
-    padding: 2.5% 4%;
-    width: 100%;
-    margin-right: 0%;
-    height: auto;
-    border-radius: 5px;
-    font-size: 13px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-  }
-  
-  
-  
-  .cupom-de-desconto{
-    display: flex;
-    flex-direction: column;
-    margin: 8% 0 6% 0;
-  }
-  .cupom-de-desconto p{
-    font-weight: 500 !important;
-    margin-bottom: 1% !important;
-  }
-  .cupom-de-desconto div{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-  .cupom-de-desconto div input{
-    text-transform: uppercase;
-    background-color: transparent;
-    border: 1px solid;
-    border-color: #ffffff1a;
-    border-radius: 3px;
-    color: #fff;
-    width: 68% !important;
-    outline: 0;
-    padding-left: 3%;
-    font-size: 13px;
-  }
-  .cupom-de-desconto div button{
-    width: 30% !important;
-    background-color: #006400;
-    border: none;
-    padding: 0.8vh 1vw;
-    border-radius: 4px !important;
-    font-weight: 500;
-    box-shadow: 1px 1px 10px #00000082;
-    transition: 0.4s ease-in-out;
-    font-size: 13px;
-    text-align: center;
-  }
-  .cupom-de-desconto div button:hover{
-    background-color: #007200;
-  }
-  .botao-remover{
-    background-color: #b11b2a !important;
-  }
-  .botao-remover:hover{
-    background-color: #c71d2e !important;
-  }
-  .alinhamento-preco{
-    display: flex;
-    align-items: center;
-  }
-  .perc-desconto{
-    color: #b11b2a;
-    font-size: 13px;
-    display: flex;
-    justify-content: end;
-    margin-right: 6px;
-    font-weight: 600 !important;
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  /* celular e tablet */
-  @media screen and (max-width: 1080px) {
-    .body-pagamento-online {
-        padding: 28% 7% 20% 7%;
+
+    .checkout-section{
+      width: 55%;
+      margin: 0% 0 3% 0;
+      border-bottom: 1px solid;
+      border-color: #ffffff1a;
+
+      h1{
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 3%;
+      }
     }
-    .conteudo-pagamento {
-        flex-direction: column;
-    }
-    .conteudo-pagamento section:first-child {
-        width: 100%;
+
+    .payment-form{
+      margin: 0 0 0 0;
+      background-color: #393a41;
+      border: 1px solid;
+      border-color: #ffffff1a;
+      padding: 0 2% 2% 3.5%;
+      border-radius: 3px;
+
+      section{
+        width: 100% !important;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2.5% 2% 2% 0;
+
+        &.additional-details{
+          h5 {
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            border-bottom: 1px solid;
+            border-color: #ffffff1a;
+            width: 100%;
+            padding-bottom: 2%;
+          }
+        }
+
+        h5 {
+          margin-bottom: 0;
+          display: flex;
+          align-items: center;
+          white-space: nowrap;
+
+          svg {
+            margin-right: 0.5vw;
+            font-size: 25px;
+          }
+        }
+
+        span {
+          font-size: 11px;
+        }
+      }
+
+      div {
         display: flex;
         flex-direction: column;
-        align-items: start;
+
+        input,
+        select {
+          margin-bottom: 1.7vh;
+          background-color: transparent;
+          border: 1px solid #fff;
+          color: #fff;
+          outline: none;
+          padding: 1.5vh 1vw;
+          border-radius: 5px;
+
+          &.additional-details{
+            padding: 2.5% 2% 2% 0;
+
+            option {
+              color: #000000f7;
+
+              &:hover {
+                color: #000000f7;
+              }
+            }
+          }
+        }
+      }
     }
-    .formulario-pagamento section {
-        padding: 4% 2% 4% 0;
-    }
-    .formulario-pagamento .section2 h5 {
-        padding-bottom: 4%;
-    }
-    .formulario-pagamento section h5 svg {
-        margin-right: 2vw;
-        margin-bottom: 1%;
-    }
-    .conteudo-pagamento .section-detalhes {
-        width: 100%;
-        margin: 10% 0 0 0;
-        padding-left: 6%;
-    }
-    .formulario-pagamento div input, div select {
-        padding: 1.5vh 3vw;
-    }
-    .body-trocar-pagamento{
-        padding: 28% 7% 5% 7% !important;
-    }
-    .trocar-pagamento div{
-        width: 100%;
-        gap: 6%;
-        margin-top: 6%;
-    }
-    .trocar-pagamento .btn-active{
-        transform: scale(1.1);
+
+    .purchase-details{
+      width: 45%;
+      margin: 0;
+      padding-left: 14%;
+      padding-right: 5%;
+
+      h5 {
+        font-size: 26px;
+        font-weight: 700;
+      }
+
+      p {
+        font-weight: 700;
+        margin-bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        select {
+          padding: 0 6px 0 0;
+          margin-top: 12px;
+        }
+      }
+
+      span {
+        font-weight: 400;
+      }
+
+      .total-diviser {
+        width: 100% !important;
+        margin-top: 1vh;
+        border-bottom: 1px solid gray;
+      }
+
+      div {
+        display: flex;
+
+        label {
+          font-size: 12px;
+          margin: 5% 0 2% 0;
+          color: var(--1-gray-color);
+
+          input {
+            margin-right: 1%;
+          }
+
+          a {
+            color: #05d9cf;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .total {
+        span span {
+          margin-right: 0.4vw;
+        }
+
+        button {
+          margin-bottom: 0px;
+          padding: 2.5% 4%;
+          width: 100%;
+          margin-right: 0%;
+          height: auto;
+          border-radius: 5px;
+          font-size: 13px;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+        }
+      }
     }
   }
 }
