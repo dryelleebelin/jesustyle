@@ -4,7 +4,27 @@
   display: flex;
   flex-direction: column;
   color: #fff;
-  padding: 7% 7% 4% 7%;
+  padding: 7% 7% 10% 7%;
+
+  .css-syhbcg {
+    display: flex;
+  }
+
+  .breadcrumb{
+    display: flex;
+    margin-bottom: 5vh;
+
+    .breadcrumb-item{
+      a{
+        text-wrap: nowrap;
+      }
+
+      .active{
+        color: var(--accent-1);
+        font-weight: 500;
+      }
+    }
+  }
 
   .payment-container{
     display: flex;
@@ -12,58 +32,49 @@
     .checkout-section{
       width: 55%;
       margin: 0% 0 3% 0;
-      border-bottom: 1px solid;
-      border-color: #ffffff1a;
 
       h1{
-        font-size: 26px;
-        font-weight: 700;
-        margin-bottom: 3%;
+        font-size: 1.8rem;
+        margin-bottom: 3vh;
       }
     }
 
     .payment-form{
-      margin: 0 0 0 0;
-      background-color: #393a41;
-      border: 1px solid;
-      border-color: #ffffff1a;
-      padding: 0 2% 2% 3.5%;
-      border-radius: 3px;
+      background-color: var(--background);
+      filter: brightness(1.2);
+      border: 1px solid var(--shadow);
+      padding: 1vh 2vw 5vh 2vw;
+      border-radius: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
 
       section{
-        width: 100% !important;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 2.5% 2% 2% 0;
+        padding: 3vh 1vw 2vh 0;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2vh;
 
-        &.additional-details{
-          h5 {
-            margin-bottom: 0;
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-            border-bottom: 1px solid;
-            border-color: #ffffff1a;
-            width: 100%;
-            padding-bottom: 2%;
-          }
-        }
-
-        h5 {
-          margin-bottom: 0;
+        h5{
           display: flex;
           align-items: center;
           white-space: nowrap;
+          width: 100%;
+          gap: 0.8vw;
+          font-size: 1.2rem;
+          font-weight: 400;
 
           svg {
-            margin-right: 0.5vw;
-            font-size: 25px;
+            font-size: 26px;
           }
         }
 
         span {
           font-size: 11px;
+          text-wrap: nowrap;
         }
       }
 
@@ -71,28 +82,33 @@
         display: flex;
         flex-direction: column;
 
-        input,
-        select {
-          margin-bottom: 1.7vh;
+        label{
+          margin-bottom: 0.5vh;
+          font-weight: 300;
+        }
+
+        input, select {
+          margin-bottom: 2vh;
           background-color: transparent;
-          border: 1px solid #fff;
-          color: #fff;
+          border: 1px solid var( --foreground);
+          color: var(--font-color-white);
           outline: none;
-          padding: 1.5vh 1vw;
+          padding: 1vh 1vw;
           border-radius: 5px;
+          font-size: 1rem;
 
-          &.additional-details{
-            padding: 2.5% 2% 2% 0;
+          &::placeholder{
+            font-size: 0.9rem;
+          }
 
-            option {
-              color: #000000f7;
-
-              &:hover {
-                color: #000000f7;
-              }
-            }
+          option{
+            background-color: var(--background);
           }
         }
+      }
+
+      .additional-details{
+        padding: 1vh 1vw 2vh 0;
       }
     }
 
@@ -102,69 +118,74 @@
       padding-left: 14%;
       padding-right: 5%;
 
-      h5 {
-        font-size: 26px;
-        font-weight: 700;
+      h1{
+        font-size: 1.7rem;
+        margin-bottom: 3vh;
+        text-wrap: nowrap;
       }
 
-      p {
+      p{
         font-weight: 700;
-        margin-bottom: 0;
         display: flex;
-        justify-content: space-between;
         align-items: center;
-
-        select {
-          padding: 0 6px 0 0;
-          margin-top: 12px;
-        }
+        gap: 0.5vw;
+        margin-bottom: 1vh;
+        text-wrap: nowrap;
       }
 
       span {
         font-weight: 400;
       }
 
-      .total-diviser {
-        width: 100% !important;
+      img{
+        width: 200px;
+        height: auto;
         margin-top: 1vh;
-        border-bottom: 1px solid gray;
+      }
+
+      .total-diviser {
+        width: 100%;
+        margin: 2vh 0;
+        border-bottom: 1px solid var(--foreground);
+      }
+
+      .total{
+        justify-content: space-between;
       }
 
       div {
         display: flex;
 
         label {
-          font-size: 12px;
-          margin: 5% 0 2% 0;
-          color: var(--1-gray-color);
+          font-size: 0.7rem;
+          margin: 1vh 0 2vh 0;
+          color: var(--font-color-white);
 
           input {
-            margin-right: 1%;
+            margin-right: 0.5vw;
           }
 
-          a {
-            color: #05d9cf;
+          a{
+            color: var(--accent-1);
             text-decoration: underline;
           }
         }
       }
 
-      .total {
-        span span {
-          margin-right: 0.4vw;
-        }
+      button{
+        background-color: var(--foreground);
+        color: var(--font-color);
+        border: none;
+        box-shadow: 1px 1px 8px var(--shadow);
+        width: 100%;
+        padding: 1vh 0;
+        border-radius: 4px;
+        font-weight: 600;
+        opacity: 0.9;
+        transition: 0.3s ease-in-out;
 
-        button {
-          margin-bottom: 0px;
-          padding: 2.5% 4%;
-          width: 100%;
-          margin-right: 0%;
-          height: auto;
-          border-radius: 5px;
-          font-size: 13px;
-          text-align: center;
-          display: flex;
-          justify-content: center;
+        &:hover{
+          opacity: 1;
         }
       }
     }

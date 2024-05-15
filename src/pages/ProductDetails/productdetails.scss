@@ -167,21 +167,22 @@
       }
   
       .buy{
-        background-color: var(--black);
-        margin-top: 1vh;
-        opacity: 0.8;
-        border: 1px solid var(--font-color);
+        background-color: var(--foreground);
+        margin-top: 0.5vh;
+        opacity: 0.9;
+        border: none;
         border-radius: 4px;
-        padding: 2% 0;
-        color: var(--font-color-white);
-        font-weight: 400;
+        padding: 1vh 0;
+        color: var(--font-color);
+        font-weight: 500;
         font-size: 1rem;
         width: 80%;
         text-transform: uppercase;
+        box-shadow: 1px 1px 8px var(--shadow);
         transition: 0.3s ease-in-out;
 
         &:hover{
-          filter: brightness(1.2);
+          opacity: 1;
         }
       }
   

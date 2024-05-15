@@ -47,10 +47,10 @@ export default function ProductDetails(){
       <main className="product-details">
         <Breadcrumb className="breadcrumb" spacing="8px" separator={<FaAngleRight/>}>
           <BreadcrumbItem className="breadcrumb-item">
-            <Link to={`/products`}>Products</Link>
+            <Link to={`/products`}>Produtos</Link>
           </BreadcrumbItem>
           <BreadcrumbItem className="breadcrumb-item">
-            <Link className="active">Product Detail</Link>
+            <Link className="active">Detalhes do Produto</Link>
           </BreadcrumbItem>
         </Breadcrumb>
 

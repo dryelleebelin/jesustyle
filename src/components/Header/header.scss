@@ -16,6 +16,15 @@
     height: 100%;
     display: flex;
     align-items: center;
+    gap: 2vw;
+
+    a{
+      transition: 0.3s ease-in-out;
+
+      &:hover{
+        color: var(--accent-1);
+      } 
+    }
   }
 
   img{

@@ -1,9 +1,14 @@
 import React from 'react'
 import './payment.scss'
+import { Link } from "react-router-dom"
+import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/react"
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
+import pagarme from '../../assets/seloPagarX.png'
+
+import { FaAngleRight } from "react-icons/fa"
 import { BsFillCreditCardFill, BsFillPersonPlusFill } from 'react-icons/bs'
 
 export default function Payment(){
@@ -12,7 +17,18 @@ export default function Payment(){
       <Header/>
 
       <main className='payment'>
-        Breadcrumb
+        <Breadcrumb className="breadcrumb" spacing="8px" separator={<FaAngleRight/>}>
+          <BreadcrumbItem className="breadcrumb-item">
+            <Link to={`/products`}>Produtos</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem className="breadcrumb-item">
+            <Link to={`/product/1`}>Detalhes do Produto</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem className="breadcrumb-item">
+            <Link className="active">Finalização da Compra</Link>
+          </BreadcrumbItem>
+        </Breadcrumb>
+
         <div className='payment-container'>
           <section className='checkout-section'>
             <h1>Finalizar compra</h1>
@@ -22,23 +38,23 @@ export default function Payment(){
                 <span>Aceitamos somente cartão de crédito!*</span>
               </section>
 
-              <div>
+              <div style={{width: '48%'}}>
                 <label>Nome no cartão</label>
                 <input type="text" placeholder="Nome no cartão" />
               </div>
-              <div>
+              <div style={{width: '50%'}}>
                 <label>Número do Cartão</label>
                 <input type="text" placeholder="Número do Cartão" />
               </div>
-              <div>
+              <div style={{width: '32%'}}>
                 <label>Data de Validade</label>
                 <input type="text" placeholder="MM/AA" maxLength="5" />
               </div>
-              <div>
+              <div style={{width: '32%'}}>
                 <label>CVV</label>
                 <input type="text" maxLength="3" placeholder="CVV" />
               </div>
-              <div>
+              <div style={{width: '32%'}}>
                 <label>Número de parcelas</label>
                 <select>
                   <option selected>10 X de R$10,00</option>
@@ -57,19 +73,19 @@ export default function Payment(){
               <section className='additional-details'>
                 <h5><BsFillPersonPlusFill />Dados complementares</h5>
               </section>
-              <div>
+              <div style={{width: '48%'}}>
                 <label>CPF</label>
                 <input type="text" placeholder="CPF" maxLength="14" />
               </div>
-              <div>
+              <div style={{width: '50%'}}>
                 <label>Telefone</label>
                 <input type="tel" placeholder="(**) *****-****" maxLength={14} />
               </div>
-              <div>
+              <div style={{width: '48%'}}>
                 <label>CEP</label>
                 <input type="text" placeholder="CEP" maxLength={9} />
               </div>
-              <div>
+              <div style={{width: '50%'}}>
                 <label>Nº residencial</label>
                 <input type="text" placeholder="Nº residencial" maxLength={9} />
               </div>
@@ -77,20 +93,18 @@ export default function Payment(){
           </section>
 
           <section className='purchase-details'>
-            <h5>Detalhes da compra:</h5>
-            <p style={{ display: 'block', marginBottom: '2vh' }}>Item: <span>Camiseta - Tamanho M</span></p>
-            <p>Preço: R$10,00</p>
-            <p>Quantidade de parcelas: <span>10 X</span></p>
+            <h1>Detalhes da compra:</h1>
+            <p>Item: <span>Camiseta - Tamanho M</span></p>
+            <p>Preço: <span>R$10,00</span></p>
+            <p>Parcelamento: <span>10 X</span></p>
             <p>Entrega Estimada: <span>15 de maio de 2024</span></p>
-            <p>pagar.me</p>
+            <img src={pagarme}/>
             <p className='total-diviser'></p>
             <p className='total'>Total: <span>10 X de R$10,00</span></p>
             <div>
               <label><input type='checkbox'/>Ao marcar esta opção, você concorda com os <a href='#'>Termos de Serviço</a>.</label>
             </div>
-            <button type='button'>
-              Finalizar compra
-            </button>
+            <button type='button'>Finalizar compra</button>
           </section>
         </div>
       </main>

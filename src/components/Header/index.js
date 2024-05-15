@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react"
 import './header.scss'
+import { Link } from "react-router-dom"
 
 import Login from '../../pages/Login'
 import Cart from '../Cart'
@@ -50,10 +51,15 @@ export default function Header(){
     }
   }, [])
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return(
     <header className="header">
       <div className="container-logo">
         <img src={logo}/>
+        <Link to={`/products`} onClick={scrollToTop}>Loja</Link>
       </div>
       <div className="input">
         <input type="text" placeholder="Procurar produtos"/>
