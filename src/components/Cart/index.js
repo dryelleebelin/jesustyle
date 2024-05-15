@@ -19,12 +19,22 @@ export default function Cart(){
   }
 
   const [products, setProducts] = useState([
-    { id: 1, name: 'Produto 1', price: 50, quantity: 1, src: item1 },
-    { id: 2, name: 'Produto 2', price: 80, quantity: 1, src: item2 }
-  ])
+    { id: 1, name: 'Produto 1', price: 50, quantity: 1, src: item1, size: 'P' },
+    { id: 2, name: 'Produto 2', price: 80, quantity: 1, src: item2, size: 'M' }
+  ])  
 
   const total = products.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
   const cartQuantity = products.reduce((acc, curr) => acc + curr.quantity, 0)
+  const sizes = ["PP", "P", "M", "G"]
+
+  const handleSizeSelection = (productId, size) => {
+    setProducts(products.map(product => {
+      if (product.id === productId) {
+        return { ...product, size: size }
+      }
+      return product
+    }))
+  }
 
   const increaseQuantity = (productId) => {
     setProducts(products.map(product => {
@@ -85,6 +95,13 @@ export default function Cart(){
                     <div className='cart-details'>
                       <div>
                         <p>{product.name}</p>
+                        <div className='container-sizes'>
+                          {sizes.map((size, index) => (
+                            <p key={index} className={`size ${product.size === size ? "selected" : ""}`} onClick={() => handleSizeSelection(product.id, size)}>
+                              {size}
+                            </p>
+                          ))}
+                        </div>
                         <span>R$ {(product.price * product.quantity).toFixed(2).replace('.', ',')}</span>
                       </div>
                       <div>

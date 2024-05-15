@@ -30,7 +30,7 @@ export default function ProductDetails(){
     }
   }
 
-  const sizes = ["S", "M", "L", "XL"]
+  const sizes = ["PP", "P", "M", "G"]
 
   useEffect(() => {
     document.title = "Jesustyle | Detalhes do Produto"
