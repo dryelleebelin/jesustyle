@@ -6,7 +6,7 @@ import Footer from '../../components/Footer'
 
 import { FcHome } from "react-icons/fc"
 import { IoMdCheckmarkCircleOutline } from "react-icons/io"
-import { FaTruck, FaCheckCircle, FaClock, FaTimesCircle, FaInfoCircle, FaCalendarAlt } from 'react-icons/fa'
+import { FaCog, FaTruck, FaCheckCircle, FaClock, FaTimesCircle, FaInfoCircle, FaCalendarAlt } from 'react-icons/fa'
 
 export default function Account(){
   const [selectedItem, setSelectedItem] = useState("Detalhes da Conta")
@@ -137,6 +137,10 @@ export default function Account(){
     }
   }
 
+  useEffect(() => {
+    document.title = "Jesustyle | Minha Conta"
+  }, [])
+
   return (
     <>
       <Header />
@@ -146,7 +150,8 @@ export default function Account(){
           <h6>Conta</h6>
           <p className={selectedItem === "Detalhes da Conta" ? "active" : ""} onClick={() => handleItemClick("Detalhes da Conta")}>Detalhes da Conta</p>
           <p className={selectedItem === "Endereço" ? "active" : ""} onClick={() => handleItemClick("Endereço")}>Endereço</p>
-          <p className={selectedItem === "Gerenciamento de Pedidos" ? "active" : ""} onClick={() => handleItemClick("Gerenciamento de Pedidos")}>Gerenciamento de Pedidos</p>
+          <p className={selectedItem === "Pedidos" ? "active" : ""} onClick={() => handleItemClick("Pedidos")}>Pedidos</p>
+          <p className={selectedItem === "Gerenciamento de Pedidos" ? "active" : ""} onClick={() => handleItemClick("Gerenciamento de Pedidos")}><FaCog/> Gerenciamento</p>
         </aside>
 
         <article>
