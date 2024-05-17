@@ -68,12 +68,12 @@ export default function Header(){
       <nav>
         <Cart/>
         <button type="button" className="btn-login" onClick={handleOpenModalLogin}>Login</button>
-        <p ref={notificationsRef}>Dryelle <BsPersonCircle className="avatar"/> <IoIosArrowDown/></p>
+        <p ref={notificationsRef}>Usuário <BsPersonCircle className="avatar"/> <IoIosArrowDown/></p>
       </nav>
 
       <div ref={dropdownRef} className="dropdown_wrapper hide dropdown_wrapper--fade-in none">
         <div className="content">
-          <Link><button type="button">Ver perfil <IoPersonOutline/></button></Link>
+          <Link to={`/account`}><button type="button" onClick={scrollToTop}>Ver perfil <IoPersonOutline/></button></Link>
           <Link to={`/`}><button type="button" onClick={scrollToTop}>Sair <IoIosLogOut/></button></Link>
         </div>
       </div>
