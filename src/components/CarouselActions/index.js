@@ -10,7 +10,9 @@ import 'swiper/css/effect-fade'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Pagination } from 'swiper/modules'
 
-import illustration from '../../assets/logos/black-white.png'
+import video1 from '../../assets/video1.png'
+import video2 from '../../assets/video2.png'
+import video3 from '../../assets/video3.png'
 
 import { BsArrowRight } from "react-icons/bs"
 
@@ -20,11 +22,36 @@ export default function CarouselActions() {
     const [slidesPerView, setSlidesPerView] = useState(2)
 
     const data = [
-      { id: '1', image: illustration },
-      { id: '2', image: illustration },
-      { id: '3', image: illustration },
-      { id: '4', image: illustration },
-      { id: '5', image: illustration }
+      { 
+        id: '1', 
+        image: video1, 
+        title: 'Podcast com Karine Carrijo | GloryCast | #45', 
+        description: 'GloryCast: nova temporada com fé e testemunhos. No 1º episódio, Karine Carrijo compartilha sua jornada e transformações.', 
+        tags: ['#podcast', '#glorycast', '#karinecarrijo'], 
+        channelName: 'Glorify Brasil', 
+        publishDate: '08/05/2024', 
+        link: 'https://www.youtube.com/watch?v=HnFv_bZANpk' 
+      },
+      { 
+        id: '2', 
+        image: video2, 
+        title: 'HISTÓRIA DE SUPERAÇÃO - Karine Carrijo e Thiago Lima', 
+        description: 'História inspiradora de Karine Carrijo e Thiago Lima sobre superação e resiliência.', 
+        tags: ['#históriadevida', '#fé', '#testemunho'], 
+        channelName: 'Thiago, mais conhecido como Diniz', 
+        publishDate: '01/04/2024', 
+        link: 'https://www.youtube.com/watch?v=0uhfEvrAhDg' 
+      },
+      { 
+        id: '3', 
+        image: video3, 
+        title: 'KILIQUINHA #28 | BLOGUEIRA | ATRIZ | CANTORA', 
+        description: 'A artista de milhões!!! Ela é blogueira, atriz, cantora e dona de uma beleza inigualável: Kiliquinha o nome dela.', 
+        tags: ['#kiliquinha', '#entrevista', '#karinecarrijo'], 
+        channelName: 'MULHERAMA PODCAST', 
+        publishDate: '01/09/2022', 
+        link: 'https://www.youtube.com/watch?v=oZYClu3UfUE' 
+      }
     ]
 
     useEffect(() => {
@@ -48,17 +75,17 @@ export default function CarouselActions() {
     <Swiper className="swiper-container" modules={[FreeMode, Pagination]} slidesPerView={slidesPerView} pagination={{ clickable: true }} spaceBetween={10} freeMode={1}navigation>
       {data.map((item) => (
         <SwiperSlide key={item.id} className="slide">
-        <img src={item.image} />
+        <img src={item.image}/>
         <div className="content">
-          <h3>Título do Vídeo</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
           <div className="tags">
-            <span>#tag1</span>
-            <span>#tag2</span>
-            <span>#tag3</span>
+            {item.tags.map((tag, index) => (
+              <span key={index}>{tag}</span>
+            ))}
           </div>
-          <p>Nome do Canal | Data de publicação</p>
-          <a href='#'>Assistir agora <BsArrowRight/></a>
+          <p>{item.channelName} | {item.publishDate}</p>
+          <a href={item.link} target="_blank" rel="noopener noreferrer">Assistir agora <BsArrowRight/></a>
         </div>
       </SwiperSlide>      
       ))}

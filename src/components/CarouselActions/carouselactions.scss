@@ -1,23 +1,23 @@
 .swiper-container {
   width: 100%;
   height: auto;
-  padding-left: 35vw !important;
+  padding-left: 30vw !important;
   cursor: grab;
 
   .slide {
     display: flex;
     background-color: var(--foreground);
     color: var(--font-color);
-    height: 38vh;
-    width: 60vw !important;
+    height: 42vh;
+    width: 65vw !important;
     border-radius: 6px;
     opacity: 0.5;
     margin-bottom: 8vh;
-    margin-top: 8vh;
+    margin-top: 5vh;
 
     img {
       object-fit: cover;
-      width: 40%;
+      width: 50%;
       height: auto;
       border-radius: 6px;
     }

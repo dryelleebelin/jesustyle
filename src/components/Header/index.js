@@ -57,7 +57,7 @@ export default function Header(){
   return(
     <header className="header">
       <div className="container-logo">
-        <img src={logo}/>
+        <Link to={`/`}><img src={logo} onClick={scrollToTop}/></Link>
         <Link to={`/products`} onClick={scrollToTop}>Loja</Link>
       </div>
       <div className="input">
