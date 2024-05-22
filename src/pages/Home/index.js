@@ -158,7 +158,7 @@ export default function Home() {
           </div>
           <div className="links-column socials-column">
             <h2>Redes Sociais</h2>
-            <p>Siga-me nas redes sociais para obter os mais recentes vídeos e postagens incríveis.</p>
+            <p>Faça parte das nossas redes sociais e acompanhe as novidades, vídeos e promoções exclusivas!</p>
             <div className="socials">
               <a href="https://www.instagram.com/jesustyle.br/" target="_blank" rel="noopener noreferrer"><FaInstagram/></a>
               <a href="https://www.youtube.com/channel/UCcT7mMwhBDrGYOGB2cX59zQ" target="_blank" rel="noopener noreferrer"><FaYoutube/></a>
