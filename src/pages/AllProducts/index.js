@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import './allproducts.scss'
 import { useNavigate } from "react-router-dom"
+import { Spinner } from '@chakra-ui/react'
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
@@ -20,6 +21,7 @@ export default function AllProducts(){
   const [selectedSize, setSelectedSize] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [selectedSortOption, setSelectedSortOption] = useState("priceLowToHigh")
+  const [loading, setLoading] = useState(false)
 
   const handleSizeSelection = (size) => {
     setSelectedSize(size)
@@ -66,58 +68,66 @@ export default function AllProducts(){
     <>
       <Header/>
 
-      <section className="banner-all-products"></section>
-
-      <main className="all-products">
-        <aside>
-          <h1>Collection</h1>
-          <div className="filters">
-            <p><FaListUl/> Filtros <span>(2)</span></p>
-            <span onClick={handleResetAll}>Limpar filtro</span>
-          </div>
-          <div className="category">
-            {categories.map((category, index) => (
-              <p key={index} onClick={() => handleCategorySelection(category.name)}>
-                {selectedCategory === category.name ? <MdCheckCircle/> : <MdOutlineCircle/>} {category.name} <span>({category.count})</span>
-              </p>
-            ))}
-          </div>
-          <div className="container-size">
-            <h2>Size</h2>
-            <div>
-              {sizes.map((size, index) => (
-                <p key={index} className={`size ${selectedSize === size ? "selected" : ""}`} onClick={() => handleSizeSelection(size)}>{size}</p>
-              ))}
-            </div>
-          </div>
-        </aside>
-
-        <section>
-          <div className="sort-container">
-            <p>Ordenar por: </p>
-            <select value={selectedSortOption} onChange={handleSortChange}>
-              <option value="priceLowToHigh">Preço baixo para alto</option>
-              <option value="priceHighToLow">Preço alto para baixo</option>
-              <option value="nameAToZ">Nome A a Z</option>
-              <option value="nameZToA">Nome Z a A</option>
-            </select>
-          </div>
-          <div className="items-container">
-            {items.map(item => (
-              <div className="item" key={item.id}>
-                <img src={item.src} alt="Item"/>
-                <h6>{item.name}</h6>
-                <p>{item.description}</p>
-                <span>R$ {parseFloat(item.price).toFixed(2).replace('.', ',')}</span>
+      {loading ? (
+        <div className="spinner-page">
+          <Spinner className="spinner" speed='0.70s'/>
+        </div>
+      ) : (
+        <>
+          <section className="banner-all-products"></section>
+        
+          <main className="all-products">
+            <aside>
+              <h1>Collection</h1>
+              <div className="filters">
+                <p><FaListUl/> Filtros <span>(2)</span></p>
+                <span onClick={handleResetAll}>Limpar filtro</span>
+              </div>
+              <div className="category">
+                {categories.map((category, index) => (
+                  <p key={index} onClick={() => handleCategorySelection(category.name)}>
+                    {selectedCategory === category.name ? <MdCheckCircle/> : <MdOutlineCircle/>} {category.name} <span>({category.count})</span>
+                  </p>
+                ))}
+              </div>
+              <div className="container-size">
+                <h2>Size</h2>
                 <div>
-                  <button type="button" onClick={() => {navigate(`/product/${item.id}`); scrollToTop();}}>DETALHES</button>
-                  <HiOutlineShoppingBag/>
+                  {sizes.map((size, index) => (
+                    <p key={index} className={`size ${selectedSize === size ? "selected" : ""}`} onClick={() => handleSizeSelection(size)}>{size}</p>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-      </main>
+            </aside>
+
+            <section>
+              <div className="sort-container">
+                <p>Ordenar por: </p>
+                <select value={selectedSortOption} onChange={handleSortChange}>
+                  <option value="priceLowToHigh">Preço baixo para alto</option>
+                  <option value="priceHighToLow">Preço alto para baixo</option>
+                  <option value="nameAToZ">Nome A a Z</option>
+                  <option value="nameZToA">Nome Z a A</option>
+                </select>
+              </div>
+              <div className="items-container">
+                {items.map(item => (
+                  <div className="item" key={item.id}>
+                    <img src={item.src} alt="Item"/>
+                    <h6>{item.name}</h6>
+                    <p>{item.description}</p>
+                    <span>R$ {parseFloat(item.price).toFixed(2).replace('.', ',')}</span>
+                    <div>
+                      <button type="button" onClick={() => {navigate(`/product/${item.id}`); scrollToTop();}}>DETALHES</button>
+                      <HiOutlineShoppingBag/>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </main>
+        </>
+      )}
 
       <Footer/>
     </>

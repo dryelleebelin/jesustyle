@@ -1,71 +1,79 @@
-import React, { useEffect, useState } from "react"
-import './home.scss'
-import { Link } from "react-router-dom"
+import React, { useEffect, useState, useRef } from "react";
+import './home.scss';
+import { Link } from "react-router-dom";
+import { BsArrowRight } from "react-icons/bs";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
 
-import Login from "../Login"
-import CarouselActions from "../../components/CarouselActions"
+import Login from "../Login";
+import CarouselActions from "../../components/CarouselActions";
+import { FaVolumeMute, FaVolumeUp } from "react-icons/fa"; // Importar ícones de volume do React Icons
+import transparentLogo from '../../assets/logos/transparent.png';
+import whiteLogo from '../../assets/logos/white.png';
+import video from '../../assets/FilmeJesusStyle2.mp4';
+import model1 from '../../assets/mockups/person8.png';
+import model2 from '../../assets/mockups/shirt.png';
+import model3 from '../../assets/mockups/bag.png';
+import model4 from '../../assets/mockups/shirt1.png';
+import purpose1 from '../../assets/purpose1.png';
+import purpose2 from '../../assets/purpose2.jpg';
+import purpose3 from '../../assets/purpose3.jpg';
 
-import transparentLogo from '../../assets/logos/transparent.png'
-import whiteLogo from '../../assets/logos/white.png'
-import video from '../../assets/FilmeJesusStyle2.mp4'
-import model1 from '../../assets/mockups/person8.png'
-import model2 from '../../assets/mockups/shirt.png'
-import model3 from '../../assets/mockups/bag.png'
-import model4 from '../../assets/mockups/shirt1.png'
-import purpose1 from '../../assets/purpose1.png'
-import purpose2 from '../../assets/purpose2.jpg'
-import purpose3 from '../../assets/purpose3.jpg'
-
-import { BsArrowRight } from "react-icons/bs"
-import { FaInstagram, FaYoutube } from "react-icons/fa"
-import { IoMdMail } from "react-icons/io"
-
-export default function Home(){
-  const [isOpenModalLogin, setIsOpenModalLogin] = useState(false)
-  const [isHeaderBlurred, setIsHeaderBlurred] = useState(false)
-  const [slidesPerView, setSlidesPerView] = useState(2)
+export default function Home() {
+  const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
+  const [isHeaderBlurred, setIsHeaderBlurred] = useState(false);
+  const [isSoundEnabled, setIsSoundEnabled] = useState(false);
+  const videoRef = useRef(null);
 
   const data = [
     { id: '1', image: model2 },
     { id: '2', image: model2 },
     { id: '3', image: model2 },
     { id: '4', image: model2 }
-  ]
+  ];
 
   const handleOpenModalLogin = () => {
-    setIsOpenModalLogin(true)
-  }
+    setIsOpenModalLogin(true);
+  };
 
   const handleCloseModal = () => {
-    setIsOpenModalLogin(false)
-  }
+    setIsOpenModalLogin(false);
+  };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-  const scrollTo = (id) => document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollTo = (id) => document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+
+  const toggleSound = () => {
+    setIsSoundEnabled(prevState => !prevState);
+    if (videoRef.current) {
+      videoRef.current.muted = !isSoundEnabled;
+    }
+  };
 
   useEffect(() => {
-    document.title = "Jesustyle | Inspire-se com Jesustyle"
+    document.title = "Jesustyle | Inspire-se com Jesustyle";
 
     const handleScroll = () => {
-      const scrollPosition = window.scrollY
-      const windowHeight = window.innerHeight
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
 
       if (scrollPosition >= windowHeight) {
-        setIsHeaderBlurred(true)
+        setIsHeaderBlurred(true);
       } else {
-        setIsHeaderBlurred(false)
+        setIsHeaderBlurred(false);
       }
-    }
+    };
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-  
-  return(
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
     <div className="home">
       <header className={`${isHeaderBlurred ? 'blurred' : ''}`}>
         <img src={transparentLogo} alt="Logo Jesustyle" onClick={scrollToTop}/>
@@ -80,15 +88,17 @@ export default function Home(){
       </header>
 
       <main>
-        <video autoPlay muted loop>
+        <video ref={videoRef} autoPlay muted={!isSoundEnabled} loop>
           <source src={video} type="video/mp4"/>
         </video>
+        <div onClick={toggleSound}>
+          {isSoundEnabled ? <FaVolumeUp /> : <FaVolumeMute />}
+        </div>
       </main>
 
       <span id="purpose"/>
 
       <section className="purpose">
-        <img src={transparentLogo} alt="Logo Jesustyle"/>
         <h1>Propósito</h1>
         <div className="content">
           <img src={purpose1} className="img-1"/>
@@ -115,7 +125,7 @@ export default function Home(){
       <section className="store">
         <article className="box1">
           <div className="content">
-            <p>Jesus te fez style</p>
+            <p>Jesus te fez Style</p>
             <span>collection 2024</span>
             <Link to={`/products`}><button type="button" onClick={scrollToTop}>Comprar</button></Link>
           </div>
@@ -138,11 +148,12 @@ export default function Home(){
 
       <footer>
         <section className="top">
-          <img src={whiteLogo} alt="Logo Jesustyle"/>
+          <img src={whiteLogo} onClick={scrollToTop}/>
           <div className="links-column">
             <h2>Navegação</h2>
             <a onClick={() => scrollTo('purpose')}>Propósito</a>
-            <a onClick={() => scrollTo('actions')}>Ações</a>
+            <a href="#">Ações</a>
+            <a onClick={() => scrollTo('podcast')}>Podcast</a>
             <a onClick={() => scrollTo('store')}>Loja</a>
           </div>
           <div className="links-column socials-column">
@@ -169,5 +180,5 @@ export default function Home(){
         <Login isOpen={isOpenModalLogin} closeModal={handleCloseModal}/>
       )}
     </div>
-  )
+  );
 }

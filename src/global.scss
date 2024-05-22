@@ -13,6 +13,7 @@
 :root{
   --black: #1a1a1a;
   --background: #4d4d4d;
+  --background-2: #2f2f2f;
   --foreground: #ededed;
   --accent-1: #33b9c7;
   --accent-2: #71cad4;
@@ -39,6 +40,23 @@ a{
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+}
+
+.spinner-page{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background);
+
+  .spinner{
+    color: var(--foreground);
+    size: 70px;
+    font-size: 70px;
+    width: 50px;
+    height: 50px;
+  }
 }
 
 ::-webkit-scrollbar{
