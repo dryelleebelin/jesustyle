@@ -31,7 +31,6 @@
         span {
           margin-right: 1vw;
           opacity: 0.7;
-          border-radius: 4px;
           font-size: 12px;
           text-transform: uppercase;
         }
@@ -54,6 +53,54 @@
 
     &.swiper-slide-active {
       opacity: 1;
+    }
+  }
+}
+
+/* for mobile devices */
+@media only screen and (max-width: 480px){
+  .swiper-container{
+    padding-left: 0vw !important;
+  
+    .slide{
+      height: auto;
+      width: 85% !important;
+      margin-bottom: 8vh;
+      margin-top: 4vh;
+      flex-direction: column;
+  
+      img{
+        width: 100%;
+        border-radius: 0;
+      }
+  
+      .content{
+        padding: 5%;
+
+        p:nth-child(2){
+          margin: 1vh 0;
+        }
+  
+        .tags{
+          display: flex;
+          flex-wrap: wrap;
+          gap: 2vw;
+      
+          span{
+            margin-right: 0;
+          }
+        }
+  
+        a{
+          gap: 2vw;
+          margin: 1.5vh 0;
+          font-size: 17px;
+
+          svg{
+            font-size: 18px;
+          }
+        }
+      }
     }
   }
 }

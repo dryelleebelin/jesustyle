@@ -1,77 +1,80 @@
-import React, { useEffect, useState, useRef } from "react";
-import './home.scss';
-import { Link } from "react-router-dom";
-import { BsArrowRight } from "react-icons/bs";
-import { FaInstagram, FaYoutube } from "react-icons/fa";
-import { IoMdMail } from "react-icons/io";
+import React, { useEffect, useState, useRef } from "react"
+import './home.scss'
+import { Link } from "react-router-dom"
 
-import Login from "../Login";
-import CarouselActions from "../../components/CarouselActions";
-import { FaVolumeMute, FaVolumeUp } from "react-icons/fa"; // Importar ícones de volume do React Icons
-import transparentLogo from '../../assets/logos/transparent.png';
-import whiteLogo from '../../assets/logos/white.png';
-import video from '../../assets/FilmeJesusStyle2.mp4';
-import model1 from '../../assets/mockups/person8.png';
-import model2 from '../../assets/mockups/shirt.png';
-import model3 from '../../assets/mockups/bag.png';
-import model4 from '../../assets/mockups/shirt1.png';
-import purpose1 from '../../assets/purpose1.png';
-import purpose2 from '../../assets/purpose2.jpg';
-import purpose3 from '../../assets/purpose3.jpg';
+import Login from "../Login"
+import CarouselActions from "../../components/CarouselActions"
+
+import transparentLogo from '../../assets/logos/transparent.png'
+import whiteLogo from '../../assets/logos/white.png'
+import video from '../../assets/FilmeJesusStyle2.mp4'
+import model1 from '../../assets/mockups/person8.png'
+import model2 from '../../assets/mockups/shirt.png'
+import model3 from '../../assets/mockups/bag.png'
+import model4 from '../../assets/mockups/shirt1.png'
+import purpose1 from '../../assets/purpose1.png'
+import purpose2 from '../../assets/purpose2.jpg'
+import purpose3 from '../../assets/purpose3.jpg'
+import purposeCollage from '../../assets/purposeCollage.png'
+
+import { BsArrowRight } from "react-icons/bs"
+import { FaInstagram, FaYoutube } from "react-icons/fa"
+import { IoMdMail } from "react-icons/io"
+import { FaVolumeMute, FaVolumeUp } from "react-icons/fa"
 
 export default function Home() {
-  const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
-  const [isHeaderBlurred, setIsHeaderBlurred] = useState(false);
-  const [isSoundEnabled, setIsSoundEnabled] = useState(false);
-  const videoRef = useRef(null);
+  const [isOpenModalLogin, setIsOpenModalLogin] = useState(false)
+  const [isHeaderBlurred, setIsHeaderBlurred] = useState(false)
+  const [isSoundEnabled, setIsSoundEnabled] = useState(false)
+  const videoRef = useRef(null)
 
   const data = [
     { id: '1', image: model2 },
     { id: '2', image: model2 },
     { id: '3', image: model2 },
     { id: '4', image: model2 }
-  ];
+  ]
 
   const handleOpenModalLogin = () => {
-    setIsOpenModalLogin(true);
-  };
+    setIsOpenModalLogin(true)
+  }
 
   const handleCloseModal = () => {
-    setIsOpenModalLogin(false);
-  };
+    setIsOpenModalLogin(false)
+  }
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
-  const scrollTo = (id) => document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = (id) => document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
 
   const toggleSound = () => {
-    setIsSoundEnabled(prevState => !prevState);
+    setIsSoundEnabled(prevState => !prevState)
     if (videoRef.current) {
-      videoRef.current.muted = !isSoundEnabled;
+      videoRef.current.muted = !isSoundEnabled
     }
-  };
+  }
 
   useEffect(() => {
-    document.title = "Jesustyle | Inspire-se com Jesustyle";
+    document.title = "Jesustyle | Inspire-se com Jesustyle"
 
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
+      const scrollPosition = window.scrollY
+      const windowHeight = window.innerHeight
 
-      if (scrollPosition >= windowHeight) {
-        setIsHeaderBlurred(true);
-      } else {
-        setIsHeaderBlurred(false);
+      if(scrollPosition >= windowHeight) {
+        setIsHeaderBlurred(true)
+      } else{
+        setIsHeaderBlurred(false)
       }
-    };
+    }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <div className="home">
@@ -108,6 +111,7 @@ export default function Home() {
           <img src={purpose3} className="img-3"/>
           <p className="p-3">Além disso, nos comprometemos em ser agentes de mudança positiva em nossa comunidade, de eventos de serviço a iniciativas que promovem a fé e o amor ao próximo.</p>
           <p className="p-4">Na JESUSTYLE, nossa humildade vem da compreensão de que somos instrumentos nas mãos de Deus. Enquanto Thiago lidera o caminho, permanecemos fiéis à nossa missão: espalhar a mensagem de Jesus Cristo através da moda, da comunidade e do serviço, deixando um impacto duradouro em um mundo que tanto precisa de esperança e luz. Esta é a nossa missão. <strong>Esta é a JESUSTYLE.</strong></p>
+          <img src={purposeCollage} className="purposeCollage"/>
         </div>
       </section>
 
@@ -180,5 +184,5 @@ export default function Home() {
         <Login isOpen={isOpenModalLogin} closeModal={handleCloseModal}/>
       )}
     </div>
-  );
+  )
 }
