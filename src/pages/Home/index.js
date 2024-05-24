@@ -7,7 +7,8 @@ import CarouselActions from "../../components/CarouselActions"
 
 import transparentLogo from '../../assets/logos/transparent.png'
 import whiteLogo from '../../assets/logos/white.png'
-import video from '../../assets/FilmeJesusStyle2.mp4'
+import horizontalVideo from '../../assets/videos/horizontalTeaser.mp4'
+import verticalVideo from '../../assets/videos/horizontalTeaser.mp4'
 import model1 from '../../assets/mockups/person8.png'
 import model2 from '../../assets/mockups/shirt.png'
 import model3 from '../../assets/mockups/bag.png'
@@ -27,13 +28,6 @@ export default function Home() {
   const [isHeaderBlurred, setIsHeaderBlurred] = useState(false)
   const [isSoundEnabled, setIsSoundEnabled] = useState(false)
   const videoRef = useRef(null)
-
-  const data = [
-    { id: '1', image: model2 },
-    { id: '2', image: model2 },
-    { id: '3', image: model2 },
-    { id: '4', image: model2 }
-  ]
 
   const handleOpenModalLogin = () => {
     setIsOpenModalLogin(true)
@@ -91,8 +85,11 @@ export default function Home() {
       </header>
 
       <main>
-        <video ref={videoRef} autoPlay muted={!isSoundEnabled} loop>
-          <source src={video} type="video/mp4"/>
+        <video className="horizontalVideo" ref={videoRef} autoPlay muted={!isSoundEnabled} loop>
+          <source src={horizontalVideo} type="video/mp4"/>
+        </video>
+        <video className="verticalVideo" ref={videoRef} autoPlay muted={!isSoundEnabled} loop>
+          <source src={verticalVideo} type="video/mp4"/>
         </video>
         <div onClick={toggleSound}>
           {isSoundEnabled ? <FaVolumeUp /> : <FaVolumeMute />}

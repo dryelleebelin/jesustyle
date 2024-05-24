@@ -59,3 +59,43 @@
     }
   }
 }
+
+/* for mobile devices */
+@media only screen and (max-width: 480px){
+  .footer{
+    padding: 5vh 0;
+  
+    .footer-content{
+      width: 90vw;
+  
+      img{
+        height: 80px;
+        margin-bottom: 2vh;
+      }
+  
+      p{
+        font-size: 0.8rem;
+      }
+  
+      .footer-links{
+        flex-direction: column;
+        text-align: center;
+        font-size: 0.8rem;
+      }
+  
+      .socials{
+        gap: 3vw;
+        margin-top: 2vh;
+  
+        a{
+          width: 45px;
+          height: 45px;
+  
+          svg{
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+}

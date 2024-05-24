@@ -94,11 +94,47 @@
 }
 
 .forgot-password{
-  p{
-    margin-bottom: 2.5vh;
-  }
-
   a{
     text-decoration: underline !important;
+  }
+}
+
+/* for mobile devices */
+@media only screen and (max-width: 480px){
+  .login, .register{
+    padding: 15% 10%;
+    width: 85vw;
+  
+    div{
+      margin-top: -6%;
+  
+      p{
+        font-size: 1.4rem;
+      }
+  
+      svg{
+        font-size: 30px;
+      }
+    }
+  
+    form{
+      input{
+        padding: 0.8% 0%;
+      }
+  
+      button{
+        margin: 8% 0;
+        border-radius: 20px;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .register{
+    form{
+      input[type="date"]{
+        width: 100%;
+      }
+    }
   }
 }

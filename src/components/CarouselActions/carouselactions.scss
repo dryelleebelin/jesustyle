@@ -10,7 +10,7 @@
     color: var(--font-color);
     height: 42vh;
     width: 65vw !important;
-    border-radius: 6px;
+    border-radius: 8px;
     opacity: 0.5;
     margin-bottom: 8vh;
     margin-top: 5vh;
@@ -19,7 +19,8 @@
       object-fit: cover;
       width: 50%;
       height: auto;
-      border-radius: 6px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
     }
 
     .content{
@@ -71,7 +72,8 @@
   
       img{
         width: 100%;
-        border-radius: 0;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
       }
   
       .content{

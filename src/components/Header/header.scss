@@ -72,11 +72,6 @@
       transition: 0.3s ease-in;
       box-shadow: 2px 2px 10px var(--shadow);
 
-      svg{
-        color: var(--font-color);
-        font-size: 18px;
-      }
-
       &:hover{
         opacity: 1;
       }
@@ -87,10 +82,6 @@
       align-items: center;
       gap: 0.4vw;
       cursor: pointer;
-
-      .avatar{
-        font-size: 20px;
-      }
     }
   }
 
@@ -166,5 +157,47 @@
   }
   100%{
     max-height: 0rem;
+  }
+}
+
+/* for mobile devices */
+@media only screen and (max-width: 480px){
+  .header{
+    .container-logo{
+      width: auto;
+  
+      a:last-child{
+        display: none;
+      }
+    }
+  
+    img{
+      height: 6vh;
+    }
+  
+    .input{
+      display: none;
+    }
+  
+    nav{
+      width: auto;
+      gap: 5vw;
+  
+      .btn-login{
+        padding: 0.5vh 5vw;
+      }
+  
+      p{
+        gap: 0.8vw;
+      }
+    }
+  
+    .dropdown_wrapper{
+      top: 10.5vh;
+    
+      .content{
+        padding: 4% 0;
+      }
+    }
   }
 }

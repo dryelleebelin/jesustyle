@@ -79,6 +79,10 @@
       object-fit: cover;
     }
 
+    .verticalVideo{
+      display: none;
+    }
+
     div{
       position: absolute;
       bottom: 3vh;
@@ -180,6 +184,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      z-index: 0;
 
       h1{
         margin-top: 6vh;
@@ -432,6 +437,14 @@
     }
 
     main{
+      .horizontalVideo{
+        display: none;
+      }
+
+      .verticalVideo{
+        display: block;
+      }
+
       div{
         bottom: 2vh;
         right: 5vw;
@@ -508,7 +521,7 @@
   
         .image{
           img{
-            width: 70%;
+            width: 80%;
           }
   
           a{
@@ -525,11 +538,11 @@
       .box2{
         flex-direction: row;
         justify-content: center;
-        gap: 7vw;
+        gap: 5vw;
   
         img{
           width: auto;
-          height: 130px;
+          height: 120px;
         }
       }
   
@@ -548,7 +561,7 @@
         }
   
         img{
-          width: 80%;
+          width: 68%;
         }
       }
     }
@@ -573,15 +586,15 @@
   
           .socials{
             justify-content: center;
-            gap: 2vw;
-            margin-top: 3vh;
+            gap: 3vw;
+            margin-top: 2vh;
   
             a{
-              width: 40px;
-              height: 40px;
+              width: 45px;
+              height: 45px;
   
               svg{
-                font-size: 20px;
+                font-size: 25px;
               }
             }
           }
