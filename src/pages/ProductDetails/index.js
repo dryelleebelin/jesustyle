@@ -65,7 +65,7 @@ export default function ProductDetails(){
             <h2>R$77,00</h2>
             <span className="divider"></span>
             <div className="container-size">
-              <h2>Size</h2>
+              <h2>Tamanho</h2>
               <div>
                 {sizes.map((size, index) => (
                   <p key={index} className={`size ${selectedSize === size ? "selected" : ""}`} onClick={() => handleSizeSelection(size)}>
