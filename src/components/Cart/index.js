@@ -74,7 +74,7 @@ export default function Cart(){
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef}>
         <DrawerOverlay />
         <DrawerContent className="cart-content">
-          <DrawerCloseButton className="cart-btn-close" />
+          <DrawerCloseButton className="cart-btn-close"/>
 
           <DrawerHeader className="cart-header">
             <h1>Seu carrinho</h1>

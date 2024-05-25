@@ -245,3 +245,64 @@
     }
   }
 }
+
+/* for mobile devices */
+@media only screen and (max-width: 480px){
+  .cart-content{
+    max-width: 100vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  
+    .cart-btn-close{
+      font-size: 20px;
+      padding: 0;
+    }
+  
+    .cart-header{
+      gap: 1.5vw;
+    }
+  
+    .cart-body{
+      padding: 0;
+
+      ul{
+        li{
+          gap: 4vw;
+  
+          img{
+            width: 130px;
+            height: 130px;
+          }
+  
+          .cart-details{
+            div{
+              gap: 1vh;
+  
+              .container-sizes{
+                gap: 1.5vw;
+  
+                .size{
+                  width: 7vw;
+                  height: 7vw;
+                }
+              }
+  
+              .qtd{
+                gap: 3vw;
+                padding: 0 2vw;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .cart-footer{
+      padding: 0;
+  
+      button{
+        padding: 0.8vh 5vw;
+      }
+    }
+  }
+}

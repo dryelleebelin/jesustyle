@@ -191,3 +191,75 @@
     }
   }
 }
+
+/* for mobile devices */
+@media only screen and (max-width: 480px){
+  .payment{
+    padding: 13vh 5vw 5vh 5vw;
+  
+    .breadcrumb{
+      margin-bottom: 7vh;
+  
+      .breadcrumb-item{
+        .active{
+          position: absolute;
+          left: 5vw;
+          margin-top: 6vh;
+        }
+      }
+    }
+  
+    .payment-container{
+      flex-direction: column;
+  
+      .checkout-section{
+        width: 100%;
+        margin: 0;
+        margin-bottom: 5vh;
+  
+        h1{
+          font-size: 1.6rem;
+          margin-bottom: 1vh;
+        }
+      }
+  
+      .payment-form{
+        padding: 0 4vw 1vh 4vw;
+  
+        section{
+          padding: 2vh 0;
+          margin-bottom: 2vh;
+  
+          h5{
+            gap: 3vw;
+          }
+  
+          span{
+            text-wrap: wrap;
+            text-align: end;
+          }
+        }
+  
+        div{
+          input, select {
+            padding: 1vh 3vw;
+          }
+        }
+      }
+  
+      .purchase-details{
+        width: 100%;
+        padding: 0 2vw;
+  
+        h1{
+          font-size: 1.6rem;
+          margin-bottom: 1vh;
+        }
+  
+        p{
+          gap: 1.5vw;
+        }
+      }
+    }
+  }
+}

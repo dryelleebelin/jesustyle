@@ -205,3 +205,145 @@
     }
   }
 }
+
+/* for mobile devices */
+@media only screen and (max-width: 480px){
+  .banner-all-products {
+    height: 30vh;
+    margin-top: 6vh;
+    display: none;
+  }
+
+  .all-products{
+    padding: 12vh 5vw 3vh 5vw;
+    flex-direction: column;
+  
+    aside{
+      width: 100%;
+
+      h1{
+        display: none;
+      }
+  
+      .filters{
+        margin: 2vh 0 2vh 0;
+
+        p{
+          svg{
+            margin-right: 2vw;
+          }
+  
+          span{
+            margin-left: 1vw;
+          }
+        }
+      }
+  
+      .category{
+        display: flex;
+        flex-direction: column;
+        gap: 0.8vh;
+
+        p{
+          gap: 1.5vw;
+  
+          svg{
+            font-size: 28px;
+          }
+  
+          span{
+            margin-bottom: -0.3vh;
+          }
+        }
+      }
+  
+      .container-size{
+        padding: 2vh 0;
+        margin-top: 2vh;
+        border-bottom: 1px solid var(--foreground);
+  
+        h2{
+          font-size: 1.1rem;
+        }
+  
+        div{
+          gap: 2vw;
+        }
+  
+        .size{
+          width: 8vw;
+          height: 8vw;
+        }
+      }
+    }
+  
+    section{
+      padding-left: 0vw;
+      margin-top: 2vh;
+  
+      .sort-container{
+        gap: 0.8vw;
+        margin-bottom: 4vh;
+        flex-direction: column;
+        align-items: flex-start;
+  
+        p{
+          opacity: 1;
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 0.5vh;
+        }
+  
+        select{
+          margin-left: -0.8vw;
+        }
+      }
+  
+      .items-container{
+        .item{
+          width: 100%;
+          margin: 0vw;
+  
+          img{
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+          }
+  
+          h6{
+            font-size: 1.5rem;
+            margin-top: 0.5vh;
+          }
+  
+          p{
+            font-size: 1rem;
+            margin: 0.8vh 0;
+            height: auto;
+          }
+  
+          span{
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+          
+          div{
+            height: 5vh;
+            margin-top: 2vh;
+            margin-bottom: 5vh;
+  
+            button{
+              width: 84%;
+              border-radius: 30px;
+              font-size: 1rem;
+            }
+  
+            svg{
+              width: auto;
+              padding: 7px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

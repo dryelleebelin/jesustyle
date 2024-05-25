@@ -38,23 +38,23 @@ export default function Payment(){
                 <span>Aceitamos somente cartão de crédito!*</span>
               </section>
 
-              <div style={{width: '48%'}}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '48%'}}>
                 <label>Nome no cartão:</label>
                 <input type="text" placeholder="Nome no cartão" />
               </div>
-              <div style={{width: '50%'}}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '50%'}}>
                 <label>Número do Cartão:</label>
                 <input type="text" placeholder="Número do Cartão" />
               </div>
-              <div style={{width: '32%'}}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '32%'}}>
                 <label>Data de Validade:</label>
                 <input type="text" placeholder="MM/AA" maxLength="5" />
               </div>
-              <div style={{width: '32%'}}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '32%'}}>
                 <label>CVV:</label>
                 <input type="text" maxLength="3" placeholder="CVV" />
               </div>
-              <div style={{width: '32%'}}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '32%'}}>
                 <label>Número de parcelas:</label>
                 <select>
                   <option selected>10 X de R$10,00</option>
@@ -73,19 +73,19 @@ export default function Payment(){
               <section className='additional-details'>
                 <h5><BsFillPersonPlusFill />Dados complementares</h5>
               </section>
-              <div style={{width: '48%'}}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '48%'}}>
                 <label>CPF:</label>
                 <input type="text" placeholder="CPF" maxLength="14" />
               </div>
-              <div style={{width: '50%'}}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '50%'}}>
                 <label>Telefone:</label>
                 <input type="tel" placeholder="(**) *****-****" maxLength={14} />
               </div>
-              <div style={{width: '48%'}}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '48%'}}>
                 <label>CEP:</label>
                 <input type="text" placeholder="CEP" maxLength={9} />
               </div>
-              <div style={{width: '50%'}}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '50%'}}>
                 <label>Nº residencial:</label>
                 <input type="text" placeholder="Nº residencial" maxLength={9} />
               </div>
