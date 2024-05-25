@@ -48,7 +48,7 @@ export default function Account(){
     {
       id: 3,
       date: "2023-05-14",
-      status: "Em processamento",
+      status: "Em Andamento",
       items: [
         { name: "Produto 3", quantity: 1, price: 150 },
       ],
@@ -58,7 +58,7 @@ export default function Account(){
     {
       id: 4,
       date: "2023-05-16",
-      status: "Cancelado",
+      status: "Pedido Feito",
       items: [
         { name: "Produto 4", quantity: 1, price: 200 },
       ],
@@ -124,14 +124,14 @@ export default function Account(){
 
   const getStatusIcon = (status) => {
     switch (status) {
+      case 'Pedido Feito':
+        return <FaClock style={{ color: 'orange' }} />
+      case 'Em Andamento':
+        return <FaCog style={{ color: 'blue' }} />
+      case 'Despachado':
+        return <FaTruck style={{ color: 'purple' }} />
       case 'Entregue':
         return <FaCheckCircle style={{ color: 'green' }} />
-      case 'Em processamento':
-        return <FaClock style={{ color: 'orange' }} />
-      case 'Cancelado':
-        return <FaTimesCircle style={{ color: 'red' }} />
-      case 'Despachado':
-        return <FaTruck style={{ color: 'blue' }} />
       default:
         return null
     }
@@ -272,10 +272,10 @@ export default function Account(){
                   <span>{orders.length} pedido{orders.length !== 1 ? 's' : ''}
                     <select value={selectedStatus} onChange={(e) => handleStatusFilter(e.target.value)}>
                       <option value="">Todos os status</option>
-                      <option value="Entregue">Entregue</option>
-                      <option value="Em processamento">Em processamento</option>
-                      <option value="Cancelado">Cancelado</option>
+                      <option value="Pedido Feito">Pedido Feito</option>
+                      <option value="Em Andamento">Em Andamento</option>
                       <option value="Despachado">Despachado</option>
+                      <option value="Entregue">Entregue</option>
                     </select>
                   </span>
                   <ul className="orders">
