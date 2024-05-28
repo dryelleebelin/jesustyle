@@ -99,3 +99,33 @@
     }
   }
 }
+
+/* for ultra large devices */
+@media only screen and (min-width: 1920px){
+  .footer{
+    .footer-content{
+      img{
+        height: 130px;
+      }
+  
+      p{
+        font-size: 1.4rem;
+      }
+  
+      .footer-links{
+        font-size: 1.4rem;
+      }
+  
+      .socials{
+        a{
+          width: 52px;
+          height: 52px;
+  
+          svg{
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+}

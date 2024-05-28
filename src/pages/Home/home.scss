@@ -614,3 +614,154 @@
     }
   }
 } 
+
+/* for ultra large devices */
+@media only screen and (min-width: 1920px){
+  .home{
+    header{
+      img{
+        height: 85%;
+      }
+  
+      nav{
+        a{
+          font-size: 1.5rem;
+        }
+  
+        button{
+          font-size: 1.5rem;
+          border-radius: 26px;
+  
+          svg{
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  
+    main{
+      div{
+        svg{
+          font-size: 38px;
+        }
+      }
+    }
+  
+    .purpose{
+      h1{
+        font-size: 2.5rem;
+      }
+  
+      .content{
+        p{
+          font-size: 1.5rem;
+        }
+      }
+    }
+  
+    .podcast{
+      .container{
+        h1{
+          font-size: 2.5rem;
+        }
+      }
+    }
+  
+    .store{
+      .box1{
+        .content{
+          p{
+            font-size: 1.6rem;
+          }
+  
+          span{
+            font-size: 1.5rem;
+          }
+  
+          button{
+            font-size: 1.3rem;
+            border-radius: 24px;
+          }
+        }
+  
+        .image{
+          img{
+            width: 560px;
+            border-radius: 10px;
+          }
+  
+          a{
+            font-size: 1.9rem;
+  
+            svg{
+              font-size: 30px;
+            }
+          }
+        }
+      }
+  
+      .box2{
+        img{
+          width: 350px;
+          border-radius: 10px;
+        }
+      }
+  
+      .box3{
+        p{
+          border-radius: 24px;
+          font-size: 1.4rem;
+          width: 80%;
+        }
+  
+        img{
+          width: 490px;
+          border-radius: 10px;
+        }
+      }
+    }
+  
+    footer{
+      .top{
+        img{
+          height: 140px;
+        }
+  
+        .links-column{
+          h2{
+            font-size: 1.7rem;
+          }
+  
+          a{
+            font-size: 1.5rem;
+          }
+        }
+  
+        .socials-column{
+          p{
+            font-size: 1.5rem;
+          }
+  
+          .socials{
+            a{
+              width: 52px;
+              height: 52px;
+  
+              svg{
+                font-size: 30px;
+              }
+  
+              &:hover{
+                transform: translateY(-5px);
+              }
+            }
+          }
+        }
+      }
+  
+      .bottom{
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

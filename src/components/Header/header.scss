@@ -202,3 +202,54 @@
     }
   }
 }
+
+/* for ultra large devices */
+@media only screen and (min-width: 1920px){
+  .header{
+    .container-logo{
+      a:nth-child(2){
+        font-size: 1.5rem;
+      }
+    }
+  
+    .input{
+      border-radius: 28px;
+  
+      input{
+        font-size: 1.3rem;
+      }
+  
+      svg{
+        font-size: 26px;
+      }
+    }
+  
+    nav{
+      .btn-login{
+        border-radius: 24px;
+        font-size: 1.2rem;
+      }
+  
+      p{
+        font-size: 1.5rem;
+      }
+    }
+  
+    .dropdown_wrapper{
+      max-width: 12rem;
+      border-radius: 0.8rem;
+    
+      .content{
+        button{
+          font-size: 1.4rem;
+          border-radius: 10px;
+          padding: 0.8rem 1.7rem;
+  
+          svg{
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+}

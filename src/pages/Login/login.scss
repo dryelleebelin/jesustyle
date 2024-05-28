@@ -32,6 +32,10 @@
     }
   }
 
+  p:nth-child(2){
+    margin-bottom: 1.5vh;
+  }
+
   form{
     display: flex;
     flex-direction: column;
@@ -134,6 +138,46 @@
     form{
       input[type="date"]{
         width: 100%;
+      }
+    }
+  }
+}
+
+/* for ultra large devices */
+@media only screen and (min-width: 1920px){
+  .login, .register{
+    border-radius: 10px;
+  
+    div{
+      p{
+        font-size: 2rem;
+      }
+  
+      svg{
+        font-size: 40px;
+      }
+    }
+
+    p:nth-child(2){
+      font-size: 1.5rem;
+    }
+  
+    form{
+      label{
+        font-size: 1.3rem;
+      }
+  
+      input{
+        font-size: 1.5rem;
+      }
+  
+      a{
+        font-size: 1rem;
+      }
+  
+      button{
+        border-radius: 26px;
+        font-size: 1.2rem;
       }
     }
   }

@@ -1,4 +1,4 @@
-.swiper-container {
+.swiper-container{
   width: 100%;
   height: auto;
   padding-left: 30vw !important;
@@ -101,6 +101,40 @@
           svg{
             font-size: 18px;
           }
+        }
+      }
+    }
+  }
+}
+
+/* for ultra large devices */
+@media only screen and (min-width: 1920px){
+  .swiper-container{
+    .slide {
+      border-radius: 10px;
+  
+      img{
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+  
+      .content{
+        h3{
+          font-size: 1.7rem;
+        }
+
+        p{
+          font-size: 1.5rem;
+        }
+
+        .tags {
+          span {
+            font-size: 18px;
+          }
+        }
+  
+        a{
+          font-size: 1.5em;
         }
       }
     }

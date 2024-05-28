@@ -72,7 +72,7 @@ export default function CarouselActions() {
     }, [])
 
   return (
-    <Swiper className="swiper-container" modules={[FreeMode, Pagination]} slidesPerView={slidesPerView} pagination={{ clickable: true }} spaceBetween={10} freeMode={1}navigation>
+    <Swiper className="swiper-container" modules={[FreeMode, Pagination]} slidesPerView={slidesPerView} pagination={{ clickable: true }} spaceBetween={10} freeMode={1} navigation>
       {data.map((item) => (
         <SwiperSlide key={item.id} className="slide">
         <img src={item.image}/>
