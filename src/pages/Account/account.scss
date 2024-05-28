@@ -380,6 +380,10 @@
           input{
             padding: 1vh 3vw;
           }
+
+          input[type="date"]{
+            width: 100%;
+          }
         }
   
         .container-button{
