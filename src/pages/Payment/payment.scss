@@ -263,3 +263,91 @@
     }
   }
 }
+
+/* for ultra large devices */
+@media only screen and (min-width: 1920px){
+  .payment{
+    .css-syhbcg{
+      font-size: 1.5rem;
+    }
+
+    .breadcrumb{
+      .breadcrumb-item{
+        a{
+         font-size: 1.5rem; 
+        }
+      }
+    }
+  
+    .payment-container{
+      .checkout-section{
+        h1{
+          font-size: 2.65rem;
+        }
+      }
+  
+      .payment-form{
+        border-radius: 6px;
+  
+        section{
+          h5{
+            font-size: 1.85rem;
+  
+            svg{
+              font-size: 40px;
+            }
+          }
+  
+          span{
+            font-size: 17px;
+          }
+        }
+  
+        div{
+          label{
+            font-size: 1.5rem;
+          }
+  
+          input, select{
+            font-size: 1.5rem;
+  
+            &::placeholder{
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+  
+      .purchase-details{
+        h1{
+          font-size: 2.6rem;
+        }
+  
+        p{
+          font-size: 1.5rem;
+        }
+  
+        img{
+          width: 300px;
+        }
+  
+        div{
+          label{
+            font-size: 1.05rem;
+  
+            input{
+              width: 1.2rem;
+              height: 1.2rem;
+            }
+          }
+        }
+  
+        button{
+          box-shadow: 2px 2px 10px var(--shadow);
+          border-radius: 6px;
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
   background-color: var(--background);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   color: var(--font-color-white);
   margin-top: 10vh;
   padding: 5vh 10vw;
@@ -14,9 +14,10 @@
 
   .breadcrumb{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
     align-items: center;
+    width: 100%;
 
     .breadcrumb-item{
       display: flex;
@@ -279,6 +280,88 @@
     
         img{
           margin-top: 2vh;
+        }
+      }
+    }
+  }
+}
+
+/* for ultra large devices */
+@media only screen and (min-width: 1920px){
+  .product-details{
+    .css-syhbcg{
+      font-size: 1.5rem;
+    }
+
+    .breadcrumb{
+      .breadcrumb-item{
+        a{
+          font-size: 1.5rem;
+        }
+      }
+    }
+  
+    section{
+      article{
+        img{
+          height: 610px;
+          border-radius: 10px;
+        }
+      }
+  
+      aside{
+        h1{
+          font-size: 3rem;
+        }
+    
+        p{
+          font-size: 1.5rem;
+        }
+    
+        h2{
+          font-size: 1.9rem;
+        }
+    
+        .container-size{
+          h2{
+            font-size: 1.5rem;
+          }
+    
+          .size{
+            font-size: 1.4rem;
+          }
+        }
+    
+        .container-add{
+          .add{
+            border-radius: 5px;
+    
+            button{
+              font-size: 1.9rem;
+            }
+    
+            p{
+              font-size: 1.6rem;
+            }
+          }
+    
+          .add-cart{
+            border-radius: 5px;
+            font-size: 1.24rem;
+    
+            svg{
+              font-size: 30px;
+            }
+          }
+        }
+    
+        .buy{
+          border-radius: 6px;
+          font-size: 1.5rem;
+        }
+    
+        img{
+          width: 300px;
         }
       }
     }
