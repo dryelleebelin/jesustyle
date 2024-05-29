@@ -103,10 +103,6 @@
       display: flex;
       flex-direction: column;
 
-      .mobile-only{
-        display: none;
-      }
-
       button{
         width: 100%;
         background-color: transparent;
@@ -202,10 +198,6 @@
     
       .content{
         padding: 4% 0;
-
-        .mobile-only{
-          display: block;
-        }
       }
     }
   }

@@ -61,11 +61,11 @@
 /* for mobile devices */
 @media only screen and (max-width: 480px){
   .swiper-container{
-    padding-left: 0vw !important;
+    padding: 0vh 7vw !important;
   
     .slide{
       height: auto;
-      width: 85% !important;
+      width: 100% !important;
       margin-bottom: 8vh;
       margin-top: 4vh;
       flex-direction: column;

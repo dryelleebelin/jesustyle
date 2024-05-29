@@ -19,57 +19,40 @@ import { BsArrowRight } from "react-icons/bs"
 register()
 
 export default function CarouselActions() {
-    const [slidesPerView, setSlidesPerView] = useState(2)
+  const [slidesPerView, setSlidesPerView] = useState(1)
 
-    const data = [
-      { 
-        id: '1', 
-        image: video1, 
-        title: 'Podcast com Karine Carrijo | GloryCast | #45', 
-        description: 'GloryCast: nova temporada com fé e testemunhos. No 1º episódio, Karine Carrijo compartilha sua jornada e transformações.', 
-        tags: ['#podcast', '#glorycast', '#karinecarrijo'], 
-        channelName: 'Glorify Brasil', 
-        publishDate: '08/05/2024', 
-        link: 'https://www.youtube.com/watch?v=HnFv_bZANpk' 
-      },
-      { 
-        id: '2', 
-        image: video2, 
-        title: 'HISTÓRIA DE SUPERAÇÃO - Karine Carrijo e Thiago Lima', 
-        description: 'História inspiradora de Karine Carrijo e Thiago Lima sobre superação e resiliência.', 
-        tags: ['#históriadevida', '#fé', '#testemunho'], 
-        channelName: 'Thiago, mais conhecido como Diniz', 
-        publishDate: '01/04/2024', 
-        link: 'https://www.youtube.com/watch?v=0uhfEvrAhDg' 
-      },
-      { 
-        id: '3', 
-        image: video3, 
-        title: 'KILIQUINHA #28 | BLOGUEIRA | ATRIZ | CANTORA', 
-        description: 'A artista de milhões!!! Ela é blogueira, atriz, cantora e dona de uma beleza inigualável: Kiliquinha o nome dela.', 
-        tags: ['#kiliquinha', '#entrevista', '#karinecarrijo'], 
-        channelName: 'MULHERAMA PODCAST', 
-        publishDate: '01/09/2022', 
-        link: 'https://www.youtube.com/watch?v=oZYClu3UfUE' 
-      }
-    ]
-
-    useEffect(() => {
-      function handleResize() {
-        if (window.innerWidth < 480){
-          setSlidesPerView(3)
-        } else if (window.innerWidth >= 481 && window.innerWidth <= 1023){
-          setSlidesPerView(3)
-        } else {
-          setSlidesPerView(1)
-        }
-      }
-      handleResize()
-      window.addEventListener('resize', handleResize)
-      return () => {
-        window.removeEventListener('resize', handleResize)
-      }
-    }, [])
+  const data = [
+    { 
+      id: '1', 
+      image: video1, 
+      title: 'Podcast com Karine Carrijo | GloryCast | #45', 
+      description: 'GloryCast: nova temporada com fé e testemunhos. No 1º episódio, Karine Carrijo compartilha sua jornada e transformações.', 
+      tags: ['#podcast', '#glorycast', '#karinecarrijo'], 
+      channelName: 'Glorify Brasil', 
+      publishDate: '08/05/2024', 
+      link: 'https://www.youtube.com/watch?v=HnFv_bZANpk' 
+    },
+    { 
+      id: '2', 
+      image: video2, 
+      title: 'HISTÓRIA DE SUPERAÇÃO - Karine Carrijo e Thiago Lima', 
+      description: 'História inspiradora de Karine Carrijo e Thiago Lima sobre superação e resiliência.', 
+      tags: ['#históriadevida', '#fé', '#testemunho'], 
+      channelName: 'Thiago, mais conhecido como Diniz', 
+      publishDate: '01/04/2024', 
+      link: 'https://www.youtube.com/watch?v=0uhfEvrAhDg' 
+    },
+    { 
+      id: '3', 
+      image: video3, 
+      title: 'KILIQUINHA #28 | BLOGUEIRA | ATRIZ | CANTORA', 
+      description: 'A artista de milhões!!! Ela é blogueira, atriz, cantora e dona de uma beleza inigualável: Kiliquinha o nome dela.', 
+      tags: ['#kiliquinha', '#entrevista', '#karinecarrijo'], 
+      channelName: 'MULHERAMA PODCAST', 
+      publishDate: '01/09/2022', 
+      link: 'https://www.youtube.com/watch?v=oZYClu3UfUE' 
+    }
+  ]
 
   return (
     <Swiper className="swiper-container" modules={[FreeMode, Pagination]} slidesPerView={slidesPerView} pagination={{ clickable: true }} spaceBetween={10} freeMode={1} navigation>

@@ -59,6 +59,17 @@ a{
   }
 }
 
+.mobile-only{
+  display: none;
+}
+
+/* for mobile devices */
+@media only screen and (max-width: 480px){
+  .mobile-only{
+    display: block;
+  }
+}
+
 ::-webkit-scrollbar{
   width: 7px;
   background-color: var(--background);

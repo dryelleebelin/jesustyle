@@ -187,7 +187,7 @@ export default function Account(){
             <article>
               <h2>Endereço { !hasAddress && <button type="button" onClick={handleAddAddressClick} disabled={showAddAddressForm}>Adicionar</button> }</h2>
               {hasAddress ? (
-                <section>
+                <section className="not-found">
                   <div>
                     <FcHome />
                     <p>Endereço de entrega padrão <span>rua, cidade, estado - cep</span></p>
@@ -230,7 +230,7 @@ export default function Account(){
                     </div>
                   </form>
                 ) : (
-                  <span>Nenhum endereço encontrado.</span>
+                  <span className="not-found">Nenhum endereço encontrado.</span>
                 )
               )}
             </article>
