@@ -8,6 +8,7 @@ import Cart from '../Cart'
 import logo from '../../assets/logos/transparent.png'
 
 import { IoSearch, IoPersonOutline } from "react-icons/io5"
+import { BsShop } from "react-icons/bs";
 import { IoIosArrowDown, IoIosLogOut } from "react-icons/io"
 
 export default function Header(){
@@ -72,6 +73,7 @@ export default function Header(){
 
       <div ref={dropdownRef} className="dropdown_wrapper hide dropdown_wrapper--fade-in none">
         <div className="content">
+          <Link className="mobile-only" to={`/products`}><button type="button" onClick={scrollToTop}>Loja <BsShop/></button></Link>
           <Link to={`/account`}><button type="button" onClick={scrollToTop}>Conta <IoPersonOutline/></button></Link>
           <Link to={`/`}><button type="button" onClick={scrollToTop}>Sair <IoIosLogOut/></button></Link>
         </div>
