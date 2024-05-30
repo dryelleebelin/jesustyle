@@ -4,9 +4,15 @@ import './account.scss'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
+import shirt1 from '../../assets/mockups/shirt3.png'
+import shirt2 from '../../assets/mockups/shirt4.png'
+import shirt3 from '../../assets/mockups/shirt.png'
+
 import { FcHome } from "react-icons/fc"
 import { IoMdCheckmarkCircleOutline } from "react-icons/io"
-import { FaCog, FaTruck, FaCheckCircle, FaClock, FaTimesCircle, FaInfoCircle, FaCalendarAlt } from 'react-icons/fa'
+import { FaCog, FaTruck, FaCheckCircle, FaClock, FaInfoCircle, FaCalendarAlt } from 'react-icons/fa'
+import { FaRegStar, FaStar } from "react-icons/fa6"
+import { MdOutlinePhotoCamera } from "react-icons/md"
 
 export default function Account(){
   const [selectedItem, setSelectedItem] = useState("Detalhes da Conta")
@@ -80,9 +86,45 @@ export default function Account(){
       }
     },
   ])
+  const [userOrders, setUserOrders] = useState([
+    {
+      id: 1,
+      image: shirt1,
+      name: "Produto 1",
+      size: "M",
+      quantity: 1,
+      price: 100,
+      status: "Ativo"
+    },
+    {
+      id: 2,
+      image: shirt2,
+      name: "Produto 2",
+      size: "L",
+      quantity: 2,
+      price: 50,
+      status: "Ativo"
+    },
+    {
+      id: 3,
+      image: shirt3,
+      name: "Produto 2",
+      size: "L",
+      quantity: 2,
+      price: 50,
+      status: "Concluído"
+    }
+  ])
   
+  
+  const [selectedTab, setSelectedTab] = useState("active")
   const [selectedOrder, setSelectedOrder] = useState(null)
   const [selectedStatus, setSelectedStatus] = useState("")
+
+  const [showCommentForm, setShowCommentForm] = useState(false)
+  const [rating, setRating] = useState(0)
+  const [review, setReview] = useState("")
+  const [photo, setPhoto] = useState(null)
 
   useEffect(() => {
     setFilteredOrders(orders)
@@ -140,6 +182,52 @@ export default function Account(){
   useEffect(() => {
     document.title = "Jesustyle | Minha Conta"
   }, [])
+
+  useEffect(() => {
+    if (selectedTab === "active") {
+      handleStatusFilter("active")
+    } else if (selectedTab === "completed") {
+      handleStatusFilter("completed")
+    }
+  }, [selectedTab])
+
+  const handleTrackOrder = (orderId) => {
+    
+  }
+
+  const handleAddCommentClick = () => {
+    setShowCommentForm(true)
+  }
+
+  const handleCancelComment = () => {
+    setShowCommentForm(false)
+    setRating(0)
+    setReview("")
+    setPhoto(null)
+  }
+
+  const handleRatingChange = (newRating) => {
+    setRating(newRating)
+  }
+
+  const handleReviewChange = (e) => {
+    setReview(e.target.value)
+  }
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0]
+    if(file){
+      setPhoto(file.name)
+    }
+  }
+
+  const handleSubmitComment = (e) => {
+    e.preventDefault()
+    setShowCommentForm(false)
+    setRating(0)
+    setReview("")
+    setPhoto(null)
+  }
 
   return (
     <>
@@ -232,6 +320,86 @@ export default function Account(){
                 ) : (
                   <span className="not-found">Nenhum endereço encontrado.</span>
                 )
+              )}
+            </article>
+          )}
+
+          {selectedItem === "Pedidos" && (
+            <article className="article-user-orders">
+              <h2>Pedidos</h2>
+              {!showCommentForm && (
+                <div className="order-tabs">
+                  <button className={selectedTab === "active" ? "active" : ""} onClick={() => setSelectedTab("active")}>Ativos</button>
+                  <button className={selectedTab === "completed" ? "active" : ""} onClick={() => setSelectedTab("completed")}>Concluídos</button>
+                </div>
+              )}
+              {selectedTab === "active" && (
+                <ul>
+                  {userOrders.filter(order => order.status === "Ativo").length === 0 ? (
+                    <span>Você não possui pedidos ativos.</span>
+                  ) : (
+                    userOrders.filter(order => order.status === "Ativo").map((order) => (
+                      <li key={order.id}>
+                        <div className="order-item">
+                          <img src={order.image} alt={order.name} />
+                          <div>
+                            <p>{order.name}</p>
+                            <p>Tamanho: {order.size} | Quantidade: {order.quantity}</p>
+                            <p>R${order.price.toFixed(2).replace('.', ',')}</p>
+                          </div>
+                        </div>
+                        <button onClick={() => handleTrackOrder(order.id)}>Acompanhar pedido</button>
+                      </li>
+                    ))
+                  )}
+                </ul>
+              )}
+              {!showCommentForm && selectedTab === "completed" && (
+                <ul>
+                  {userOrders.filter(order => order.status === "Concluído").length === 0 ? (
+                    <span>Você não possui pedidos concluídos.</span>
+                  ) : (
+                    userOrders.filter(order => order.status === "Concluído").map((order) => (
+                      <li key={order.id}>
+                        <div className="order-item">
+                          <img src={order.image} alt={order.name} />
+                          <div>
+                            <p>{order.name}</p>
+                            <p>Tamanho: {order.size} | Quantidade: {order.quantity}</p>
+                            <p>R${order.price.toFixed(2).replace('.', ',')}</p>
+                          </div>
+                        </div>
+                        <button onClick={handleAddCommentClick}>Adicionar Comentário</button>
+                      </li>
+                    ))
+                  )}
+                </ul>
+              )}
+              {showCommentForm && (
+                <div className="comment-form">
+                  <h3>Como está seu pedido?</h3>
+                  <form>
+                    <p>Sua avaliação geral:</p>
+                    <div className="rating">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <span key={star} onClick={() => handleRatingChange(star)}>
+                          {star <= rating ? <FaStar /> : <FaRegStar />}
+                        </span>
+                      ))}
+                    </div>
+                    <p>Adicionar revisão detalhada:</p>
+                    <textarea id="review" value={review} onChange={handleReviewChange} placeholder="Digite sua revisão detalhada aqui"></textarea>
+                    <div className="photo-upload">
+                      <input type="file" id="photo" onChange={handlePhotoChange}/>
+                      <p onClick={() => document.getElementById('photo').click()}><MdOutlinePhotoCamera/> Adicionar foto</p>
+                      {photo && <span>Selecionado: {photo}</span>}
+                    </div>
+                    <div className="buttons">
+                      <button type="button" onClick={handleCancelComment}>Cancelar</button>
+                      <button type="button" onClick={handleSubmitComment}>Enviar</button>
+                    </div>
+                  </form>
+                </div>
               )}
             </article>
           )}
