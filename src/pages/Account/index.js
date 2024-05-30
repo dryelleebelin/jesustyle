@@ -119,7 +119,8 @@ export default function Account(){
   
   const [selectedTab, setSelectedTab] = useState("active")
   const [selectedOrder, setSelectedOrder] = useState(null)
-  const [selectedStatus, setSelectedStatus] = useState("")
+  const [selectedUserOrderStatus, setSelectedUserOrderStatus] = useState("")
+  const [selectedOrderStatus, setSelectedOrderStatus] = useState("")
 
   const [showCommentForm, setShowCommentForm] = useState(false)
   const [rating, setRating] = useState(0)
@@ -133,7 +134,7 @@ export default function Account(){
   const handleItemClick = (item) => {
     setSelectedItem(item)
     setSelectedOrder(null)
-    setSelectedStatus("")
+    setSelectedOrderStatus("")
   }
 
   const handleOrderClick = (order) => {
@@ -154,12 +155,12 @@ export default function Account(){
     setUseAsDefault(e.target.checked)
   }
 
-  const handleStatusFilter = (selectedStatus) => {
-    setSelectedStatus(selectedStatus)
-    if (selectedStatus === "") {
+  const handleStatusFilter = (selectedOrderStatus) => {
+    setSelectedOrderStatus(selectedOrderStatus)
+    if (selectedOrderStatus === "") {
       setFilteredOrders(orders)
     } else {
-      const filtered = orders.filter((order) => order.status === selectedStatus)
+      const filtered = orders.filter((order) => order.status === selectedOrderStatus)
       setFilteredOrders(filtered)
     }
   }
@@ -184,12 +185,12 @@ export default function Account(){
   }, [])
 
   useEffect(() => {
-    if (selectedTab === "active") {
-      handleStatusFilter("active")
-    } else if (selectedTab === "completed") {
-      handleStatusFilter("completed")
-    }
-  }, [selectedTab])
+    handleStatusFilter(selectedUserOrderStatus, true)
+  }, [selectedUserOrderStatus, userOrders])
+
+  useEffect(() => {
+    handleStatusFilter(selectedOrderStatus, false)
+  }, [selectedOrderStatus, orders])
 
   const handleTrackOrder = (orderId) => {
     
@@ -438,7 +439,7 @@ export default function Account(){
               ) : (
                 <>
                   <span>{orders.length} pedido{orders.length !== 1 ? 's' : ''}
-                    <select value={selectedStatus} onChange={(e) => handleStatusFilter(e.target.value)}>
+                    <select value={selectedOrderStatus} onChange={(e) => handleStatusFilter(e.target.value)}>
                       <option value="">Todos os status</option>
                       <option value="Pedido Feito">Pedido Feito</option>
                       <option value="Em Andamento">Em Andamento</option>
