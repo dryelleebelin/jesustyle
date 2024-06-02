@@ -1,53 +1,53 @@
-import React, { useEffect, useState } from "react";
-import './allproducts.scss';
-import { useNavigate } from "react-router-dom";
-import { Spinner } from '@chakra-ui/react';
+import React, { useEffect, useState } from "react"
+import './allproducts.scss'
+import { useNavigate } from "react-router-dom"
+import { Spinner } from '@chakra-ui/react'
 
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../../components/Header"
+import Footer from "../../components/Footer"
 
-import shirt1 from '../../assets/mockups/shirt3.png';
-import shirt2 from '../../assets/mockups/shirt4.png';
-import shirt3 from '../../assets/mockups/shirt.png';
-import shirt4 from '../../assets/mockups/shirt1.png';
-import shirt5 from '../../assets/mockups/shirt2.png';
+import shirt1 from '../../assets/mockups/shirt3.png'
+import shirt2 from '../../assets/mockups/shirt4.png'
+import shirt3 from '../../assets/mockups/shirt.png'
+import shirt4 from '../../assets/mockups/shirt1.png'
+import shirt5 from '../../assets/mockups/shirt2.png'
 
-import { FaListUl } from "react-icons/fa";
-import { MdOutlineCircle, MdCheckCircle } from "react-icons/md";
-import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { FaListUl } from "react-icons/fa"
+import { MdOutlineCircle, MdCheckCircle } from "react-icons/md"
+import { HiOutlineShoppingBag } from "react-icons/hi2"
 
 export default function AllProducts(){
-  const navigate = useNavigate();
-  const [selectedSizes, setSelectedSizes] = useState([]);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedSortOption, setSelectedSortOption] = useState("priceLowToHigh");
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
+  const [selectedSizes, setSelectedSizes] = useState([])
+  const [selectedCategories, setSelectedCategories] = useState([])
+  const [selectedSortOption, setSelectedSortOption] = useState("priceLowToHigh")
+  const [loading, setLoading] = useState(false)
 
   const handleSizeSelection = (size) => {
-    const index = selectedSizes.indexOf(size);
+    const index = selectedSizes.indexOf(size)
     if (index === -1) {
-      setSelectedSizes([...selectedSizes, size]);
+      setSelectedSizes([...selectedSizes, size])
     } else {
-      const newSelectedSizes = [...selectedSizes];
-      newSelectedSizes.splice(index, 1);
-      setSelectedSizes(newSelectedSizes);
+      const newSelectedSizes = [...selectedSizes]
+      newSelectedSizes.splice(index, 1)
+      setSelectedSizes(newSelectedSizes)
     }
-  };
+  }
 
   const handleCategorySelection = (category) => {
-    const index = selectedCategories.indexOf(category);
+    const index = selectedCategories.indexOf(category)
     if (index === -1) {
-      setSelectedCategories([...selectedCategories, category]);
+      setSelectedCategories([...selectedCategories, category])
     } else {
-      const newSelectedCategories = [...selectedCategories];
-      newSelectedCategories.splice(index, 1);
-      setSelectedCategories(newSelectedCategories);
+      const newSelectedCategories = [...selectedCategories]
+      newSelectedCategories.splice(index, 1)
+      setSelectedCategories(newSelectedCategories)
     }
-  };
+  }
 
   const handleResetAll = () => {
-    setSelectedSizes([]);
-    setSelectedCategories([]);
+    setSelectedSizes([])
+    setSelectedCategories([])
   };
 
   const handleSortChange = (event) => {
@@ -57,9 +57,9 @@ export default function AllProducts(){
   const categories = [
     { name: "Blusas", count: 3 },
     { name: "Moletons", count: 7 }
-  ];
+  ]
 
-  const sizes = ["PP", "P", "M", "G"];
+  const sizes = ["PP", "P", "M", "G"]
 
   const items = [
     { id: 1, name: "Camiseta", price: 77, description: "Estilo e conforto em uma camiseta de qualidade.", src: shirt1, size: "M", category: "Blusas" },
@@ -67,40 +67,40 @@ export default function AllProducts(){
     { id: 3, name: "Camiseta", price: 99, description: "Trendy e único, feito para se destacar.", src: shirt3, size: "G", category: "Blusas" },
     { id: 4, name: "Camiseta", price: 120, description: "Premium e confortável, para um estilo elevado.", src: shirt4, size: "M", category: "Moletons" },
     { id: 5, name: "Camiseta", price: 45, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: shirt5, size: "P", category: "Moletons" }
-  ];
+  ]
 
   useEffect(() => {
-    document.title = "Jesustyle | Descubra Nossa Coleção";
-  }, []);
+    document.title = "Jesustyle | Descubra Nossa Coleção"
+  }, [])
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   const filteredItems = items.filter(item => {
     if (selectedSizes.length > 0 && !selectedSizes.includes(item.size)) {
-      return false;
+      return false
     }
     if (selectedCategories.length > 0 && !selectedCategories.includes(item.category)) {
-      return false;
+      return false
     }
-    return true;
-  });
+    return true
+  })
 
   const sortedItems = filteredItems.sort((a, b) => {
     switch(selectedSortOption) {
       case "priceLowToHigh":
-        return a.price - b.price;
+        return a.price - b.price
       case "priceHighToLow":
-        return b.price - a.price;
+        return b.price - a.price
       case "nameAToZ":
-        return a.name.localeCompare(b.name);
+        return a.name.localeCompare(b.name)
       case "nameZToA":
-        return b.name.localeCompare(a.name);
+        return b.name.localeCompare(a.name)
       default:
-        return 0;
+        return 0
     }
-  });
+  })
 
   return(
     <>
@@ -170,5 +170,5 @@ export default function AllProducts(){
 
       <Footer/>
     </>
-  );
+  )
 }

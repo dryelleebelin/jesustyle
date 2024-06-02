@@ -111,6 +111,15 @@ export default function Home() {
         </div>
       </section>
 
+      <span id="podcast"/>
+      
+      <section className="podcast">
+        <div className="container">
+          <h1>Podcasts</h1>
+          <CarouselActions/>
+        </div>
+      </section>
+
       <span id="store"/>
 
       <section className="store">
@@ -135,15 +144,6 @@ export default function Home() {
           <p>#AcoesComEsteLook <BsArrowRight/></p>
           <img src={model1} alt="Model"/>
         </article>
-      </section>
-
-      <span id="podcast"/>
-      
-      <section className="podcast">
-        <div className="container">
-          <h1>Podcasts</h1>
-          <CarouselActions/>
-        </div>
       </section>
 
       <footer>

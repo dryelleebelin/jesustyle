@@ -370,7 +370,7 @@ export default function Account(){
                             <p>R${order.price.toFixed(2).replace('.', ',')}</p>
                           </div>
                         </div>
-                        <button onClick={handleAddCommentClick}>Adicionar Comentário</button>
+                        <button onClick={handleAddCommentClick}>Adicionar avaliação</button>
                       </li>
                     ))
                   )}
