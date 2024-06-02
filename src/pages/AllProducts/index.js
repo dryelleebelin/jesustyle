@@ -41,7 +41,6 @@ export default function AllProducts(){
   }
 
   const categories = [
-    { name: "Camisetas", count: 5 },
     { name: "Blusas", count: 3 },
     { name: "Moletons", count: 7 }
   ]
@@ -78,12 +77,13 @@ export default function AllProducts(){
         
           <main className="all-products">
             <aside>
-              <h1>Collection</h1>
+              <h1>Coleção</h1>
               <div className="filters">
                 <p><FaListUl/> Filtros <span>(2)</span></p>
                 <span onClick={handleResetAll}>Limpar filtro</span>
               </div>
               <div className="category">
+                <h2>Categorias</h2>
                 {categories.map((category, index) => (
                   <p key={index} onClick={() => handleCategorySelection(category.name)}>
                     {selectedCategory === category.name ? <MdCheckCircle/> : <MdOutlineCircle/>} {category.name} <span>({category.count})</span>
@@ -91,7 +91,7 @@ export default function AllProducts(){
                 ))}
               </div>
               <div className="container-size">
-                <h2>Size</h2>
+                <h2>Tamanho</h2>
                 <div>
                   {sizes.map((size, index) => (
                     <p key={index} className={`size ${selectedSize === size ? "selected" : ""}`} onClick={() => handleSizeSelection(size)}>{size}</p>

@@ -72,7 +72,7 @@ export default function Cart(){
         {cartQuantity >= 1 && <span className="cart-quantity">{cartQuantity}</span>}
       </Button>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef}>
-        <DrawerOverlay />
+        <DrawerOverlay onClick={onClose}/>
         <DrawerContent className="cart-content">
           <DrawerCloseButton className="cart-btn-close"/>
 
@@ -104,7 +104,7 @@ export default function Cart(){
                         </div>
                         <span>R$ {(product.price * product.quantity).toFixed(2).replace('.', ',')}</span>
                       </div>
-                      <div>
+                      <div> 
                         <IoClose onClick={() => removeItem(product.id)}/>
                         <div className='qtd'>
                           <button type='button' onClick={() => decreaseQuantity(product.id)}>-</button>

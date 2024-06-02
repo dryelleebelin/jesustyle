@@ -168,13 +168,13 @@
       }
   
       .buy{
-        background-color: var(--foreground);
+        background-color: var(--accent-1);
         margin-top: 0.5vh;
         opacity: 0.9;
         border: none;
-        border-radius: 4px;
+        border-radius: 20px;
         padding: 1vh 0;
-        color: var(--font-color);
+        color: var(--font-color-white);
         font-weight: 500;
         font-size: 1rem;
         width: 80%;

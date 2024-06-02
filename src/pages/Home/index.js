@@ -19,7 +19,7 @@ import purpose3 from '../../assets/purpose3.jpg'
 import purposeCollage from '../../assets/purposeCollage.png'
 
 import { BsArrowRight } from "react-icons/bs"
-import { FaInstagram, FaYoutube } from "react-icons/fa"
+import { FaInstagram, FaYoutube, FaSpotify } from "react-icons/fa"
 import { IoMdMail } from "react-icons/io"
 import { FaVolumeMute, FaVolumeUp } from "react-icons/fa"
 
@@ -76,11 +76,10 @@ export default function Home() {
         <img src={transparentLogo} alt="Logo Jesustyle" onClick={scrollToTop}/>
         <nav>
           <a onClick={() => scrollTo('purpose')}>Propósito</a>
-          <a href="#">Ações</a>
-          <a onClick={() => scrollTo('podcast')}>Podcast</a>
           <a onClick={() => scrollTo('store')}>Loja</a>
-
-          <button type="button" onClick={handleOpenModalLogin}>Login <BsArrowRight/></button>
+          <a onClick={() => scrollTo('podcast')}>Podcast</a>
+          <a>Ações</a>
+          <button type="button" onClick={handleOpenModalLogin}>Compre aqui <BsArrowRight/></button>
         </nav>
       </header>
 
@@ -88,7 +87,7 @@ export default function Home() {
         <video className="horizontalVideo" ref={videoRef} autoPlay muted={!isSoundEnabled} loop>
           <source src={horizontalVideo} type="video/mp4"/>
         </video>
-        <video className="verticalVideo" ref={videoRef} autoPlay muted={!isSoundEnabled} loop>
+        <video className="verticalVideo" ref={videoRef} controls autoPlay muted={!isSoundEnabled} loop>
           <source src={verticalVideo} type="video/mp4"/>
         </video>
         <div onClick={toggleSound}>
@@ -112,27 +111,18 @@ export default function Home() {
         </div>
       </section>
 
-      <span id="podcast"/>
-      
-      <section className="podcast">
-        <div className="container">
-          <h1>Podcasts</h1>
-          <CarouselActions/>
-        </div>
-      </section>
-
       <span id="store"/>
 
       <section className="store">
         <article className="box1">
           <div className="content">
             <p>Jesus te fez Style</p>
-            <span>collection 2024</span>
-            <Link to={`/products`}><button type="button" onClick={scrollToTop}>Comprar</button></Link>
+            <span>coleção 2024</span>
+            <Link to={`/products`}><button type="button" onClick={scrollToTop}>Compre agora</button></Link>
           </div>
           <div className="image">
             <img src={model2} alt="Model"/>
-            <Link to={`/products`} onClick={scrollToTop}>Shop collection <BsArrowRight/></Link>
+            <Link to={`/products`} onClick={scrollToTop}>Veja a Coleção <BsArrowRight/></Link>
           </div>
         </article>
 
@@ -145,6 +135,15 @@ export default function Home() {
           <p>#AcoesComEsteLook <BsArrowRight/></p>
           <img src={model1} alt="Model"/>
         </article>
+      </section>
+
+      <span id="podcast"/>
+      
+      <section className="podcast">
+        <div className="container">
+          <h1>Podcasts</h1>
+          <CarouselActions/>
+        </div>
       </section>
 
       <footer>
@@ -163,6 +162,7 @@ export default function Home() {
             <div className="socials">
               <a href="https://www.instagram.com/jesustyle.br/" target="_blank" rel="noopener noreferrer"><FaInstagram/></a>
               <a href="https://www.youtube.com/channel/UCcT7mMwhBDrGYOGB2cX59zQ" target="_blank" rel="noopener noreferrer"><FaYoutube/></a>
+              <a><FaSpotify/></a>
               <a href="mailto:contatojesustyle@gmail.com" target="_blank" rel="noopener noreferrer"><IoMdMail/></a>
             </div>
           </div>

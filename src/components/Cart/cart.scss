@@ -81,6 +81,8 @@
 
     h1{
       font-size: 1.5rem;
+      color: var(--accent-2);
+        text-shadow: 1px 1px 8px var(--shadow);
     }
 
     span{
@@ -230,12 +232,13 @@
     }
 
     button{
-      background-color: var(--foreground);
+      background-color: var(--accent-1);
+      color: var(--font-color-white);
       border: none;
       opacity: 0.9;
-      border-radius: 4px;
-      padding: 0.8vh 1.5vw;
-      font-weight: 600;
+      border-radius: 20px;
+      padding: 0.8vh 2vw;
+      font-weight: 500;
       transition: 0.3s ease-in-out;
       text-wrap: nowrap;
 

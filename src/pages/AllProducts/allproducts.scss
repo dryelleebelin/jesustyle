@@ -20,6 +20,11 @@
   aside{
     width: 20vw;
 
+    h1{
+      color: var(--accent-1);
+      text-shadow: 1px 1px 8px var(--shadow);
+    }
+
     .filters{
       display: flex;
       justify-content: space-between;
@@ -52,6 +57,13 @@
     }
 
     .category{
+      h2{
+        font-size: 1rem;
+        margin-bottom: 1vh;
+        color: var(--accent-3);
+        text-shadow: 1px 1px 8px var(--shadow);
+      }
+      
       p{
         display: flex;
         align-items: center;
@@ -72,11 +84,13 @@
 
     .container-size{
       border-top: 1px solid var(--foreground);
-      margin-top: 3vh;
-      padding: 3vh 0;
+      margin-top: 2vh;
+      padding: 2vh 0;
 
       h2{
         font-size: 1rem;
+        color: var(--accent-3);
+        text-shadow: 1px 1px 8px var(--shadow);
       }
 
       div{
@@ -144,6 +158,7 @@
           height: 40vh;
           object-fit: cover;
           border-radius: 14px;
+          box-shadow: 1px 1px 8px var(--shadow);
         }
 
         h6{
@@ -166,19 +181,20 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-top: 1vh;
-          height: 6vh;
+          margin-top: 1.5vh;
+          height: 5.4vh;
 
           button{
-            width: 78%;
+            width: 80%;
             background-color: transparent;
             border: 1px solid var(--foreground);
             color: var(--font-color-white);
             height: 100%;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             text-transform: uppercase;
             transition: 0.3s ease-in-out;
+            box-shadow: 1px 1px 6px var(--shadow);
 
             &:hover{
               background-color: var(--background);
@@ -187,18 +203,14 @@
           }
 
           svg{
-            border: 1px solid var(--foreground);
+            border: 1px solid var(--accent-1);
+            color: var(--accent-1);
             height: 100%;
-            width: 3vw;
-            padding: 8px;
+            width: auto;
+            padding: 6px;
             border-radius: 50%;
             cursor: pointer;
-            transition: 0.3s ease-in-out;
-
-            &:hover{
-              background-color: var(--background);
-              filter: brightness(0.9);
-            }
+            box-shadow: 1px 1px 6px var(--shadow);
           }
         }
       }
@@ -243,6 +255,11 @@
         display: flex;
         flex-direction: column;
         gap: 0.8vh;
+
+        h2{
+          font-size: 1.1rem;
+          margin-bottom: 0.4vh;
+        }
 
         p{
           gap: 1.5vw;
@@ -371,6 +388,10 @@
       }
   
       .category{
+        h2{
+          font-size: 1.5rem;
+        }
+
         p{
           font-size: 1.5rem;
   

@@ -41,13 +41,14 @@
         display: flex;
         align-items: center;
         gap: 0.4vw;
-        margin-top: 1.4vh;
+        margin-top: 1.3vh;
+        font-size: 1.1rem;
         color: var(--accent-1);
         font-weight: 600;
         transition: 0.3s ease-in-out;
 
         &:hover{
-          color: darken($color: #33b9c7, $amount: 10%);
+          filter: brightness(0.8);
         }
       }
     }
@@ -134,7 +135,7 @@
         }
   
         a{
-          font-size: 1.5em;
+          font-size: 1.6rem;
         }
       }
     }

@@ -8,7 +8,8 @@ import Cart from '../Cart'
 import logo from '../../assets/logos/transparent.png'
 
 import { IoSearch, IoPersonOutline } from "react-icons/io5"
-import { BsShop } from "react-icons/bs";
+import { BsShop } from "react-icons/bs"
+import { BsArrowRight } from "react-icons/bs"
 import { IoIosArrowDown, IoIosLogOut } from "react-icons/io"
 
 export default function Header(){
@@ -67,7 +68,7 @@ export default function Header(){
       </div>
       <nav>
         <Cart/>
-        <button type="button" className="btn-login" onClick={handleOpenModalLogin}>Login</button>
+        <button type="button" className="btn-login" onClick={handleOpenModalLogin}>Compre aqui <BsArrowRight></BsArrowRight></button>
         <p ref={notificationsRef}>Usuário <IoIosArrowDown/></p>
       </nav>
 

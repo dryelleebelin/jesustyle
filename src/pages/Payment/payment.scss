@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   color: #fff;
-  padding: 7% 7% 10% 7%;
+  padding: 7%;
 
   .css-syhbcg {
     display: flex;
@@ -36,6 +36,8 @@
       h1{
         font-size: 1.8rem;
         margin-bottom: 3vh;
+        color: var(--accent-1);
+        text-shadow: 1px 1px 8px var(--shadow);
       }
     }
 
@@ -122,6 +124,8 @@
         font-size: 1.7rem;
         margin-bottom: 3vh;
         text-wrap: nowrap;
+        color: var(--accent-1);
+        text-shadow: 1px 1px 8px var(--shadow);
       }
 
       p{
@@ -173,15 +177,16 @@
       }
 
       button{
-        background-color: var(--foreground);
-        color: var(--font-color);
+        background-color: var(--accent-1);
+        color: var(--font-color-white);
         border: none;
         box-shadow: 1px 1px 8px var(--shadow);
         width: 100%;
-        padding: 1vh 0;
+        padding: 0.8vh 0;
         border-radius: 4px;
         font-weight: 600;
         opacity: 0.9;
+        font-size: 0.9rem;
         transition: 0.3s ease-in-out;
 
         &:hover{

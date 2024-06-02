@@ -8,9 +8,8 @@ import { CgSpinner } from "react-icons/cg"
 
 export default function Login({ isOpen, closeModal }){
   const navigate = useNavigate()
-  const [user, setUser] = useState('')
+  const [username, setUsername] = useState('')
   const [birthday, setBirthday] = useState('')
-  const [address, setAddress] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -55,7 +54,7 @@ export default function Login({ isOpen, closeModal }){
           </div>
           <form onSubmit={(e) => {e.preventDefault(); navigate('/products'); scrollToTop();}}>
             <label>Nome completo:</label>
-            <input type="text" onChange={(e) => setUser(e.target.value)} placeholder="Digite seu nome completo"/>
+            <input type="text" onChange={(e) => setUsername(e.target.value)} placeholder="Digite seu nome completo"/>
             <label>Data de nascimento:</label>
             <input type="date" onChange={(e) => setBirthday(e.target.value)}/>
             <label>Email:</label>
@@ -65,7 +64,7 @@ export default function Login({ isOpen, closeModal }){
             <button type="submit">
               {loading ? <div className="spinner-button"><CgSpinner/></div> : "CADASTRAR"}
             </button>
-            <a className="link">Já possui uma conta? <span onClick={() => setIsRegistering(false)}>Login</span></a>
+            <a className="link">Já possui uma conta? <span onClick={() => setIsRegistering(false)}>Entrar</span></a>
           </form>
         </div>
       ) : (
@@ -73,7 +72,7 @@ export default function Login({ isOpen, closeModal }){
           {forgotPassword ? (
             <div className="forgot-password login">
               <div>
-                <p>Login</p>
+                <p>Entrar</p>
                 <IoClose onClick={closeModal}/>
               </div>
               <p>Nos conte algumas informações sobre sua conta.</p>
@@ -83,13 +82,13 @@ export default function Login({ isOpen, closeModal }){
                 <button type="submit">
                   {loading ? <div className="spinner-button"><CgSpinner/></div> : "ENVIAR"}
                 </button>
-                <a className="link" onClick={handleBackToLoginClick}>Voltar para login</a>
+                <a className="link" onClick={handleBackToLoginClick}>Voltar para acessar conta</a>
               </form>
             </div>
           ) : (
             <div className="login">
               <div>
-                <p>Login</p>
+                <p>Entrar</p>
                 <IoClose onClick={closeModal}/>
               </div>
               <form onSubmit={(e) => {e.preventDefault(); navigate('/products'); scrollToTop();}}>
