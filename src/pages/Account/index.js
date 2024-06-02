@@ -239,7 +239,7 @@ export default function Account(){
           <h6>Conta</h6>
           <p className={selectedItem === "Detalhes da Conta" ? "active" : ""} onClick={() => handleItemClick("Detalhes da Conta")}>Detalhes da Conta</p>
           <p className={selectedItem === "Endereço" ? "active" : ""} onClick={() => handleItemClick("Endereço")}>Endereço</p>
-          <p className={selectedItem === "Pedidos" ? "active" : ""} onClick={() => handleItemClick("Pedidos")}>Pedidos</p>
+          <p className={selectedItem === "Meus Pedidos" ? "active" : ""} onClick={() => handleItemClick("Meus Pedidos")}>Meus Pedidos</p>
           <p className={selectedItem === "Gerenciamento de Pedidos" ? "active" : ""} onClick={() => handleItemClick("Gerenciamento de Pedidos")}><FaCog/> Gerenciamento</p>
         </aside>
 
@@ -325,9 +325,9 @@ export default function Account(){
             </article>
           )}
 
-          {selectedItem === "Pedidos" && (
+          {selectedItem === "Meus Pedidos" && (
             <article className="article-user-orders">
-              <h2>Pedidos</h2>
+              <h2>Meus Pedidos</h2>
               {!showCommentForm && (
                 <div className="order-tabs">
                   <button className={selectedTab === "active" ? "active" : ""} onClick={() => setSelectedTab("active")}>Ativos</button>

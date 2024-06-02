@@ -1,40 +1,54 @@
-import React, { useEffect, useState } from "react"
-import './allproducts.scss'
-import { useNavigate } from "react-router-dom"
-import { Spinner } from '@chakra-ui/react'
+import React, { useEffect, useState } from "react";
+import './allproducts.scss';
+import { useNavigate } from "react-router-dom";
+import { Spinner } from '@chakra-ui/react';
 
-import Header from "../../components/Header"
-import Footer from "../../components/Footer"
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
-import shirt1 from '../../assets/mockups/shirt3.png'
-import shirt2 from '../../assets/mockups/shirt4.png'
-import shirt3 from '../../assets/mockups/shirt.png'
-import shirt4 from '../../assets/mockups/shirt1.png'
-import shirt5 from '../../assets/mockups/shirt2.png'
+import shirt1 from '../../assets/mockups/shirt3.png';
+import shirt2 from '../../assets/mockups/shirt4.png';
+import shirt3 from '../../assets/mockups/shirt.png';
+import shirt4 from '../../assets/mockups/shirt1.png';
+import shirt5 from '../../assets/mockups/shirt2.png';
 
-import { FaListUl } from "react-icons/fa"
-import { MdOutlineCircle, MdCheckCircle } from "react-icons/md"
-import { HiOutlineShoppingBag } from "react-icons/hi2"
+import { FaListUl } from "react-icons/fa";
+import { MdOutlineCircle, MdCheckCircle } from "react-icons/md";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 export default function AllProducts(){
-  const navigate = useNavigate()
-  const [selectedSize, setSelectedSize] = useState(null)
-  const [selectedCategory, setSelectedCategory] = useState(null)
-  const [selectedSortOption, setSelectedSortOption] = useState("priceLowToHigh")
-  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedSortOption, setSelectedSortOption] = useState("priceLowToHigh");
+  const [loading, setLoading] = useState(false);
 
   const handleSizeSelection = (size) => {
-    setSelectedSize(size)
-  }
+    const index = selectedSizes.indexOf(size);
+    if (index === -1) {
+      setSelectedSizes([...selectedSizes, size]);
+    } else {
+      const newSelectedSizes = [...selectedSizes];
+      newSelectedSizes.splice(index, 1);
+      setSelectedSizes(newSelectedSizes);
+    }
+  };
 
   const handleCategorySelection = (category) => {
-    setSelectedCategory(category === selectedCategory ? null : category)
-  }
+    const index = selectedCategories.indexOf(category);
+    if (index === -1) {
+      setSelectedCategories([...selectedCategories, category]);
+    } else {
+      const newSelectedCategories = [...selectedCategories];
+      newSelectedCategories.splice(index, 1);
+      setSelectedCategories(newSelectedCategories);
+    }
+  };
 
   const handleResetAll = () => {
-    setSelectedSize(null)
-    setSelectedCategory(null)
-  }
+    setSelectedSizes([]);
+    setSelectedCategories([]);
+  };
 
   const handleSortChange = (event) => {
     setSelectedSortOption(event.target.value)
@@ -43,25 +57,50 @@ export default function AllProducts(){
   const categories = [
     { name: "Blusas", count: 3 },
     { name: "Moletons", count: 7 }
-  ]
+  ];
 
-  const sizes = ["PP", "P", "M", "G"]
+  const sizes = ["PP", "P", "M", "G"];
 
   const items = [
-    { id: 1, name: "Camiseta", price: 77, description: "Estilo e conforto em uma camiseta de qualidade.", src: shirt1 },
-    { id: 2, name: "Camiseta", price: 55, description: "Clássica e elegante, ideal para o dia a dia.", src: shirt2 },
-    { id: 3, name: "Camiseta", price: 99, description: "Trendy e único, feito para se destacar.", src: shirt3 },
-    { id: 4, name: "Camiseta", price: 120, description: "Premium e confortável, para um estilo elevado.", src: shirt4 },
-    { id: 5, name: "Camiseta", price: 45, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: shirt5 }
-  ]
+    { id: 1, name: "Camiseta", price: 77, description: "Estilo e conforto em uma camiseta de qualidade.", src: shirt1, size: "M", category: "Blusas" },
+    { id: 2, name: "Camiseta", price: 55, description: "Clássica e elegante, ideal para o dia a dia.", src: shirt2, size: "P", category: "Blusas" },
+    { id: 3, name: "Camiseta", price: 99, description: "Trendy e único, feito para se destacar.", src: shirt3, size: "G", category: "Blusas" },
+    { id: 4, name: "Camiseta", price: 120, description: "Premium e confortável, para um estilo elevado.", src: shirt4, size: "M", category: "Moletons" },
+    { id: 5, name: "Camiseta", price: 45, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: shirt5, size: "P", category: "Moletons" }
+  ];
 
   useEffect(() => {
-    document.title = "Jesustyle | Descubra Nossa Coleção"
-  }, [])
+    document.title = "Jesustyle | Descubra Nossa Coleção";
+  }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const filteredItems = items.filter(item => {
+    if (selectedSizes.length > 0 && !selectedSizes.includes(item.size)) {
+      return false;
+    }
+    if (selectedCategories.length > 0 && !selectedCategories.includes(item.category)) {
+      return false;
+    }
+    return true;
+  });
+
+  const sortedItems = filteredItems.sort((a, b) => {
+    switch(selectedSortOption) {
+      case "priceLowToHigh":
+        return a.price - b.price;
+      case "priceHighToLow":
+        return b.price - a.price;
+      case "nameAToZ":
+        return a.name.localeCompare(b.name);
+      case "nameZToA":
+        return b.name.localeCompare(a.name);
+      default:
+        return 0;
+    }
+  });
 
   return(
     <>
@@ -79,14 +118,14 @@ export default function AllProducts(){
             <aside>
               <h1>Coleção</h1>
               <div className="filters">
-                <p><FaListUl/> Filtros <span>(2)</span></p>
+                <p><FaListUl/> Filtros <span>({selectedSizes.length + selectedCategories.length})</span></p>
                 <span onClick={handleResetAll}>Limpar filtro</span>
               </div>
               <div className="category">
                 <h2>Categorias</h2>
                 {categories.map((category, index) => (
                   <p key={index} onClick={() => handleCategorySelection(category.name)}>
-                    {selectedCategory === category.name ? <MdCheckCircle/> : <MdOutlineCircle/>} {category.name} <span>({category.count})</span>
+                    {selectedCategories.includes(category.name) ? <MdCheckCircle/> : <MdOutlineCircle/>} {category.name} <span>({category.count})</span>
                   </p>
                 ))}
               </div>
@@ -94,7 +133,7 @@ export default function AllProducts(){
                 <h2>Tamanho</h2>
                 <div>
                   {sizes.map((size, index) => (
-                    <p key={index} className={`size ${selectedSize === size ? "selected" : ""}`} onClick={() => handleSizeSelection(size)}>{size}</p>
+                    <p key={index} className={`size ${selectedSizes.includes(size) ? "selected" : ""}`} onClick={() => handleSizeSelection(size)}>{size}</p>
                   ))}
                 </div>
               </div>
@@ -111,7 +150,7 @@ export default function AllProducts(){
                 </select>
               </div>
               <div className="items-container">
-                {items.map(item => (
+                {filteredItems.map(item => (
                   <div className="item" key={item.id}>
                     <img src={item.src} alt="Item"/>
                     <h6>{item.name}</h6>
@@ -131,5 +170,5 @@ export default function AllProducts(){
 
       <Footer/>
     </>
-  )
+  );
 }
