@@ -72,7 +72,7 @@ export default function Login({ isOpen, closeModal }){
           {forgotPassword ? (
             <div className="forgot-password login">
               <div>
-                <p>Entrar</p>
+                <p>Redefinir senha</p>
                 <IoClose onClick={closeModal}/>
               </div>
               <p>Nos conte algumas informações sobre sua conta.</p>

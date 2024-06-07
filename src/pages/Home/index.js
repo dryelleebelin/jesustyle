@@ -78,7 +78,7 @@ export default function Home() {
           <a onClick={() => scrollTo('purpose')}>Propósito</a>
           <a onClick={() => scrollTo('store')}>Loja</a>
           <a onClick={() => scrollTo('podcast')}>Podcast</a>
-          <a>Ações</a>
+          <a onClick={() => scrollTo('actions')}>Ações</a>
           <button type="button" onClick={handleOpenModalLogin}>Compre aqui <BsArrowRight/></button>
         </nav>
       </header>
@@ -87,7 +87,7 @@ export default function Home() {
         <video className="horizontalVideo" ref={videoRef} autoPlay muted={!isSoundEnabled} loop>
           <source src={horizontalVideo} type="video/mp4"/>
         </video>
-        <video className="verticalVideo" ref={videoRef} controls autoPlay muted={!isSoundEnabled} loop>
+        <video className="verticalVideo" ref={videoRef} autoPlay muted={!isSoundEnabled} loop>
           <source src={verticalVideo} type="video/mp4"/>
         </video>
         <div onClick={toggleSound}>
@@ -108,15 +108,6 @@ export default function Home() {
           <p className="p-3">Além disso, nos comprometemos em ser agentes de mudança positiva em nossa comunidade, de eventos de serviço a iniciativas que promovem a fé e o amor ao próximo.</p>
           <p className="p-4">Na JESUSTYLE, nossa humildade vem da compreensão de que somos instrumentos nas mãos de Deus. Enquanto Thiago lidera o caminho, permanecemos fiéis à nossa missão: espalhar a mensagem de Jesus Cristo através da moda, da comunidade e do serviço, deixando um impacto duradouro em um mundo que tanto precisa de esperança e luz. Esta é a nossa missão. <strong>Esta é a JESUSTYLE.</strong></p>
           <img src={purposeCollage} className="purposeCollage"/>
-        </div>
-      </section>
-
-      <span id="podcast"/>
-      
-      <section className="podcast">
-        <div className="container">
-          <h1>Podcasts</h1>
-          <CarouselActions/>
         </div>
       </section>
 
@@ -146,15 +137,30 @@ export default function Home() {
         </article>
       </section>
 
+      <span id="podcast"/>
+      
+      <section className="podcast">
+        <div className="container">
+          <h1>Podcasts</h1>
+          <CarouselActions/>
+        </div>
+      </section>
+
+      <span id="actions"/>
+
+      <section className="actions">
+        <h1>Ações</h1>
+      </section>
+
       <footer>
         <section className="top">
           <img src={whiteLogo} onClick={scrollToTop}/>
           <div className="links-column">
             <h2>Navegação</h2>
             <a onClick={() => scrollTo('purpose')}>Propósito</a>
-            <a href="#">Ações</a>
-            <a onClick={() => scrollTo('podcast')}>Podcast</a>
             <a onClick={() => scrollTo('store')}>Loja</a>
+            <a onClick={() => scrollTo('podcast')}>Podcast</a>
+            <a onClick={() => scrollTo('actions')}>Ações</a>
           </div>
           <div className="links-column socials-column">
             <h2>Redes Sociais</h2>

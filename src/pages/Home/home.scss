@@ -108,7 +108,7 @@
       font-weight: 600;
       font-size: 1.8rem;
       text-transform: uppercase;
-      color: var(--accent-2);
+      color: var(--accent-1);
       text-shadow: 1px 1px 8px var(--shadow);
     }
 
@@ -172,36 +172,9 @@
     }
   }
 
-  .podcast{
-    height: 80vh;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    margin: 5vh 0;
-
-    .container{
-      background-color: var(--background-2);
-      width: 100%;
-      height: 70vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 0;
-
-      h1{
-        margin-top: 6vh;
-        font-weight: 600;
-        font-size: 1.8rem;
-        text-transform: uppercase;
-        color: var(--accent-1);
-        text-shadow: 1px 1px 8px var(--shadow);
-      }
-    }
-  }
-
   .store{
-    height: 100vh;
-    padding: 12vh 5vw 12vh 5vw;
+    height: 90vh;
+    padding: 12vh 5vw 0 5vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -327,6 +300,51 @@
     }
   }
 
+  .podcast{
+    height: 85vh;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+
+    .container{
+      background-color: var(--background-2);
+      width: 100%;
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 0;
+      box-shadow: 1px 1px 14px var(--shadow);
+
+      h1{
+        margin-top: 6vh;
+        font-weight: 600;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        color: var(--accent-1);
+        text-shadow: 1px 1px 8px var(--shadow);
+      }
+    }
+  }
+
+  .actions{
+    background-color: var(--background);
+    color: var(--font-color-white);
+    height: 100vh;
+    padding: 15vh 5vw;
+    display: flex;
+    justify-content: center;
+
+    h1{
+      margin-bottom: 4%;
+      font-weight: 600;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      color: var(--accent-1);
+      text-shadow: 1px 1px 8px var(--shadow);
+    }
+  }
+
   footer{
     background: url('../../assets/wallpaperFooter.jpg');
     padding: 8vh 10vw;
@@ -434,7 +452,7 @@
         }
   
         button{
-          padding: 1% 6vw;
+          padding: 2% 6vw;
           border-radius: 16px;
   
           svg{
@@ -489,16 +507,6 @@
           height: auto;
           margin-top: 3vh;
         }
-      }
-    }
-
-    .podcast{
-      height: 100%;
-      margin: 0;
-  
-      .container{
-        height: 100%;
-        padding: 0 0 2vh 0;
       }
     }
 
@@ -571,6 +579,16 @@
         img{
           width: 68%;
         }
+      }
+    }
+
+    .podcast{
+      height: 100%;
+      margin: 0;
+  
+      .container{
+        height: 100%;
+        padding: 0 0 2vh 0;
       }
     }
 
@@ -666,15 +684,7 @@
         }
       }
     }
-  
-    .podcast{
-      .container{
-        h1{
-          font-size: 2.5rem;
-        }
-      }
-    }
-  
+
     .store{
       .box1{
         .content{
@@ -725,6 +735,14 @@
         img{
           width: 500px;
           border-radius: 10px;
+        }
+      }
+    }
+  
+    .podcast{
+      .container{
+        h1{
+          font-size: 2.5rem;
         }
       }
     }

@@ -14,6 +14,20 @@ import { FaCog, FaTruck, FaCheckCircle, FaClock, FaInfoCircle, FaCalendarAlt } f
 import { FaRegStar, FaStar } from "react-icons/fa6"
 import { MdOutlinePhotoCamera } from "react-icons/md"
 
+import {
+  Step,
+  StepDescription,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepStatus,
+  StepTitle,
+  Stepper,
+  useSteps,
+  Box
+} from '@chakra-ui/react'
+
 export default function Account(){
   const [selectedItem, setSelectedItem] = useState("Detalhes da Conta")
   const [hasAddress, setHasAddress] = useState(false)
@@ -121,11 +135,58 @@ export default function Account(){
   const [selectedOrder, setSelectedOrder] = useState(null)
   const [selectedUserOrderStatus, setSelectedUserOrderStatus] = useState("")
   const [selectedOrderStatus, setSelectedOrderStatus] = useState("")
+  const [showOrderDetails, setShowOrderDetails] = useState(false)
 
   const [showCommentForm, setShowCommentForm] = useState(false)
+  const [showAddCommentButton, setShowAddCommentButton] = useState(true)
   const [rating, setRating] = useState(0)
   const [review, setReview] = useState("")
   const [photo, setPhoto] = useState(null)
+  const [errorMessage, setErrorMessage] = useState("")
+  const forbiddenWords = [
+    "merda",
+    "porra",
+    "caralho",
+    "bosta",
+    "puta",
+    "piranha",
+    "arrombado",
+    "viado",
+    "fdp",
+    "foda-se",
+    "desgraça",
+    "cacete",
+    "buceta",
+    "cu",
+    "retardado",
+    "idiota",
+    "imbecil",
+    "escroto",
+    "puta que pariu",
+    "vai se foder",
+    "babaca",
+    "vagabundo",
+    "corno",
+    "escória",
+    "bobalhão",
+    "lixo",
+    "trouxa",
+    "otário",
+    "palhaço",
+    "cabeça de vento",
+    "paspalho"
+  ]  
+  const steps = [
+    { status: 'Pedido feito', date: '23/08/2023 12:20' },
+    { status: 'Em andamento', date: '23/08/2023 19:03' },
+    { status: 'Enviado', date: '02/09/2023 14:40' },
+    { status: 'Entregue', date: '03/09/2023 08:15' }
+  ]
+
+  const { activeStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  })
 
   useEffect(() => {
     setFilteredOrders(orders)
@@ -192,12 +253,14 @@ export default function Account(){
     handleStatusFilter(selectedOrderStatus, false)
   }, [selectedOrderStatus, orders])
 
-  const handleTrackOrder = (orderId) => {
-    
+  const handleTrackOrder = () => {
+    setShowOrderDetails(true)
+    setUserOrders(userOrders.filter(order => order.status !== "Ativo"))
   }
 
   const handleAddCommentClick = () => {
     setShowCommentForm(true)
+    setShowAddCommentButton(false)
   }
 
   const handleCancelComment = () => {
@@ -205,6 +268,7 @@ export default function Account(){
     setRating(0)
     setReview("")
     setPhoto(null)
+    setShowAddCommentButton(true)
   }
 
   const handleRatingChange = (newRating) => {
@@ -222,12 +286,22 @@ export default function Account(){
     }
   }
 
+  const containsForbiddenWords = (text) => {
+    const words = text.split(/\s+/);
+    return words.some(word => forbiddenWords.includes(word.toLowerCase()))
+  }
+
   const handleSubmitComment = (e) => {
     e.preventDefault()
-    setShowCommentForm(false)
-    setRating(0)
-    setReview("")
-    setPhoto(null)
+    if (containsForbiddenWords(review)){
+      setErrorMessage("Seu comentário contém linguagem inadequada. Por favor, revise e tente novamente!")
+    } else{
+      setShowCommentForm(false)
+      setErrorMessage("")
+      setRating(0)
+      setReview("")
+      setPhoto(null)
+    }
   }
 
   return (
@@ -328,13 +402,13 @@ export default function Account(){
           {selectedItem === "Meus Pedidos" && (
             <article className="article-user-orders">
               <h2>Meus Pedidos</h2>
-              {!showCommentForm && (
+              {!showOrderDetails && !showCommentForm && (
                 <div className="order-tabs">
                   <button className={selectedTab === "active" ? "active" : ""} onClick={() => setSelectedTab("active")}>Ativos</button>
                   <button className={selectedTab === "completed" ? "active" : ""} onClick={() => setSelectedTab("completed")}>Concluídos</button>
                 </div>
               )}
-              {selectedTab === "active" && (
+              {!showCommentForm && selectedTab === "active" && !showOrderDetails && (
                 <ul>
                   {userOrders.filter(order => order.status === "Ativo").length === 0 ? (
                     <span>Você não possui pedidos ativos.</span>
@@ -349,11 +423,43 @@ export default function Account(){
                             <p>R${order.price.toFixed(2).replace('.', ',')}</p>
                           </div>
                         </div>
-                        <button onClick={() => handleTrackOrder(order.id)}>Acompanhar pedido</button>
+                        <button onClick={handleTrackOrder}>Acompanhar pedido</button>
                       </li>
                     ))
                   )}
                 </ul>
+              )}
+              {showOrderDetails && (
+                <div className="order-details">
+                  <h3>Detalhes do pedido</h3>
+                  <div>
+                    <p>Data prevista de entrega <span>03 de set 2024</span></p>
+                    <p>ID de rastreamento <span>3AS28121AW91</span></p>
+                  </div>
+                  <h3>Status do pedido</h3>
+                  <Stepper size='lg' colorScheme='red' index={activeStep} style={{fontSize: '14px', display: 'flex', flexDirection: 'row'}}>
+      {steps.map((step, index) => (
+        <Step key={index}>
+          <StepIndicator>
+           <StepStatus
+           complete={`✅`}
+           incomplete={`🚚`}
+           active={<StepNumber />}
+/>
+
+          </StepIndicator>
+
+          <Box flexShrink='0'>
+            <StepTitle>{step.description}</StepTitle>
+            <StepDescription>{step.date}</StepDescription>
+          </Box>
+
+          <StepSeparator/>
+        </Step>
+      ))}
+    </Stepper>
+                  <button type="button">Voltar</button>
+                </div>
               )}
               {!showCommentForm && selectedTab === "completed" && (
                 <ul>
@@ -370,7 +476,11 @@ export default function Account(){
                             <p>R${order.price.toFixed(2).replace('.', ',')}</p>
                           </div>
                         </div>
-                        <button onClick={handleAddCommentClick}>Adicionar avaliação</button>
+                        {showAddCommentButton ? (
+                          <button onClick={handleAddCommentClick}>Adicionar Avaliação</button>
+                        ) : (
+                          <p className="p-revision">Avaliação em revisão</p>
+                        )}
                       </li>
                     ))
                   )}
@@ -390,14 +500,15 @@ export default function Account(){
                     </div>
                     <p>Adicionar revisão detalhada:</p>
                     <textarea id="review" value={review} onChange={handleReviewChange} placeholder="Digite sua revisão detalhada aqui"></textarea>
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
                     <div className="photo-upload">
-                      <input type="file" id="photo" onChange={handlePhotoChange}/>
+                      <input type="file" id="photo" accept="image/*" onChange={handlePhotoChange}/>
                       <p onClick={() => document.getElementById('photo').click()}><MdOutlinePhotoCamera/> Adicionar foto</p>
                       {photo && <span>Selecionado: {photo}</span>}
                     </div>
                     <div className="buttons">
                       <button type="button" onClick={handleCancelComment}>Cancelar</button>
-                      <button type="button" onClick={handleSubmitComment}>Enviar</button>
+                      <button type="button" onClick={handleSubmitComment}>Enviar avaliação</button>
                     </div>
                   </form>
                 </div>
