@@ -87,48 +87,137 @@
 
   .order-details{
     h3{
-      font-size: 1.6rem;
-      margin-bottom: 1vh;
+      font-size: 1.1rem;
+      margin-bottom: 2vh;
     }
 
-    .p-1{
-      font-weight: 600;
-      display: flex;
-      flex-direction: row;
-      gap: 0.5vw;
-      text-wrap: nowrap;
-      align-items: center;
-
-      span{
-        font-weight: 400;
-        margin-bottom: 0;
-      }
-    }
-
-    ul{
-      list-style-type: none;
-      margin: 2vh 0;
-      display: flex;
-      flex-direction: column;
+    h3:nth-child(5){
       border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 2vh 0;
+      padding-top: 3vh;
+      margin-top: 5vh;
+    }
+
+    .order-details-section{
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 1vw;
+      margin-bottom: 5vh;
 
       p{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.9rem;
+        padding: 1.5vh 2vw;
+        border: 1px solid var(--border);
+        box-shadow: 1px 1px 8px var(--shadow);
         font-weight: 600;
+
+        span{
+          margin: 0;
+          font-weight: 400;
+          opacity: 0.8;
+
+          svg{
+            cursor: pointer;
+            margin-left: -0.5vw;
+            font-size: 16px;
+          }
+        }
       }
     }
 
-    h4{
-      font-size: 1.2rem;
-      margin-bottom: 1vh;
+    .stepper{
+      position: relative;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 0.5vw;
+      margin-bottom: 6vh;
+      width: 100%;
+    
+      .step{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    
+        .step-icon{
+          width: 3vw;
+          height: 6vh;
+          border-radius: 50%;
+          background-color: #ccc;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 2;
+    
+          svg{
+            width: 1.5vw;
+            height: auto;
+          }
+        }
+    
+        .step-name{
+          font-size: 0.9rem;
+          font-weight: 600;
+          text-align: center;
+          width: 90%;
+        }
+    
+        .step-date{
+          opacity: 0.6;
+          font-size: 0.8rem;
+        }
+      }
+    
+      .active{
+        .step-icon{
+          background-color: #007bff;
+        }
+      }
+    
+      .complete{
+        .step-icon{
+          background-color: #28a745;
+        }
+      }
+    
+      .progress-bar{
+        position: absolute;
+        top: 25%;
+        left: 0;
+        height: 4px;
+        background-color: #ccc;
+    
+        .progress{
+          height: 100%;
+          background-color: #28a745;
+          transition: 0.4s ease-in-out;
+        }
+      }
+    }
 
-      svg{
-        color: #dc3545;
-        font-size: 24px;
+    .customer-support{
+      p{
+        display: flex;
+        font-weight: 600;
+        gap: 0.5vw;
+        font-size: 0.95rem;
+        
+        span{
+          font-weight: 400;
+          margin: 0;
+          opacity: 0.8;
+        }
+      }
+
+      p:first-child{
+        font-weight: 400;
+        font-size: 1rem;
+        margin-bottom: 1vh;
       }
     }
 
@@ -261,69 +350,6 @@
   }
 }
 
-.stepper{
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2vh;
-  width: 100%;
-
-  .step{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-
-    .step-icon{
-      width: 3vw;
-      height: 6vh;
-      border-radius: 50%;
-      background-color: #ccc;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2;
-
-      svg{
-        width: 1.5vw;
-        height: auto;
-      }
-    }
-
-    .step-name{
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-  }
-
-  .active{
-    .step-icon{
-      background-color: #007bff;
-    }
-  }
-
-  .complete{
-    .step-icon{
-      background-color: #28a745;
-    }
-  }
-
-  .progress-bar{
-    position: absolute;
-    top: 25%;
-    left: 0;
-    height: 4px;
-    background-color: #ccc;
-
-    .progress{
-      height: 100%;
-      background-color: #28a745;
-      transition: 0.4s ease-in-out;
-    }
-  }
-}
-
 /* for mobile devices */
 @media only screen and (max-width: 480px){
   .article-user-orders{
@@ -369,29 +395,6 @@
           padding: 0.6vh 4vw;
           border-radius: 6px;
         }
-      }
-    }
-
-    .order-details{
-      h3{
-        font-size: 1.1rem;
-      }
-
-      .p-1{
-        gap: 2vw;
-      }
-
-      ul{
-        gap: 2vh;
-      }
-
-      h4{
-        font-size: 1rem;
-        gap: 2vw;
-      }
-
-      button{
-        padding: 0.6vh 4vw;
       }
     }
 
@@ -487,37 +490,45 @@
 
     .order-details{
       h3{
-        font-size: 2.4rem;
+        font-size: 1.7rem;
       }
   
-      .p-1{
-        font-size: 1.5rem;
-      }
-  
-      ul{
-        font-size: 1.5rem;
-  
+      .order-details-section{
         p{
+          font-size: 1.3rem;
+  
+          span{
+            svg{
+              font-size: 24px;
+            }
+          }
+        }
+      }
+  
+      .stepper{
+        .step{
+          .step-name{
+            p{
+              font-size: 1.35rem;
+            }
+          }
+      
+          .step-date{
+            p{
+              font-size: 1.3rem;
+            }
+          }
+        }
+      }
+  
+      .customer-support{
+        p{
+          font-size: 1.4rem;
+        }
+  
+        p:first-child{
           font-size: 1.5rem;
         }
-      }
-  
-      h4{
-        font-size: 1.8rem;
-  
-        svg{
-          font-size: 36px;
-        }
-      }
-  
-      p{
-        font-size: 1.5rem;
-      }
-  
-      button{
-        border-radius: 6px;
-        box-shadow: 2px 2px 10px var(--shadow);
-        font-size: 1.3rem;
       }
     }
 
