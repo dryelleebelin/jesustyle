@@ -48,7 +48,7 @@ export default function AllProducts(){
   const handleResetAll = () => {
     setSelectedSizes([])
     setSelectedCategories([])
-  };
+  }
 
   const handleSortChange = (event) => {
     setSelectedSortOption(event.target.value)

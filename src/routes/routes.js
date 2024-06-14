@@ -7,14 +7,19 @@ import ProductDetails from "../pages/ProductDetails"
 import Payment from "../pages/Payment"
 import Account from "../pages/Account"
 
+import Private from "./private"
+
 export default function RoutesApp(){
   return(
     <Routes>
-      <Route path="/" element={<Home/>}/>
+      <Route path="*" element={<Home/>}/>
+      <Route exact path="/" element={<Home/>}/>
+
       <Route path="/products" element={<AllProducts/>}/>
       <Route path="/product/:productId" element={<ProductDetails/>}/>
-      <Route path="/payment" element={<Payment/>}/>
-      <Route path="/account" element={<Account/>}/>
+      
+      <Route path="/payment" element={<Private><Payment/></Private>}/>
+      <Route path="/account" element={<Private><Account/></Private>}/>
     </Routes>
   )
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import './login.scss'
 import Modal from 'react-modal'
 import { useNavigate } from "react-router-dom"
+import { Spinner } from '@chakra-ui/react'
 
 import { IoClose } from "react-icons/io5"
 import { CgSpinner } from "react-icons/cg"
@@ -44,6 +45,19 @@ export default function Login({ isOpen, closeModal }){
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  function handleLogin(){
+    if (email === '' || password === ''){
+      alert("Por favor preencha todos os campos")
+      return
+    }
+
+    setLoading(true)
+    localStorage.setItem('@jesustyle', JSON.stringify([email, password]))
+    navigate('/products')
+    scrollToTop()
+    setLoading(false)
+  }
+
   return (
     <Modal style={customStyles} isOpen={isOpen} onRequestClose={closeModal}>
       {isRegistering ? (
@@ -52,7 +66,7 @@ export default function Login({ isOpen, closeModal }){
             <p>Cadastre-se</p>
             <IoClose onClick={closeModal}/>
           </div>
-          <form onSubmit={(e) => {e.preventDefault(); navigate('/products'); scrollToTop();}}>
+          <form onSubmit={(e) => e.preventDefault()}>
             <label>Nome completo:</label>
             <input type="text" onChange={(e) => setUsername(e.target.value)} placeholder="Digite seu nome completo"/>
             <label>Data de nascimento:</label>
@@ -61,7 +75,7 @@ export default function Login({ isOpen, closeModal }){
             <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email"/>
             <label>Senha:</label>
             <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="********"/>
-            <button type="submit">
+            <button type="button">
               {loading ? <div className="spinner-button"><CgSpinner/></div> : "CADASTRAR"}
             </button>
             <a className="link">Já possui uma conta? <span onClick={() => setIsRegistering(false)}>Entrar</span></a>
@@ -91,14 +105,14 @@ export default function Login({ isOpen, closeModal }){
                 <p>Entrar</p>
                 <IoClose onClick={closeModal}/>
               </div>
-              <form onSubmit={(e) => {e.preventDefault(); navigate('/products'); scrollToTop();}}>
+              <form onSubmit={(e) => e.preventDefault()}>
                 <label>Email:</label>
                 <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email"/>
                 <label>Senha:</label>
                 <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="********"/>
                 <a onClick={handleForgotPasswordClick}>Esqueceu a senha?</a>
-                <button type="submit">
-                  {loading ? <div className="spinner-button"><CgSpinner/></div> : "ENTRAR"}
+                <button type="button" onClick={handleLogin}>
+                  {loading ? <Spinner className="spinner-button" speed='0.70s'/> : "ENTRAR"}
                 </button>
                 <a className="link">Ainda não possui uma conta? <span onClick={handleRegisterClick}>Cadastre-se</span></a>
               </form>

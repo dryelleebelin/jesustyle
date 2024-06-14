@@ -398,6 +398,71 @@
       }
     }
 
+    .order-details{
+      .order-details-section{
+        flex-direction: column;
+        gap: 1vh;
+        margin-bottom: 3vh;
+  
+        p{
+          align-items: start;
+          text-align: start;
+          font-size: 1rem;
+          padding: 0;
+          border: none;
+          box-shadow: none;
+  
+          span{
+            svg{
+              font-size: 20px;
+            }
+          }
+        }
+      }
+  
+      .stepper{
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 4vh;
+        margin-bottom: 4vh;
+        gap: 2vh;
+      
+        .step{
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 3vw;
+      
+          .step-icon{
+            width: 3rem;
+            height: 3rem;
+      
+            svg{
+              width: 1.5rem;
+            }
+          }
+      
+          .step-name{
+            width: max-content;
+          }
+        }
+      
+        .progress-bar{
+          transform: rotate(90deg);
+          top: 50%;
+          left: -36vw;
+          width: 92% !important;
+        }
+      }
+  
+      .customer-support{
+        p{
+          gap: 1vw;
+          font-size: 1rem;
+        }
+      }
+    }
+
     .comment-form{
       form{
         .rating{

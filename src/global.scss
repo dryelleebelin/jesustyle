@@ -59,6 +59,13 @@ a{
   }
 }
 
+.spinner-button{
+  color: var(--foreground);
+  width: 20px;
+  height: 20px;
+  margin: 0.4vh 0 !important;
+}
+
 .mobile-only{
   display: none;
 }
