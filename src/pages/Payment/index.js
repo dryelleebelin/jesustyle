@@ -1,17 +1,128 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './payment.scss'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/react"
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
 import pagarme from '../../assets/seloPagarX.png'
+import item1 from '../../assets/mockups/shirt.png'
+import item2 from '../../assets/mockups/shirt1.png'
 
+import { IoClose } from "react-icons/io5"
 import { FaAngleRight } from "react-icons/fa"
 import { BsFillCreditCardFill, BsFillPersonPlusFill } from 'react-icons/bs'
 
 export default function Payment(){
+  const navigate = useNavigate()
+  const [cupom, setCupom] = useState('');
+  const [botaoTexto, setBotaoTexto] = useState('Validar');
+  const [botaoCor, setBotaoCor] = useState('');
+  const botaoClassName = botaoCor === 'red' ? 'botao-remover' : '';
+  const [loading, setLoading] = useState(false)
+
+  const [products, setProducts] = useState([
+    { id: 1, name: 'Produto 1', price: 50, quantity: 1, src: item1, size: 'P' },
+    { id: 2, name: 'Produto 2', price: 80, quantity: 1, src: item2, size: 'M' }
+  ])  
+
+  const total = products.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
+  const sizes = ["PP", "P", "M", "G"]
+
+  const handleSizeSelection = (productId, size) => {
+    setProducts(products.map(product => {
+      if (product.id === productId) {
+        return { ...product, size: size }
+      }
+      return product
+    }))
+  }
+
+  const increaseQuantity = (productId) => {
+    setProducts(products.map(product => {
+      if (product.id === productId) {
+        return { ...product, quantity: product.quantity + 1 }
+      }
+      return product
+    }))
+  }
+
+  const decreaseQuantity = (productId) => {
+    setProducts(products.map(product => {
+      if (product.id === productId && product.quantity > 1) {
+        return { ...product, quantity: product.quantity - 1 }
+      }
+      return product
+    }))
+  }
+
+  const removeItem = (productId) => {
+    setProducts(products.filter(product => product.id !== productId))
+  }
+
+  const handleChangeCupom = (event) => {
+    const selectedValue = event.target.value
+    setCupom(selectedValue)
+  }
+
+  const handleBotaoClick = () => {
+    if (botaoTexto === 'Validar') {
+      if (cupomValido(cupom)){
+        aplicarDesconto(cupom)
+        setBotaoTexto('Remover')
+        setBotaoCor('green')
+      } else {
+        alert('Cupom inválido')
+      }
+    } else if (botaoTexto === 'Remover') {
+      removerDesconto()
+      setCupom('')
+      setBotaoTexto('Validar')
+      setBotaoCor('')
+    }
+  }
+
+  const cupomValido = (cupom) => {
+    const cuponsValidos = ['DESCONTO10', 'PROMO20']
+    return cuponsValidos.includes(cupom)
+  }
+
+  const aplicarDesconto = (cupom) => {
+    if (cupom === 'DESCONTO10') {
+      setProducts(products.map(product => ({
+        ...product,
+        price: product.price * 0.9
+      })))
+    } else if (cupom === 'PROMO20') {
+      setProducts(products.map(product => ({
+        ...product,
+        price: product.price * 0.8
+      })))
+    }
+  }
+
+  const removerDesconto = () => {
+    setProducts(products.map(product => {
+      if (cupom === 'DESCONTO10') {
+        return { ...product, price: product.price / 0.9 }
+      } else if (cupom === 'PROMO20') {
+        return { ...product, price: product.price / 0.8 }
+      }
+      return product
+    }))
+  }
+
+  const handlePayment = () => {
+    setLoading(true)
+
+    setTimeout(() => {
+      setLoading(false)
+      navigate('/products')
+      alert('Pagamento realizado com sucesso!')
+    }, 2000)
+  }
+
   return (
     <>
       <Header/>
@@ -38,25 +149,25 @@ export default function Payment(){
                 <span>Aceitamos somente cartão de crédito!*</span>
               </section>
 
-              <div style={{width: window.innerWidth <= 480 ? '100%' : '48%'}}>
-                <label>Nome no cartão:</label>
-                <input type="text" placeholder="Nome no cartão" />
+              <div style={{ width: '48%' }}>
+                <label htmlFor="cardName">Nome no cartão:</label>
+                <input type="text" id="cardName" placeholder="Nome no cartão"/>
               </div>
-              <div style={{width: window.innerWidth <= 480 ? '100%' : '50%'}}>
-                <label>Número do Cartão:</label>
-                <input type="text" placeholder="Número do Cartão" />
+              <div style={{ width: '50%' }}>
+                <label htmlFor="cardNumber">Número do Cartão:</label>
+                <input type="text" id="cardNumber" placeholder="Número do Cartão"/>
+              </div>
+              <div style={{ width: '32%' }}>
+                <label htmlFor="expiryDate">Data de Validade:</label>
+                <input type="text" id="expiryDate" placeholder="MM/AA" maxLength="5"/>
+              </div>
+              <div style={{ width: '32%' }}>
+                <label htmlFor="cvv">CVV:</label>
+                <input type="text" id="cvv" maxLength="3" placeholder="CVV"/>
               </div>
               <div style={{width: window.innerWidth <= 480 ? '100%' : '32%'}}>
-                <label>Data de Validade:</label>
-                <input type="text" placeholder="MM/AA" maxLength="5" />
-              </div>
-              <div style={{width: window.innerWidth <= 480 ? '100%' : '32%'}}>
-                <label>CVV:</label>
-                <input type="text" maxLength="3" placeholder="CVV" />
-              </div>
-              <div style={{width: window.innerWidth <= 480 ? '100%' : '32%'}}>
-                <label>Número de parcelas:</label>
-                <select>
+                <label htmlFor="installments">Número de parcelas:</label>
+                <select id="installments">
                   <option selected>10 X de R$10,00</option>
                   <option>9 X de R$10,00</option>
                   <option>8 X de R$10,00</option>
@@ -94,17 +205,54 @@ export default function Payment(){
 
           <section className='purchase-details'>
             <h1>Detalhes da compra:</h1>
-            <p>Item: <span>Camiseta - Tamanho M</span></p>
-            <p>Preço: <span>R$10,00</span></p>
-            <p>Parcelamento: <span>10 X</span></p>
-            <p>Entrega Estimada: <span>15 de maio de 2024</span></p>
-            <img src={pagarme}/>
-            <p className='total-diviser'></p>
-            <p className='total'>Total: <span>10 X de R$10,00</span></p>
+            <aside className="product-body">
+              <ul>
+                {products.map(product => (
+                  <li key={product.id}>
+                    <img src={product.src} alt={product.name} />
+                    <div className='details'>
+                      <div>
+                        <p>{product.name}</p>
+                        <div className='container-sizes'>
+                          {sizes.map((size, index) => (
+                            <p key={index} className={`size ${product.size === size ? "selected" : ""}`} onClick={() => handleSizeSelection(product.id, size)}>
+                              {size}
+                            </p>
+                          ))}
+                        </div>
+                        <span>R$ {(product.price * product.quantity).toFixed(2).replace('.', ',')}</span>
+                      </div>
+                      <div> 
+                        <IoClose onClick={() => removeItem(product.id)}/>
+                        <div className='qtd'>
+                          <button type='button' onClick={() => decreaseQuantity(product.id)}>-</button>
+                          <p>{product.quantity}</p>
+                          <button type='button' onClick={() => increaseQuantity(product.id)}>+</button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+            <p className='purchase-details-p'>Parcelamento: <span>10 X</span></p>
+            <p className='purchase-details-p'>Entrega Estimada: <span>15 de maio de 2024</span></p>
+            <img className='purchase-details-img' src={pagarme}/>
+            <p className='total-diviser purchase-details-p'></p>
+            <p className='total purchase-details-p'>Total: <span>R$ {total.toFixed(2).replace('.', ',')}</span></p>
+            <div className='cupom-de-desconto'>
+              <p>Código de cupom</p>
+              <div>
+                <input type='text' value={cupom} onChange={handleChangeCupom}/>
+                <button className={botaoClassName} onClick={handleBotaoClick}>{botaoTexto}</button>
+              </div>
+            </div>
             <div>
               <label><input type='checkbox'/>Ao marcar esta opção, você concorda com os <a href='#'>Termos de Serviço</a>.</label>
             </div>
-            <button type='button'>Finalizar compra</button>
+            <button type='button' onClick={handlePayment} disabled={loading}>
+              {loading ? 'Processando...' : 'Finalizar compra'}
+            </button>
           </section>
         </div>
       </main>

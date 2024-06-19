@@ -52,7 +52,6 @@ export default function Login({ isOpen, closeModal }){
     }
 
     setLoading(true)
-    localStorage.setItem('@jesustyle', JSON.stringify([email, password]))
     navigate('/products')
     scrollToTop()
     setLoading(false)

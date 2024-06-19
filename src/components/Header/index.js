@@ -13,7 +13,7 @@ import { BsArrowRight } from "react-icons/bs"
 import { IoIosArrowDown, IoIosLogOut } from "react-icons/io"
 
 export default function Header() {
-  const navigate = useNavigate() // Utilizando useNavigate para navegação programática
+  const navigate = useNavigate()
   const [isOpenModalLogin, setIsOpenModalLogin] = useState(false)
   const [userType, setUserType] = useState(null)
   const notificationsRef = useRef(null)
@@ -58,36 +58,12 @@ export default function Header() {
     }
   }, [notificationsRef.current, dropdownRef.current])
 
-  useEffect(() => {
-    const storedCredentials = localStorage.getItem('@jesustyle')
-
-    if (storedCredentials) {
-      try {
-        const credentials = JSON.parse(storedCredentials)
-        
-        if (credentials.length === 2) {
-          if (credentials[0] === 'client' && credentials[1] === 'client') {
-            setUserType('client')
-          } else if (credentials[0] === 'adm' && credentials[1] === 'adm') {
-            setUserType('adm')
-          }
-        }
-      } catch (error) {
-        console.error("Error parsing credentials from localStorage", error)
-      }
-    } else {
-      setUserType(null)
-    }
-  }, [])
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleLogout = () => {
-    localStorage.removeItem('@jesustyle')
-    setUserType(null)
-    navigate('/') // Utilizando navigate para redirecionamento
+    navigate('/')
     scrollToTop()
   }
 
@@ -103,16 +79,12 @@ export default function Header() {
       </div>
       <nav>
         <Cart />
-        {(userType === 'client' || userType === null) && (
-          <button type="button" className="btn-login" onClick={handleOpenModalLogin}>
-            Compre aqui <BsArrowRight />
-          </button>
-        )}
-        {userType === 'adm' && (
-          <p ref={notificationsRef}>
-            Usuário <IoIosArrowDown />
-          </p>
-        )}
+        <button type="button" className="btn-login" onClick={handleOpenModalLogin}>
+          Compre aqui <BsArrowRight />
+        </button>
+        <p ref={notificationsRef}>
+          Usuário <IoIosArrowDown />
+        </p>
       </nav>
 
       <div ref={dropdownRef} className="dropdown_wrapper hide dropdown_wrapper--fade-in none">

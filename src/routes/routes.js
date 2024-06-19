@@ -7,8 +7,6 @@ import ProductDetails from "../pages/ProductDetails"
 import Payment from "../pages/Payment"
 import Account from "../pages/Account"
 
-import Private from "./private"
-
 export default function RoutesApp(){
   return(
     <Routes>
@@ -18,8 +16,8 @@ export default function RoutesApp(){
       <Route path="/products" element={<AllProducts/>}/>
       <Route path="/product/:productId" element={<ProductDetails/>}/>
       
-      <Route path="/payment" element={<Private><Payment/></Private>}/>
-      <Route path="/account" element={<Private><Account/></Private>}/>
+      <Route path="/payment" element={<Payment/>}/>
+      <Route path="/account" element={<Account/>}/>
     </Routes>
   )
 }
