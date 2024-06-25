@@ -266,16 +266,32 @@
 
       .total{
         justify-content: space-between;
+
+        span{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5vw;
+        }
+      }
+      
+      .perc-desconto{
+        color: var(--red);
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: end;
+        font-weight: 600;
       }
 
       .cupom-de-desconto{
         display: flex;
         flex-direction: column;
-        margin: 8% 0 6% 0;
+        margin: 2vh 0;
 
         p{
-          font-weight: 500;
           margin-bottom: 1%;
+          font-weight: 600;
+          font-weight: 0.9rem;
         }
 
         div{
@@ -298,7 +314,7 @@
 
           button{
             width: 30%;
-            background-color: #006400;
+            background-color: var(--green);
             border: none;
             padding: 0.8vh 1vw;
             border-radius: 4px;
@@ -307,33 +323,21 @@
             transition: 0.4s ease-in-out;
             font-size: 13px;
             text-align: center;
+            opacity: 0.8;
 
             &:hover{
-              background-color: #007200;
+              opacity: 1;
             }
           }
 
           .botao-remover{
-            background-color: #b11b2a;
+            background-color: var(--red);
+            opacity: 0.8;
 
             &:hover{
-              background-color: #c71d2e;
+              opacity: 1;
             }
           }
-        }
-
-        .alinhamento-preco{
-          display: flex;
-          align-items: center;
-        }
-
-        .perc-desconto{
-          color: #b11b2a;
-          font-size: 13px;
-          display: flex;
-          justify-content: end;
-          margin-right: 6px;
-          font-weight: 600;
         }
       }
 
@@ -444,6 +448,29 @@
         p{
           gap: 1.5vw;
         }
+
+        .product-body{
+          ul {
+            li{
+              gap: 3vw;
+            }
+          }
+        }
+
+        .container-sizes{
+          gap: 2vw !important;
+
+          .size{
+            width: 6vw !important;
+            height: 6vw !important;
+          }
+        }
+
+        .qtd{
+          gap: 2vw !important;
+          padding: 0 2.5vw !important;
+
+        }
       }
     }
   }
@@ -502,35 +529,112 @@
           }
         }
       }
-  
+
       .purchase-details{
         h1{
           font-size: 2.6rem;
         }
   
-        p{
+        .product-body{
+          ul {
+            li{
+              img{
+                width: 150px;
+                height: 150px;
+              }
+      
+              .details{
+                div{
+                  p{
+                    font-size: 1.5rem;
+                  }
+      
+                  .container-sizes{
+                    .size{
+                      font-size: 1.3rem;
+                      width: 2.1vw;
+                      height: 2.1vw;
+                    }
+                  }
+      
+                  span{
+                    font-size: 1.4rem;
+                  }
+      
+                  svg{
+                    font-size: 36px;
+                  }
+      
+                  .qtd{
+                    button{
+                      font-size: 26px;
+                    }
+        
+                    p{
+                      font-size: 1.5rem;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+  
+        .purchase-details-p{
           font-size: 1.5rem;
         }
   
-        img{
+        span {
+          font-size: 1.5rem;
+        }
+  
+        .purchase-details-img{
           width: 300px;
         }
   
-        div{
-          label{
-            font-size: 1.05rem;
+        .total{
+          span{
+            font-size: 1.5rem;
+          }
+        }
+        
+        .perc-desconto{
+          font-size: 1.2rem;
+        }
   
+        .cupom-de-desconto{
+          p{
+            font-size: 1.5rem;
+          }
+  
+          div{
             input{
-              width: 1.2rem;
-              height: 1.2rem;
+              font-size: 1.3rem;
+            }
+  
+            button{
+              font-size: 1.3rem;
+            }
+          }
+        }
+  
+        div {
+          label {
+            font-size: 1.1rem;
+  
+            input {
+              width: 16px;
+              height: 16px;
+            }
+  
+            a{
+              font-size: 1.1rem;
             }
           }
         }
   
         button{
-          box-shadow: 2px 2px 10px var(--shadow);
-          border-radius: 6px;
-          font-size: 1.3rem;
+          font-size: 1.4rem;
         }
       }
     }

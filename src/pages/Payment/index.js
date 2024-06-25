@@ -16,10 +16,11 @@ import { BsFillCreditCardFill, BsFillPersonPlusFill } from 'react-icons/bs'
 
 export default function Payment(){
   const navigate = useNavigate()
-  const [cupom, setCupom] = useState('');
-  const [botaoTexto, setBotaoTexto] = useState('Validar');
-  const [botaoCor, setBotaoCor] = useState('');
-  const botaoClassName = botaoCor === 'red' ? 'botao-remover' : '';
+  const [desconto, setDesconto] = useState(0)
+  const [cupom, setCupom] = useState('')
+  const [botaoTexto, setBotaoTexto] = useState('Validar')
+  const [botaoCor, setBotaoCor] = useState('')
+  const botaoClassName = botaoCor === 'green' ? 'botao-validar' : (botaoCor === 'red' ? 'botao-remover' : '')
   const [loading, setLoading] = useState(false)
 
   const [products, setProducts] = useState([
@@ -29,6 +30,7 @@ export default function Payment(){
 
   const total = products.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
   const sizes = ["PP", "P", "M", "G"]
+  const totalComDesconto = (total - desconto).toFixed(2).replace('.', ',')
 
   const handleSizeSelection = (productId, size) => {
     setProducts(products.map(product => {
@@ -68,10 +70,10 @@ export default function Payment(){
 
   const handleBotaoClick = () => {
     if (botaoTexto === 'Validar') {
-      if (cupomValido(cupom)){
+      if (cupomValido(cupom)) {
         aplicarDesconto(cupom)
         setBotaoTexto('Remover')
-        setBotaoCor('green')
+        setBotaoCor('red')
       } else {
         alert('Cupom inválido')
       }
@@ -82,6 +84,8 @@ export default function Payment(){
       setBotaoCor('')
     }
   }
+  
+  
 
   const cupomValido = (cupom) => {
     const cuponsValidos = ['DESCONTO10', 'PROMO20']
@@ -89,17 +93,17 @@ export default function Payment(){
   }
 
   const aplicarDesconto = (cupom) => {
+    let descontoValor = 0
     if (cupom === 'DESCONTO10') {
-      setProducts(products.map(product => ({
-        ...product,
-        price: product.price * 0.9
-      })))
+      descontoValor = total * 0.1
     } else if (cupom === 'PROMO20') {
-      setProducts(products.map(product => ({
-        ...product,
-        price: product.price * 0.8
-      })))
+      descontoValor = total * 0.2
     }
+    setDesconto(descontoValor)
+    setProducts(products.map(product => ({
+      ...product,
+      price: product.price - (product.price * (descontoValor / total))
+    })))
   }
 
   const removerDesconto = () => {
@@ -111,6 +115,7 @@ export default function Payment(){
       }
       return product
     }))
+    setDesconto(0)
   }
 
   const handlePayment = () => {
@@ -149,19 +154,19 @@ export default function Payment(){
                 <span>Aceitamos somente cartão de crédito!*</span>
               </section>
 
-              <div style={{ width: '48%' }}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '48%'}}>
                 <label htmlFor="cardName">Nome no cartão:</label>
                 <input type="text" id="cardName" placeholder="Nome no cartão"/>
               </div>
-              <div style={{ width: '50%' }}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '50%'}}>
                 <label htmlFor="cardNumber">Número do Cartão:</label>
                 <input type="text" id="cardNumber" placeholder="Número do Cartão"/>
               </div>
-              <div style={{ width: '32%' }}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '32%'}}>
                 <label htmlFor="expiryDate">Data de Validade:</label>
                 <input type="text" id="expiryDate" placeholder="MM/AA" maxLength="5"/>
               </div>
-              <div style={{ width: '32%' }}>
+              <div style={{width: window.innerWidth <= 480 ? '100%' : '32%'}}>
                 <label htmlFor="cvv">CVV:</label>
                 <input type="text" id="cvv" maxLength="3" placeholder="CVV"/>
               </div>
@@ -235,11 +240,18 @@ export default function Payment(){
                 ))}
               </ul>
             </aside>
+            <p className='total-diviser purchase-details-p'></p>
             <p className='purchase-details-p'>Parcelamento: <span>10 X</span></p>
             <p className='purchase-details-p'>Entrega Estimada: <span>15 de maio de 2024</span></p>
+            <p className='purchase-details-p'>Local de Entrega: <span>rua, cidade, estado - cep</span></p>
             <img className='purchase-details-img' src={pagarme}/>
             <p className='total-diviser purchase-details-p'></p>
-            <p className='total purchase-details-p'>Total: <span>R$ {total.toFixed(2).replace('.', ',')}</span></p>
+            <p className='total purchase-details-p'>
+              Total: <span>
+                {desconto > 0 && <h6 className='perc-desconto'>- R$ {desconto.toFixed(2).replace('.', ',')}</h6>}
+                R$ {(total - desconto).toFixed(2).replace('.', ',')}
+              </span>
+            </p>
             <div className='cupom-de-desconto'>
               <p>Código de cupom</p>
               <div>

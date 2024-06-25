@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react"
 import './ordermanagement.scss'
 import '../account.scss'
 
+import shirt1 from '../../../assets/mockups/shirt3.png'
+import shirt2 from '../../../assets/mockups/shirt4.png'
+import shirt3 from '../../../assets/mockups/shirt.png'
+import shirt4 from '../../../assets/mockups/shirt1.png'
+import shirt5 from '../../../assets/mockups/shirt2.png'
+
 import { FaTruck, FaInfoCircle, FaCalendarAlt, FaCog, FaCheckCircle, FaClock } from 'react-icons/fa'
 
 const OrderDetails = ({ order, onBack }) => (
@@ -59,6 +65,22 @@ const OrderList = ({ orders, onOrderClick, selectedOrderStatus, onStatusFilterCh
   </>
 )
 
+const ProductList = ({ products }) => (
+  <div className="product-management">
+    <h3>Lista de Produtos</h3>
+    <ul>
+      {products.map((product) => (
+        <li className="item" key={product.id}>
+          <img src={product.src} width={100}/>
+          <h6>{product.name}</h6>
+          <p>{product.description}</p>
+          <span>R$ {parseFloat(product.price).toFixed(2).replace('.', ',')}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)
+
 const getStatusIcon = (status) => {
   switch (status) {
     case 'Pedido Feito':
@@ -78,6 +100,7 @@ export default function OrderManagement(){
   const [filteredOrders, setFilteredOrders] = useState([])
   const [selectedOrder, setSelectedOrder] = useState(null)
   const [selectedOrderStatus, setSelectedOrderStatus] = useState("")
+  const [activeTab, setActiveTab] = useState('Pedidos')
   const [orders, setOrders] = useState([
     {
       id: 1,
@@ -145,6 +168,14 @@ export default function OrderManagement(){
     },
   ])
 
+  const products = [
+    { id: 1, name: "Camiseta", price: 77, description: "Estilo e conforto em uma camiseta de qualidade.", src: shirt1, size: "M", category: "Blusas" },
+    { id: 2, name: "Camiseta", price: 55, description: "Clássica e elegante, ideal para o dia a dia.", src: shirt2, size: "P", category: "Blusas" },
+    { id: 3, name: "Camiseta", price: 99, description: "Trendy e único, feito para se destacar.", src: shirt3, size: "G", category: "Blusas" },
+    { id: 4, name: "Camiseta", price: 120, description: "Premium e confortável, para um estilo elevado.", src: shirt4, size: "M", category: "Moletons" },
+    { id: 5, name: "Camiseta", price: 45, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: shirt5, size: "P", category: "Moletons" }
+  ]
+
   const handleStatusFilter = (status) => {
     setSelectedOrderStatus(status);
     if (status === "") {
@@ -167,18 +198,30 @@ export default function OrderManagement(){
     setFilteredOrders(orders)
   }, [orders])
 
+  const handleTabChange = (tabName) => {
+    setActiveTab(tabName)
+  }
+
   return (
     <article>
       <h2>Gerenciamento de Pedidos</h2>
-      {selectedOrder ? (
-        <OrderDetails order={selectedOrder} onBack={() => setSelectedOrder(null)}/>
+      <div className="order-tabs">
+        <button className={activeTab === 'Pedidos' ? 'active' : ''} onClick={() => handleTabChange('Pedidos')}>Pedidos</button>
+        <button className={activeTab === 'Produtos' ? 'active' : ''} onClick={() => handleTabChange('Produtos')}>Produtos</button>
+      </div>
+      {activeTab === 'Pedidos' ? (
+        selectedOrder ? (
+          <OrderDetails order={selectedOrder} onBack={() => setSelectedOrder(null)} />
+        ) : (
+          <OrderList
+            orders={filteredOrders}
+            onOrderClick={handleOrderClick}
+            selectedOrderStatus={selectedOrderStatus}
+            onStatusFilterChange={handleStatusFilter}
+          />
+        )
       ) : (
-        <OrderList
-          orders={filteredOrders}
-          onOrderClick={handleOrderClick}
-          selectedOrderStatus={selectedOrderStatus}
-          onStatusFilterChange={handleStatusFilter}
-        />
+        <ProductList products={products}/>
       )}
     </article>
   )

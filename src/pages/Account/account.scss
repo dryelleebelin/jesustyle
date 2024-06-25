@@ -84,6 +84,30 @@
       }
     }
 
+    .order-tabs{
+      margin-bottom: 4vh;
+      display: flex;
+      gap: 1vw;
+  
+      button{
+        background-color: var(--background);
+        filter: brightness(0.9);
+        border: none;
+        color: var(--font-color-white);
+        font-size: 0.9rem;
+        padding: 0.6vh 2vw;
+        border-radius: 4px;
+        transition: 0.2s ease-in-out;
+        outline: none;
+      }
+  
+      .active{
+        background-color: var(--background);
+        filter: brightness(1.2);
+        transform: scale(1.1);
+      }
+    }
+
     select{
       background-color: transparent;
       border: 1px solid var(--border);
