@@ -6,6 +6,7 @@ import { Spinner } from '@chakra-ui/react'
 
 import { IoClose } from "react-icons/io5"
 import { CgSpinner } from "react-icons/cg"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
 
 export default function Login({ isOpen, closeModal }){
   const navigate = useNavigate()
@@ -16,6 +17,7 @@ export default function Login({ isOpen, closeModal }){
   const [loading, setLoading] = useState(false)
   const [forgotPassword, setForgotPassword] = useState(false)
   const [isRegistering, setIsRegistering] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const customStyles = {
     content: {
@@ -40,6 +42,10 @@ export default function Login({ isOpen, closeModal }){
   const handleBackToLoginClick = () => {
     setForgotPassword(false)
   }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }  
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -73,7 +79,12 @@ export default function Login({ isOpen, closeModal }){
             <label>Email:</label>
             <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email"/>
             <label>Senha:</label>
-            <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="********"/>
+            <div className="password-container">
+              <input type={showPassword ? "text" : "password"} onChange={(e) => setPassword(e.target.value)} placeholder="********"/>
+              <span onClick={togglePasswordVisibility}>
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
             <button type="button">
               {loading ? <div className="spinner-button"><CgSpinner/></div> : "CADASTRAR"}
             </button>
@@ -108,7 +119,12 @@ export default function Login({ isOpen, closeModal }){
                 <label>Email:</label>
                 <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email"/>
                 <label>Senha:</label>
-                <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="********"/>
+                <div className="password-container">
+                  <input type={showPassword ? "text" : "password"} onChange={(e) => setPassword(e.target.value)} placeholder="********"/>
+                  <span onClick={togglePasswordVisibility}>
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
                 <a onClick={handleForgotPasswordClick}>Esqueceu a senha?</a>
                 <button type="button" onClick={handleLogin}>
                   {loading ? <Spinner className="spinner-button" speed='0.70s'/> : "ENTRAR"}

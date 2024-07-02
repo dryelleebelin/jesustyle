@@ -6,11 +6,13 @@ import { Spinner } from '@chakra-ui/react'
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 
-import shirt1 from '../../assets/mockups/shirt3.png'
-import shirt2 from '../../assets/mockups/shirt4.png'
-import shirt3 from '../../assets/mockups/shirt.png'
-import shirt4 from '../../assets/mockups/shirt1.png'
-import shirt5 from '../../assets/mockups/shirt2.png'
+import camisetaTrustInTheLord from '../../assets/products/CamisetaTrustInTheLord.png'
+import camisetaGodisGood from '../../assets/products/CamisetaGodisGood.png'
+import camisetaJesusLovesYou from '../../assets/products/CamisetaJesusLovesYou.png'
+import moletomLikeJesusFront from '../../assets/products/MoletomLikeJesusFront.png'
+import moletomLikeJesusBack from '../../assets/products/MoletomLikeJesusBack.png'
+import moletomGolaCarecaJesusSaves from '../../assets/products/MoletomGolaCarecaJesusSaves.png'
+import calcaMoletomJesusSaves from '../../assets/products/CalcaMoletomJesusSaves.png'
 
 import { FaListUl } from "react-icons/fa"
 import { MdOutlineCircle, MdCheckCircle } from "react-icons/md"
@@ -62,11 +64,13 @@ export default function AllProducts(){
   const sizes = ["PP", "P", "M", "G"]
 
   const items = [
-    { id: 1, name: "Camiseta", price: 77, description: "Estilo e conforto em uma camiseta de qualidade.", src: shirt1, size: "M", category: "Blusas" },
-    { id: 2, name: "Camiseta", price: 55, description: "Clássica e elegante, ideal para o dia a dia.", src: shirt2, size: "P", category: "Blusas" },
-    { id: 3, name: "Camiseta", price: 99, description: "Trendy e único, feito para se destacar.", src: shirt3, size: "G", category: "Blusas" },
-    { id: 4, name: "Camiseta", price: 120, description: "Premium e confortável, para um estilo elevado.", src: shirt4, size: "M", category: "Moletons" },
-    { id: 5, name: "Camiseta", price: 45, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: shirt5, size: "P", category: "Moletons" }
+    { id: 1, name: "Camiseta Trust In The Lord", originalPrice: 186, discountPrice: 169, description: "Estilo e conforto em uma camiseta de qualidade.", src: camisetaTrustInTheLord, size: "M", category: "Blusas" },
+    { id: 2, name: "Camiseta God is Good", originalPrice: 186, discountPrice: 169, description: "Clássica e elegante, ideal para o dia a dia.", src: camisetaGodisGood, size: "P", category: "Blusas" },
+    { id: 3, name: "Camiseta Jesus Loves You", originalPrice: 186, discountPrice: 169, description: "Trendy e único, feito para se destacar.", src: camisetaJesusLovesYou, size: "G", category: "Blusas" },
+    { id: 4, name: "Moletom Like Jesus", originalPrice: 339, discountPrice: 305, description: "Premium e confortável, para um estilo elevado.", src: moletomLikeJesusFront, size: "M", category: "Moletons" },
+    { id: 5, name: "Conjunto Jesus Saves (Moletom + Calça)", originalPrice: 508, discountPrice: 457, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: moletomGolaCarecaJesusSaves, size: "P", category: "Moletons" },
+    { id: 6, name: "Moletom Gola Careca Avulso Jesus Saves", originalPrice: 304, discountPrice: 274, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: moletomGolaCarecaJesusSaves, size: "P", category: "Moletons" },
+    { id: 7, name: "Calça Moletom Avulsa Jesus Saves", originalPrice: 258, discountPrice: 232, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: calcaMoletomJesusSaves, size: "P", category: "Moletons" }
   ]
 
   useEffect(() => {
@@ -155,7 +159,15 @@ export default function AllProducts(){
                     <img src={item.src} alt="Item"/>
                     <h6>{item.name}</h6>
                     <p>{item.description}</p>
-                    <span>R$ {parseFloat(item.price).toFixed(2).replace('.', ',')}</span>
+                    {item.discountPrice > 0 ? (
+                      <>
+                        <span>Preço original: R$ {parseFloat(item.originalPrice).toFixed(2).replace('.', ',')}</span>
+                        <br/>
+                        <span>Preço com desconto: R$ {parseFloat(item.discountPrice).toFixed(2).replace('.', ',')}</span>
+                      </>
+                    ) : (
+                      <span>R$ {parseFloat(item.originalPrice).toFixed(2).replace('.', ',')}</span>
+                    )}
                     <div>
                       <button type="button" onClick={() => {navigate(`/product/${item.id}`); scrollToTop();}}>DETALHES</button>
                       <HiOutlineShoppingBag/>

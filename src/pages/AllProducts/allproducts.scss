@@ -1,13 +1,13 @@
 .banner-all-products {
   position: relative;
-  height: 40vh;
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../../assets/mockups/boxes5.png');
+  background-image: url('../../assets/banners/banner10.png');
   background-size: cover;
   background-position: center;
-  filter: blur(1px);
+  margin-top: 10vh;
 }
 
 .all-products{
@@ -221,13 +221,11 @@
 /* for mobile devices */
 @media only screen and (max-width: 480px){
   .banner-all-products {
-    height: 30vh;
-    margin-top: 6vh;
-    display: none;
+    height: 14vh;
   }
 
   .all-products{
-    padding: 12vh 5vw 3vh 5vw;
+    padding: 2vh 5vw 3vh 5vw;
     flex-direction: column;
   
     aside{

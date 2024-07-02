@@ -18,16 +18,16 @@ import purpose2 from '../../assets/purpose2.jpg'
 import purpose3 from '../../assets/purpose3.jpg'
 import purposeCollage from '../../assets/purposeCollage.png'
 
-import { BsArrowRight } from "react-icons/bs"
-import { FaInstagram, FaYoutube, FaSpotify } from "react-icons/fa"
+import { BsArrowRight, BsFillArrowUpSquareFill } from "react-icons/bs"
+import { FaInstagram, FaYoutube, FaSpotify, FaVolumeMute, FaVolumeUp } from "react-icons/fa"
 import { IoMdMail } from "react-icons/io"
-import { FaVolumeMute, FaVolumeUp } from "react-icons/fa"
 
 export default function Home() {
   const [isOpenModalLogin, setIsOpenModalLogin] = useState(false)
   const [isHeaderBlurred, setIsHeaderBlurred] = useState(false)
   const [isSoundEnabled, setIsSoundEnabled] = useState(false)
   const videoRef = useRef(null)
+  const [buttonToTop, setButtonToTop] = useState(false)
 
   const handleOpenModalLogin = () => {
     setIsOpenModalLogin(true)
@@ -59,8 +59,10 @@ export default function Home() {
 
       if(scrollPosition >= windowHeight) {
         setIsHeaderBlurred(true)
+        setButtonToTop(true)
       } else{
         setIsHeaderBlurred(false)
+        setButtonToTop(false)
       }
     }
 
@@ -186,6 +188,8 @@ export default function Home() {
       {isOpenModalLogin && (
         <Login isOpen={isOpenModalLogin} closeModal={handleCloseModal}/>
       )}
+
+      {buttonToTop && (<BsFillArrowUpSquareFill className='to-top' onClick={scrollToTop}/>)}
     </div>
   )
 }

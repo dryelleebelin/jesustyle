@@ -436,6 +436,23 @@
       }
     }
   }
+
+  .to-top{
+    width: 35px;
+    height: auto;
+    position: fixed;
+    bottom: 4vh;
+    right: 1.5vw;
+    cursor: pointer;
+    color: var(--black);
+    transition: 0.3s ease-in-out;
+    opacity: 0.8;
+
+    &:hover{
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
 }
 
 /* for mobile devices */
@@ -637,6 +654,12 @@
           justify-content: center;
         }
       }
+    }
+
+    .to-top{
+      width: 38px;
+      bottom: 2.5vh;
+      right: 4vw;
     }
   }
 } 
