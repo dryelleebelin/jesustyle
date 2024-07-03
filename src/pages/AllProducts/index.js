@@ -6,9 +6,12 @@ import { Spinner } from '@chakra-ui/react'
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 
-import camisetaTrustInTheLord from '../../assets/products/CamisetaTrustInTheLord.png'
-import camisetaGodisGood from '../../assets/products/CamisetaGodisGood.png'
-import camisetaJesusLovesYou from '../../assets/products/CamisetaJesusLovesYou.png'
+import camisetaTrustInTheLordFront from '../../assets/products/CamisetaTrustInTheLordFront.png'
+import camisetaTrustInTheLordBack from '../../assets/products/CamisetaTrustInTheLordBack.png'
+import camisetaGodisGoodFront from '../../assets/products/CamisetaGodisGoodFront.png'
+import camisetaGodisGoodBack from '../../assets/products/CamisetaGodisGoodBack.png'
+import camisetaJesusLovesYouFront from '../../assets/products/CamisetaJesusLovesYouFront.png'
+import camisetaJesusLovesYouBack from '../../assets/products/CamisetaJesusLovesYouBack.png'
 import moletomLikeJesusFront from '../../assets/products/MoletomLikeJesusFront.png'
 import moletomLikeJesusBack from '../../assets/products/MoletomLikeJesusBack.png'
 import moletomGolaCarecaJesusSaves from '../../assets/products/MoletomGolaCarecaJesusSaves.png'
@@ -24,6 +27,11 @@ export default function AllProducts(){
   const [selectedCategories, setSelectedCategories] = useState([])
   const [selectedSortOption, setSelectedSortOption] = useState("priceLowToHigh")
   const [loading, setLoading] = useState(false)
+  const [hoveredItemId, setHoveredItemId] = useState(null)
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   const handleSizeSelection = (size) => {
     const index = selectedSizes.indexOf(size)
@@ -56,47 +64,41 @@ export default function AllProducts(){
     setSelectedSortOption(event.target.value)
   }
 
-  const categories = [
-    { name: "Blusas", count: 3 },
-    { name: "Moletons", count: 7 }
-  ]
-
   const sizes = ["PP", "P", "M", "G"]
 
   const items = [
-    { id: 1, name: "Camiseta Trust In The Lord", originalPrice: 186, discountPrice: 169, description: "Estilo e conforto em uma camiseta de qualidade.", src: camisetaTrustInTheLord, size: "M", category: "Blusas" },
-    { id: 2, name: "Camiseta God is Good", originalPrice: 186, discountPrice: 169, description: "Clássica e elegante, ideal para o dia a dia.", src: camisetaGodisGood, size: "P", category: "Blusas" },
-    { id: 3, name: "Camiseta Jesus Loves You", originalPrice: 186, discountPrice: 169, description: "Trendy e único, feito para se destacar.", src: camisetaJesusLovesYou, size: "G", category: "Blusas" },
-    { id: 4, name: "Moletom Like Jesus", originalPrice: 339, discountPrice: 305, description: "Premium e confortável, para um estilo elevado.", src: moletomLikeJesusFront, size: "M", category: "Moletons" },
-    { id: 5, name: "Conjunto Jesus Saves (Moletom + Calça)", originalPrice: 508, discountPrice: 457, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: moletomGolaCarecaJesusSaves, size: "P", category: "Moletons" },
-    { id: 6, name: "Moletom Gola Careca Avulso Jesus Saves", originalPrice: 304, discountPrice: 274, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: moletomGolaCarecaJesusSaves, size: "P", category: "Moletons" },
-    { id: 7, name: "Calça Moletom Avulsa Jesus Saves", originalPrice: 258, discountPrice: 232, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: calcaMoletomJesusSaves, size: "P", category: "Moletons" }
+    { id: 1, name: "Camiseta Trust In The Lord", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaTrustInTheLordFront, hoverSrc: camisetaTrustInTheLordBack, size: ["PP", "P", "M", "G"], category: ["Camisetas"] },
+    { id: 2, name: "Camiseta God is Good", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaGodisGoodFront, hoverSrc: camisetaGodisGoodBack, size: ["P", "M", "G"], category: ["Camisetas"] },
+    { id: 3, name: "Camiseta Jesus Loves You", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaJesusLovesYouFront, hoverSrc: camisetaJesusLovesYouBack, size: ["PP", "P", "M"], category: ["Camisetas"] },
+    { id: 4, name: "Moletom Like Jesus", originalPrice: 339, discountPrice: 305, discountPercentage: 10, description: "[Descrição]", src: moletomLikeJesusFront, hoverSrc: moletomLikeJesusBack, size: ["P", "M", "G"], category: ["Moletons"] },
+    { id: 5, name: "Conjunto Jesus Saves (Moletom + Calça)", originalPrice: 508, discountPrice: 457, discountPercentage: 10, description: "[Descrição]", src: moletomGolaCarecaJesusSaves, hoverSrc: calcaMoletomJesusSaves, size: ["P", "M", "G"], category: ["Conjuntos"] },
+    { id: 6, name: "Moletom Gola Careca Avulso Jesus Saves", originalPrice: 304, discountPrice: 274, discountPercentage: 10, description: "[Descrição]", src: moletomGolaCarecaJesusSaves, hoverSrc: null, size: ["P", "M", "G"], category: ["Moletons"] },
+    { id: 7, name: "Calça Moletom Avulsa Jesus Saves", originalPrice: 258, discountPrice: 232, discountPercentage: 10, description: "[Descrição]", src: calcaMoletomJesusSaves, size: ["P", "G"], category: ["Calças"] }
   ]
 
-  useEffect(() => {
-    document.title = "Jesustyle | Descubra Nossa Coleção"
-  }, [])
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  const categories = [
+    { name: "Camisetas", count: items.filter(item => item.category.includes("Camisetas")).length },
+    { name: "Calças", count: items.filter(item => item.category.includes("Calças")).length },
+    { name: "Moletons", count: items.filter(item => item.category.includes("Moletons")).length },
+    { name: "Conjuntos", count: items.filter(item => item.category.includes("Conjuntos")).length }
+  ]    
 
   const filteredItems = items.filter(item => {
-    if (selectedSizes.length > 0 && !selectedSizes.includes(item.size)) {
+    if (selectedSizes.length > 0 && !selectedSizes.some(size => item.size.includes(size))) {
       return false
     }
-    if (selectedCategories.length > 0 && !selectedCategories.includes(item.category)) {
+    if (selectedCategories.length > 0 && !selectedCategories.some(category => item.category.includes(category))) {
       return false
     }
     return true
-  })
+  })  
 
   const sortedItems = filteredItems.sort((a, b) => {
     switch(selectedSortOption) {
       case "priceLowToHigh":
-        return a.price - b.price
+        return (a.discountPrice || a.originalPrice) - (b.discountPrice || b.originalPrice)
       case "priceHighToLow":
-        return b.price - a.price
+        return (b.discountPrice || b.originalPrice) - (a.discountPrice || a.originalPrice)
       case "nameAToZ":
         return a.name.localeCompare(b.name)
       case "nameZToA":
@@ -104,7 +106,11 @@ export default function AllProducts(){
       default:
         return 0
     }
-  })
+  })   
+
+  useEffect(() => {
+    document.title = "Jesustyle | Descubra Nossa Coleção"
+  }, [])
 
   return(
     <>
@@ -122,7 +128,7 @@ export default function AllProducts(){
             <aside>
               <h1>Coleção</h1>
               <div className="filters">
-                <p><FaListUl/> Filtros <span>({selectedSizes.length + selectedCategories.length})</span></p>
+                <p><FaListUl/> Filtros <span>(2)</span></p>
                 <span onClick={handleResetAll}>Limpar filtro</span>
               </div>
               <div className="category">
@@ -154,26 +160,33 @@ export default function AllProducts(){
                 </select>
               </div>
               <div className="items-container">
-                {filteredItems.map(item => (
-                  <div className="item" key={item.id}>
-                    <img src={item.src} alt="Item"/>
-                    <h6>{item.name}</h6>
-                    <p>{item.description}</p>
-                    {item.discountPrice > 0 ? (
-                      <>
-                        <span>Preço original: R$ {parseFloat(item.originalPrice).toFixed(2).replace('.', ',')}</span>
-                        <br/>
-                        <span>Preço com desconto: R$ {parseFloat(item.discountPrice).toFixed(2).replace('.', ',')}</span>
-                      </>
-                    ) : (
-                      <span>R$ {parseFloat(item.originalPrice).toFixed(2).replace('.', ',')}</span>
-                    )}
-                    <div>
-                      <button type="button" onClick={() => {navigate(`/product/${item.id}`); scrollToTop();}}>DETALHES</button>
-                      <HiOutlineShoppingBag/>
+                {filteredItems.length > 0 ? (
+                  filteredItems.map(item => (
+                    <div className="item" key={item.id}>
+                      {item.discountPrice > 0 && (
+                        <span className="discount-percentage">{item.discountPercentage}% OFF</span>
+                      )}
+                      <img src={hoveredItemId === item.id && item.hoverSrc ? item.hoverSrc : item.src} onMouseEnter={() => setHoveredItemId(item.id)} onMouseLeave={() => setHoveredItemId(null)} />
+                      <h6>{item.name}</h6>
+                      <p>{item.description}</p>
+                      {item.discountPrice > 0 ? (
+                        <>
+                          <span className="discountPrice">R$ {parseFloat(item.originalPrice).toFixed(2).replace('.', ',')}</span>
+                          <br />
+                          <span>R$ {parseFloat(item.discountPrice).toFixed(2).replace('.', ',')}</span>
+                        </>
+                      ) : (
+                        <span>R$ {parseFloat(item.originalPrice).toFixed(2).replace('.', ',')}</span>
+                      )}
+                      <div>
+                        <button type="button" onClick={() => { navigate(`/product/${item.id}`); scrollToTop(); }}>DETALHES</button>
+                        <HiOutlineShoppingBag />
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  <p className="no-results-message">Nenhum item encontrado.</p>
+                )}
               </div>
             </section>
           </main>

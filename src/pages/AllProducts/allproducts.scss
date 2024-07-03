@@ -15,7 +15,7 @@
   background-color: var(--background);
   color: var(--font-color-white);
   height: 100%;
-  padding: 8vh 5vw;
+  padding: 8vh 5vw 15vh 5vw;
 
   aside{
     width: 20vw;
@@ -150,19 +150,34 @@
 
       .item{
         width: 26%;
-        margin: 2.5vw;
+        margin: 1.5vw;
+        position: relative;
 
         img{
           max-width: 100%;
-          width: 250px;
+          width: 290px;
           height: 40vh;
           object-fit: cover;
           border-radius: 14px;
+          background-color: #b5b5b5b0;
           box-shadow: 1px 1px 8px var(--shadow);
+          cursor: pointer;
         }
 
+        .discount-percentage {
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-color: #ff5733;
+          color: var(--font-color-white);
+          padding: 4px;
+          font-size: 14px;
+          font-weight: bold;
+          border-radius: 0 8px 0 8px;
+        }        
+
         h6{
-          font-size: 1.2rem;
+          font-size: 1.1rem;
         }
 
         p{
@@ -173,8 +188,14 @@
         }
 
         span{
-          font-size: 1.1rem;
-          font-weight: 500;
+          font-size: 1.3rem;
+          font-weight: 700;
+        }
+
+        .discountPrice{
+          text-decoration: line-through;
+          font-size: 0.9rem;
+          font-weight: 400;
         }
         
         div{
@@ -213,6 +234,12 @@
             box-shadow: 1px 1px 6px var(--shadow);
           }
         }
+      }
+
+      .no-results-message{
+        width: 100%;
+        text-align: center;
+        padding-top: 15%;
       }
     }
   }
