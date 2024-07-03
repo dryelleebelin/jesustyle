@@ -46,24 +46,40 @@
     border: 1px solid var(--shadow);
 
     article{
-      width: 50%;
-      padding: 2%;
+      width: 28vw;
+      margin: 2%;
+      position: relative;
   
       img{
-        width: 100%;
+        width: 26vw;
         height: 420px;
         border-radius: 8px;
+        object-fit: cover;
+        background-color: #b5b5b5b0;
+        cursor: pointer;
       }
+
+      .discount-percentage {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #ff5733;
+        color: var(--font-color-white);
+        padding: 1.6%;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 0 12px 0 12px;
+      } 
     }
 
     aside{
-      width: 50%;
+      width: 30vw;
       padding: 2%;
       display: flex;
       flex-direction: column;
   
       h1{
-        font-size: 2rem;
+        font-size: 1.7rem;
       }
   
       p{
@@ -72,9 +88,15 @@
       }
   
       h2{
-        margin: 1vh 0;
         font-weight: 600;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+      }
+
+      .discountPrice{
+        text-decoration: line-through;
+        font-size: 1rem;
+        font-weight: 400;
+        margin-top: 1.5vh;
       }
   
       .divider {
@@ -89,6 +111,8 @@
   
         h2{
           font-size: 1rem;
+          margin: 1vh 0;
+          font-weight: 600;
         }
   
         div{
@@ -213,8 +237,10 @@
         padding: 0%;
     
         img{
-          height: auto;
-          border-radius: 6px;
+          width: 97%;
+          height: 380px;
+          border-radius: 10px;
+          object-fit: cover;
         }
       }
   
@@ -224,7 +250,7 @@
         padding-top: 1vh;
     
         h1{
-          font-size: 1.8rem;
+          font-size: 1.7rem;
         }
     
         p{
@@ -232,7 +258,7 @@
         }
     
         .divider{
-          margin: 0.4rem 0;
+          margin: 0.7rem 0;
         }
     
         .container-size{
@@ -307,11 +333,16 @@
           height: 610px;
           border-radius: 10px;
         }
+
+        .discount-percentage {
+          font-size: 1.4rem;
+          border-radius: 0 14px 0 14px;
+        } 
       }
   
       aside{
         h1{
-          font-size: 3rem;
+          font-size: 2.8rem;
         }
     
         p{
@@ -319,7 +350,11 @@
         }
     
         h2{
-          font-size: 1.9rem;
+          font-size: 2.25rem;
+        }
+
+        .discountPrice{
+          font-size: 1.5rem;
         }
     
         .container-size{

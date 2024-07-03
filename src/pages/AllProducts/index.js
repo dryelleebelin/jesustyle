@@ -21,17 +21,47 @@ import { FaListUl } from "react-icons/fa"
 import { MdOutlineCircle, MdCheckCircle } from "react-icons/md"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
 
+export const products = [
+  { id: 1, name: "Camiseta Trust In The Lord", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaTrustInTheLordFront, hoverSrc: camisetaTrustInTheLordBack, size: ["PP", "P", "M", "G"], category: ["Camisetas"] },
+  { id: 2, name: "Camiseta God is Good", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaGodisGoodFront, hoverSrc: camisetaGodisGoodBack, size: ["P", "M", "G"], category: ["Camisetas"] },
+  { id: 3, name: "Camiseta Jesus Loves You", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaJesusLovesYouFront, hoverSrc: camisetaJesusLovesYouBack, size: ["PP", "P", "M"], category: ["Camisetas"] },
+  { id: 4, name: "Moletom Like Jesus", originalPrice: 339, discountPrice: 305, discountPercentage: 10, description: "[Descrição]", src: moletomLikeJesusFront, hoverSrc: moletomLikeJesusBack, size: ["P", "M", "G"], category: ["Moletons"] },
+  { id: 5, name: "Conjunto Jesus Saves (Moletom + Calça)", originalPrice: 508, discountPrice: 457, discountPercentage: 10, description: "[Descrição]", src: moletomGolaCarecaJesusSaves, hoverSrc: calcaMoletomJesusSaves, size: ["P", "M", "G"], category: ["Conjuntos"] },
+  { id: 6, name: "Moletom Gola Careca Avulso Jesus Saves", originalPrice: 304, discountPrice: 274, discountPercentage: 10, description: "[Descrição]", src: moletomGolaCarecaJesusSaves, hoverSrc: null, size: ["P", "M", "G"], category: ["Moletons"] },
+  { id: 7, name: "Calça Moletom Avulsa Jesus Saves", originalPrice: 258, discountPrice: 232, discountPercentage: 10, description: "[Descrição]", src: calcaMoletomJesusSaves, size: ["P", "G"], category: ["Calças"] }
+]
+
 export default function AllProducts(){
   const navigate = useNavigate()
+  //const [products, setProducts] = useState([])
+
   const [selectedSizes, setSelectedSizes] = useState([])
   const [selectedCategories, setSelectedCategories] = useState([])
   const [selectedSortOption, setSelectedSortOption] = useState("priceLowToHigh")
-  const [loading, setLoading] = useState(false)
   const [hoveredItemId, setHoveredItemId] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  useEffect(() => {
+    async function fetchProducts(){
+      setLoading(true)
+
+      try{
+
+      } catch(error){
+
+      } finally{
+        setLoading(false)
+      }
+    }
+
+    fetchProducts()
+
+    document.title = "Jesustyle | Descubra Nossa Coleção"
+  }, [])
 
   const handleSizeSelection = (size) => {
     const index = selectedSizes.indexOf(size)
@@ -66,24 +96,14 @@ export default function AllProducts(){
 
   const sizes = ["PP", "P", "M", "G"]
 
-  const items = [
-    { id: 1, name: "Camiseta Trust In The Lord", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaTrustInTheLordFront, hoverSrc: camisetaTrustInTheLordBack, size: ["PP", "P", "M", "G"], category: ["Camisetas"] },
-    { id: 2, name: "Camiseta God is Good", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaGodisGoodFront, hoverSrc: camisetaGodisGoodBack, size: ["P", "M", "G"], category: ["Camisetas"] },
-    { id: 3, name: "Camiseta Jesus Loves You", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaJesusLovesYouFront, hoverSrc: camisetaJesusLovesYouBack, size: ["PP", "P", "M"], category: ["Camisetas"] },
-    { id: 4, name: "Moletom Like Jesus", originalPrice: 339, discountPrice: 305, discountPercentage: 10, description: "[Descrição]", src: moletomLikeJesusFront, hoverSrc: moletomLikeJesusBack, size: ["P", "M", "G"], category: ["Moletons"] },
-    { id: 5, name: "Conjunto Jesus Saves (Moletom + Calça)", originalPrice: 508, discountPrice: 457, discountPercentage: 10, description: "[Descrição]", src: moletomGolaCarecaJesusSaves, hoverSrc: calcaMoletomJesusSaves, size: ["P", "M", "G"], category: ["Conjuntos"] },
-    { id: 6, name: "Moletom Gola Careca Avulso Jesus Saves", originalPrice: 304, discountPrice: 274, discountPercentage: 10, description: "[Descrição]", src: moletomGolaCarecaJesusSaves, hoverSrc: null, size: ["P", "M", "G"], category: ["Moletons"] },
-    { id: 7, name: "Calça Moletom Avulsa Jesus Saves", originalPrice: 258, discountPrice: 232, discountPercentage: 10, description: "[Descrição]", src: calcaMoletomJesusSaves, size: ["P", "G"], category: ["Calças"] }
-  ]
-
   const categories = [
-    { name: "Camisetas", count: items.filter(item => item.category.includes("Camisetas")).length },
-    { name: "Calças", count: items.filter(item => item.category.includes("Calças")).length },
-    { name: "Moletons", count: items.filter(item => item.category.includes("Moletons")).length },
-    { name: "Conjuntos", count: items.filter(item => item.category.includes("Conjuntos")).length }
+    { name: "Camisetas", count: products.filter(item => item.category.includes("Camisetas")).length },
+    { name: "Calças", count: products.filter(item => item.category.includes("Calças")).length },
+    { name: "Moletons", count: products.filter(item => item.category.includes("Moletons")).length },
+    { name: "Conjuntos", count: products.filter(item => item.category.includes("Conjuntos")).length }
   ]    
 
-  const filteredItems = items.filter(item => {
+  const filteredProducts = products.filter(item => {
     if (selectedSizes.length > 0 && !selectedSizes.some(size => item.size.includes(size))) {
       return false
     }
@@ -93,7 +113,7 @@ export default function AllProducts(){
     return true
   })  
 
-  const sortedItems = filteredItems.sort((a, b) => {
+  const sortedProducts = filteredProducts.sort((a, b) => {
     switch(selectedSortOption) {
       case "priceLowToHigh":
         return (a.discountPrice || a.originalPrice) - (b.discountPrice || b.originalPrice)
@@ -106,11 +126,7 @@ export default function AllProducts(){
       default:
         return 0
     }
-  })   
-
-  useEffect(() => {
-    document.title = "Jesustyle | Descubra Nossa Coleção"
-  }, [])
+  })
 
   return(
     <>
@@ -160,8 +176,8 @@ export default function AllProducts(){
                 </select>
               </div>
               <div className="items-container">
-                {filteredItems.length > 0 ? (
-                  filteredItems.map(item => (
+                {filteredProducts.length > 0 ? (
+                  filteredProducts.map(item => (
                     <div className="item" key={item.id}>
                       {item.discountPrice > 0 && (
                         <span className="discount-percentage">{item.discountPercentage}% OFF</span>
