@@ -22,12 +22,10 @@ export default function ProductDetails(){
   const [selectedSize, setSelectedSize] = useState(null)
   const [quantity, setQuantity] = useState(1)
   const [hoveredItemId, setHoveredItemId] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function fetchProduct(){
-      setLoading(true)
-
       try{
         const foundProduct = products.find(product => product.id === parseInt(id))
         setProduct(foundProduct)

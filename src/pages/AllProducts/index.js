@@ -39,7 +39,7 @@ export default function AllProducts(){
   const [selectedCategories, setSelectedCategories] = useState([])
   const [selectedSortOption, setSelectedSortOption] = useState("priceLowToHigh")
   const [hoveredItemId, setHoveredItemId] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -47,8 +47,6 @@ export default function AllProducts(){
 
   useEffect(() => {
     async function fetchProducts(){
-      setLoading(true)
-
       try{
 
       } catch(error){

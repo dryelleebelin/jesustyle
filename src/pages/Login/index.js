@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom"
 import { Spinner } from '@chakra-ui/react'
 
 import { IoClose } from "react-icons/io5"
-import { CgSpinner } from "react-icons/cg"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 
 export default function Login({ isOpen, closeModal }){
@@ -14,7 +13,7 @@ export default function Login({ isOpen, closeModal }){
   const [birthday, setBirthday] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [loadingButton, setLoadingButton] = useState(false)
   const [forgotPassword, setForgotPassword] = useState(false)
   const [isRegistering, setIsRegistering] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
@@ -57,10 +56,10 @@ export default function Login({ isOpen, closeModal }){
       return
     }
 
-    setLoading(true)
+    setLoadingButton(true)
     navigate('/products')
     scrollToTop()
-    setLoading(false)
+    setLoadingButton(false)
   }
 
   return (
@@ -86,7 +85,7 @@ export default function Login({ isOpen, closeModal }){
               </span>
             </div>
             <button type="button">
-              {loading ? <div className="spinner-button"><CgSpinner/></div> : "CADASTRAR"}
+              {loadingButton ? <Spinner className="spinner-button" speed='0.70s'/> : "CADASTRAR"}
             </button>
             <a className="link">Já possui uma conta? <span onClick={() => setIsRegistering(false)}>Entrar</span></a>
           </form>
@@ -104,7 +103,7 @@ export default function Login({ isOpen, closeModal }){
                 <label>Email:</label>
                 <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email"/>
                 <button type="submit">
-                  {loading ? <div className="spinner-button"><CgSpinner/></div> : "ENVIAR"}
+                  {loadingButton ? <Spinner className="spinner-button" speed='0.70s'/> : "ENVIAR"}
                 </button>
                 <a className="link" onClick={handleBackToLoginClick}>Voltar para acessar conta</a>
               </form>
@@ -127,7 +126,7 @@ export default function Login({ isOpen, closeModal }){
                 </div>
                 <a onClick={handleForgotPasswordClick}>Esqueceu a senha?</a>
                 <button type="button" onClick={handleLogin}>
-                  {loading ? <Spinner className="spinner-button" speed='0.70s'/> : "ENTRAR"}
+                  {loadingButton ? <Spinner className="spinner-button" speed='0.70s'/> : "ENTRAR"}
                 </button>
                 <a className="link">Ainda não possui uma conta? <span onClick={handleRegisterClick}>Cadastre-se</span></a>
               </form>

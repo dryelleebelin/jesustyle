@@ -372,6 +372,9 @@
         opacity: 0.9;
         font-size: 0.9rem;
         transition: 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover{
           opacity: 1;

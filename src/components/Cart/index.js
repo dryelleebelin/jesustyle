@@ -18,17 +18,17 @@ export default function Cart(){
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const [products, setProducts] = useState([
+  const [cartProducts, setCartProducts] = useState([
     { id: 1, name: 'Produto 1', price: 50, quantity: 1, src: item1, size: 'P' },
     { id: 2, name: 'Produto 2', price: 80, quantity: 1, src: item2, size: 'M' }
   ])  
 
-  const total = products.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
-  const cartQuantity = products.reduce((acc, curr) => acc + curr.quantity, 0)
+  const total = cartProducts.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
+  const cartQuantity = cartProducts.reduce((acc, curr) => acc + curr.quantity, 0)
   const sizes = ["PP", "P", "M", "G"]
 
   const handleSizeSelection = (productId, size) => {
-    setProducts(products.map(product => {
+    setCartProducts(cartProducts.map(product => {
       if (product.id === productId) {
         return { ...product, size: size }
       }
@@ -37,7 +37,7 @@ export default function Cart(){
   }
 
   const increaseQuantity = (productId) => {
-    setProducts(products.map(product => {
+    setCartProducts(cartProducts.map(product => {
       if (product.id === productId) {
         return { ...product, quantity: product.quantity + 1 }
       }
@@ -46,7 +46,7 @@ export default function Cart(){
   }
 
   const decreaseQuantity = (productId) => {
-    setProducts(products.map(product => {
+    setCartProducts(cartProducts.map(product => {
       if (product.id === productId && product.quantity > 1) {
         return { ...product, quantity: product.quantity - 1 }
       }
@@ -55,11 +55,11 @@ export default function Cart(){
   }
 
   const removeItem = (productId) => {
-    setProducts(products.filter(product => product.id !== productId))
+    setCartProducts(cartProducts.filter(product => product.id !== productId))
   }
 
   const handleCheckout = () => {
-    if (products.length > 0) {
+    if (cartProducts.length > 0) {
       navigate('/payment')
       scrollToTop()
     }
@@ -78,18 +78,18 @@ export default function Cart(){
 
           <DrawerHeader className="cart-header">
             <h1>Seu carrinho</h1>
-            <span>({products.length} itens)</span>
+            <span>({cartProducts.length} itens)</span>
           </DrawerHeader>
 
           <DrawerBody className="cart-body">
-            {products.length === 0 ? (
+            {cartProducts.length === 0 ? (
               <div className='empty-cart'>
                 <RiShoppingBag3Fill/>
                 <p>Seu carrinho está vazio</p>
               </div>
             ) : (
               <ul>
-                {products.map(product => (
+                {cartProducts.map(product => (
                   <li key={product.id}>
                     <img src={product.src} alt={product.name} />
                     <div className='cart-details'>
@@ -123,7 +123,7 @@ export default function Cart(){
             <p>Total:
               <span>R$ {total.toFixed(2).replace('.', ',')}</span>
             </p>
-            <button type='button' onClick={handleCheckout} disabled={products.length === 0}>Finalizar compra</button>
+            <button type='button' onClick={handleCheckout} disabled={cartProducts.length === 0}>Finalizar compra</button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
