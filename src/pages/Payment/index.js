@@ -3,6 +3,7 @@ import './payment.scss'
 import { Link, useNavigate } from "react-router-dom"
 import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/react"
 import { toast } from 'react-toastify'
+import axios from 'axios'
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -30,6 +31,11 @@ export default function Payment(){
   const [cep, setCep] = useState('')
   const [residentialNumber, setResidentialNumber] = useState('')
 
+  const [street, setStreet] = useState('')
+  const [neighborhood, setNeighborhood] = useState('')
+  const [city, setCity] = useState('')
+  const [state, setState] = useState('')
+
   const [cupom, setCupom] = useState('')
   const [desconto, setDesconto] = useState(0)
   const [botaoTexto, setBotaoTexto] = useState('Validar')
@@ -40,13 +46,9 @@ export default function Payment(){
 
   useEffect(() => {
     async function fetchData(){
-      const cartProducts = [
-        { id: 1, name: 'Produto 1', price: 50, quantity: 1, src: item1, size: 'P' },
-        { id: 2, name: 'Produto 2', price: 80, quantity: 1, src: item2, size: 'M' }
-      ]
-
       try{
-        setCart(cartProducts)
+        const cartItems = JSON.parse(localStorage.getItem("cart")) || []
+        setCart(cartItems)
 
       } catch(error){
 
@@ -61,37 +63,9 @@ export default function Payment(){
   }, [])
 
   const total = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
-  const sizes = ["PP", "P", "M", "G"]
 
-  const handleSizeSelection = (productId, size) => {
-    setCart(cart.map(product => {
-      if (product.id === productId) {
-        return { ...product, size: size }
-      }
-      return product
-    }))
-  }
-
-  const increaseQuantity = (productId) => {
-    setCart(cart.map(product => {
-      if (product.id === productId) {
-        return { ...product, quantity: product.quantity + 1 }
-      }
-      return product
-    }))
-  }
-
-  const decreaseQuantity = (productId) => {
-    setCart(cart.map(product => {
-      if (product.id === productId && product.quantity > 1) {
-        return { ...product, quantity: product.quantity - 1 }
-      }
-      return product
-    }))
-  }
-
-  const removeItem = (productId) => {
-    setCart(cart.filter(product => product.id !== productId))
+  const handleInstallmentsChange = (e) => {
+    setInstallments(e.target.value)
   }
 
   const handleChangeCupom = (event) => {
@@ -147,6 +121,29 @@ export default function Payment(){
     setDesconto(0)
   }
 
+  async function handleAddress(){
+    if (cep && residentialNumber) {
+      try {
+        const response = await axios.get(`https://viacep.com.br/ws/${cep}/${residentialNumber}/json/`)
+        const { data } = response
+
+        if (!data.erro) {
+          setStreet(data.logradouro)
+          setNeighborhood(data.bairro)
+          setCity(data.localidade)
+          setState(data.uf)
+
+        } else {
+          console.error('CEP ou número não encontrado.')
+        }
+      } catch (error) {
+        console.error('Erro ao buscar endereço:', error)
+      }
+    } else {
+      console.error('Por favor, preencha o CEP e o número residencial.')
+    }
+  }
+
   async function handlePayment(){
     try{
       setLoadingButton(true)
@@ -170,6 +167,8 @@ export default function Payment(){
           return
         }
       }
+      
+      navigate('/products')
 
     } catch(error){
 
@@ -220,19 +219,12 @@ export default function Payment(){
                 <label htmlFor="cvv">CVV:</label>
                 <input type="text" id="cvv" maxLength="3" placeholder="CVV" value={cvv} onChange={(e) => setCvv(e.target.value)}/>
               </div>
-              <div style={{width: window.innerWidth <= 480 ? '100%' : '32%'}}>
+              <div style={{ width: window.innerWidth <= 480 ? '100%' : '32%' }}>
                 <label htmlFor="installments">Número de parcelas:</label>
-                <select id="installments" value={installments} onChange={(e) => setInstallments(e.target.value)}>
-                  <option selected>10 X de R$10,00</option>
-                  <option>9 X de R$10,00</option>
-                  <option>8 X de R$10,00</option>
-                  <option>7 X de R$10,00</option>
-                  <option>6 X de R$10,00</option>
-                  <option>5 X de R$10,00</option>
-                  <option>4 X de R$10,00</option>
-                  <option>3 X de R$10,00</option>
-                  <option>2 X de R$10,00</option>
-                  <option>1 X de R$10,00</option>
+                <select id="installments" value={installments} onChange={handleInstallmentsChange}>
+                  {Array.from({ length: 10 }, (_, index) => index + 1).map((num) => (
+                    <option key={num}>{num} X de R${(total / num).toFixed(2).replace('.', ',')}</option>
+                  ))}
                 </select>
               </div>
 
@@ -249,53 +241,37 @@ export default function Payment(){
               </div>
               <div style={{width: window.innerWidth <= 480 ? '100%' : '48%'}}>
                 <label>CEP:</label>
-                <input type="text" placeholder="CEP" maxLength={9} value={cep} onChange={(e) => setCep(e.target.value)}/>
+                <input type="text" placeholder="CEP" maxLength={9} value={cep} onChange={(e) => setCep(e.target.value)} onBlur={handleAddress}/>
               </div>
               <div style={{width: window.innerWidth <= 480 ? '100%' : '50%'}}>
                 <label>Nº residencial:</label>
-                <input type="text" placeholder="Nº residencial" maxLength={9} value={residentialNumber} onChange={(e) => setResidentialNumber(e.target.value)}/>
+                <input type="text" placeholder="Nº residencial" maxLength={9} value={residentialNumber} onChange={(e) => setResidentialNumber(e.target.value)} onBlur={handleAddress}/>
               </div>
             </form>
           </section>
 
           <section className='purchase-details'>
-            <h1>Detalhes da compra:</h1>
+            <h1>Resumo da Compra</h1>
+            <p className='purchase-details-p'>Local de Entrega: <span>{street}</span></p>
+            <p className='purchase-details-p'>Entrega Estimada: <span></span></p>
+            <p className='total-diviser purchase-details-p'></p>
             <aside className="product-body">
               <ul>
                 {cart.map(product => (
                   <li key={product.id}>
                     <img src={product.src} alt={product.name} />
                     <div className='details'>
-                      <div>
-                        <p>{product.name}</p>
-                        <div className='container-sizes'>
-                          {sizes.map((size, index) => (
-                            <p key={index} className={`size ${product.size === size ? "selected" : ""}`} onClick={() => handleSizeSelection(product.id, size)}>
-                              {size}
-                            </p>
-                          ))}
-                        </div>
-                        <span>R$ {(product.price * product.quantity).toFixed(2).replace('.', ',')}</span>
-                      </div>
-                      <div> 
-                        <IoClose onClick={() => removeItem(product.id)}/>
-                        <div className='qtd'>
-                          <button type='button' onClick={() => decreaseQuantity(product.id)}>-</button>
-                          <p>{product.quantity}</p>
-                          <button type='button' onClick={() => increaseQuantity(product.id)}>+</button>
-                        </div>
-                      </div>
+                      <p>{product.name}</p>
+                      <p>Quantidade: {product.quantity}</p>
+                      <p>Tamanho: {product.size}</p>
+                      <p>R$ {(product.price * product.quantity).toFixed(2).replace('.', ',')}</p>
                     </div>
                   </li>
                 ))}
               </ul>
             </aside>
             <p className='total-diviser purchase-details-p'></p>
-            <p className='purchase-details-p'>Parcelamento: <span>10 X</span></p>
-            <p className='purchase-details-p'>Entrega Estimada: <span>...</span></p>
-            <p className='purchase-details-p'>Local de Entrega: <span>...</span></p>
-            <img className='purchase-details-img' src={pagarme}/>
-            <p className='total-diviser purchase-details-p'></p>
+            <p className='purchase-details-p'>Parcelamento: <span>{installments}</span></p>
             <p className='total purchase-details-p'>
               Total: <span>
                 {desconto > 0 && <h6 className='perc-desconto'>- R$ {desconto.toFixed(2).replace('.', ',')}</h6>}
@@ -309,6 +285,7 @@ export default function Payment(){
                 <button className={botaoClassName} onClick={handleBotaoClick}>{botaoTexto}</button>
               </div>
             </div> */}
+            <img className='purchase-details-img' src={pagarme}/>
             <div>
               <label><input type='checkbox'/>Ao marcar esta opção, você concorda com os <a href='#'>Termos de Serviço</a>.</label>
             </div>

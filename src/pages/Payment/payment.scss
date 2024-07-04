@@ -141,98 +141,26 @@
             gap: 1vw;
     
             img{
-              width: 100px;
+              width: 130px;
               height: 100px;
               object-fit: cover;
               border-radius: 4px;
+              background-color: #b5b5b5b0;
+              box-shadow: 1px 1px 8px var(--shadow);
             }
     
             .details{
               display: flex;
-              align-items: start;
-              justify-content: space-between;
+              flex-direction: column;
               width: 100%;
-    
-              div:last-child{
-                align-items: flex-end;
-                justify-content: space-between;
-                height: 100%;
+
+              p{
+                opacity: 0.7;
               }
-    
-              div{
-                display: flex;
-                flex-direction: column;
-                gap: 1vh;
-    
-                p{
-                  text-decoration: underline;
-                }
-    
-                .container-sizes{
-                  display: flex;
-                  flex-direction: row;
-                  gap: 0.5vw;
-    
-                  .size{
-                    border: 1px solid var(--foreground);
-                    border-radius: 50%;
-                    font-size: 0.8rem;
-                    width: 1.8vw;
-                    height: 1.8vw;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    text-decoration: none;
-                    text-transform: uppercase;
-                  }
-                  
-                  .size.selected {
-                    background-color: var(--foreground);
-                    color: var(--font-color);
-                  }
-                }
-    
-                span{
-                  font-weight: 600;
-                }
-    
-                svg{
-                  font-size: 24px;
-                  cursor: pointer;
-                  opacity: 0.7;
-                  transition: 0.3s ease-in-out;
-      
-                  &:hover{
-                    opacity: 1;
-                  }
-                }
-    
-                .qtd{
-                  display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  justify-content: space-between;
-                  border: 1px solid var(--foreground);
-                  gap: 0.7vw;
-                  padding: 0 1vw;
-                  border-radius: 4px;
-                  height: auto;
-      
-                  button{
-                    background-color: transparent;
-                    border: none;
-                    color: var(--font-color-white);
-                    font-size: 20px;
-                    height: auto;
-                    box-shadow: none;
-                    padding: 0;
-                  }
-      
-                  p{
-                    text-decoration: none;
-                  }
-                }
+
+              p:first-child{
+                text-decoration: underline;
+                opacity: 1;
               }
             }
           }
@@ -266,6 +194,7 @@
 
       .total{
         justify-content: space-between;
+        font-size: 1.1rem;
 
         span{
           display: flex;

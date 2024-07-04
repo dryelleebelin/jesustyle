@@ -3,6 +3,7 @@ import './login.scss'
 import Modal from 'react-modal'
 import { useNavigate } from "react-router-dom"
 import { Spinner } from '@chakra-ui/react'
+import axios from 'axios'
 
 import { IoClose } from "react-icons/io5"
 import { FaEye, FaEyeSlash } from "react-icons/fa"

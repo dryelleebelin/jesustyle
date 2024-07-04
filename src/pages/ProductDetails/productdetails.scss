@@ -149,9 +149,9 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          width: 6vw;
+          width: 5.4vw;
           border: 1px solid var(--foreground);
-          padding: 0.8% 3%;
+          padding: 0.4% 2.5%;
           border-radius: 3px;
   
           button{
@@ -167,28 +167,6 @@
             font-size: 1.1rem;
           }
         }
-  
-        .add-cart{
-          background-color: transparent;
-          border: 1px solid var(--foreground);
-          color: var(--font-color-white);
-          padding: 0 1.2vw;
-          border-radius: 3px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.5vw;
-          transition: 0.3s ease-in-out;
-  
-          svg{
-            font-size: 20px;
-          }
-
-          &:hover{
-            background-color: var(--background);
-            filter: brightness(0.9);
-          }
-        }
       }
   
       .buy{
@@ -197,11 +175,11 @@
         opacity: 0.9;
         border: none;
         border-radius: 20px;
-        padding: 1vh 0;
+        padding: 1vh 4%;
         color: var(--font-color-white);
         font-weight: 500;
-        font-size: 1rem;
-        width: 80%;
+        font-size: 0.9rem;
+        width: 70%;
         text-transform: uppercase;
         box-shadow: 1px 1px 8px var(--shadow);
         transition: 0.3s ease-in-out;
@@ -289,15 +267,6 @@
               margin: 0 3vw;
             }
           }
-    
-          .add-cart{
-            padding: 0 2vw;
-            gap: 1vw;
-    
-            svg{
-              font-size: 20px;
-            }
-          }
         }
     
         .buy{
@@ -377,15 +346,6 @@
     
             p{
               font-size: 1.6rem;
-            }
-          }
-    
-          .add-cart{
-            border-radius: 5px;
-            font-size: 1.24rem;
-    
-            svg{
-              font-size: 30px;
             }
           }
         }

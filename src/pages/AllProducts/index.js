@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import './allproducts.scss'
 import { useNavigate } from "react-router-dom"
 import { Spinner } from '@chakra-ui/react'
+import axios from 'axios'
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import "./productdetails.scss"
-import { Link } from "react-router-dom"
-import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/react"
+import { Breadcrumb, BreadcrumbItem, useDisclosure } from "@chakra-ui/react"
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 
 import seloPagar from "../../assets/seloPagarX.png"
 
-import { RiShoppingBag4Line } from "react-icons/ri"
 import { FaAngleRight } from "react-icons/fa"
 import { Spinner } from '@chakra-ui/react'
 
@@ -22,7 +22,9 @@ export default function ProductDetails(){
   const [selectedSize, setSelectedSize] = useState(null)
   const [quantity, setQuantity] = useState(1)
   const [hoveredItemId, setHoveredItemId] = useState(null)
+  const { isOpen, onOpen } = useDisclosure()
   const [loading, setLoading] = useState(true)
+  const [loadingButton, setLoadingButton] = useState(false)
 
   useEffect(() => {
     async function fetchProduct(){
@@ -42,10 +44,6 @@ export default function ProductDetails(){
     fetchProduct()
   }, [id])
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
   const handleSizeSelection = (size) => {
     setSelectedSize(size)
   }
@@ -57,6 +55,41 @@ export default function ProductDetails(){
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1)
+    }
+  }
+
+  async function handleAddToCart(){
+    if (!selectedSize) {
+      toast.warning("Por favor, selecione um tamanho antes de adicionar ao carrinho.")
+      return
+    }
+  
+    try{
+      setLoadingButton(true)
+      
+      const itemToAdd = {
+        id: product.id,
+        name: product.name,
+        price: product.discountPrice > 0 ? product.discountPrice : product.originalPrice,
+        quantity: quantity,
+        size: selectedSize,
+        key: `${product.id}-${selectedSize}`,
+        src: hoveredItemId === product.id && product.hoverSrc ? product.hoverSrc : product.src,
+      }
+      const cart = JSON.parse(localStorage.getItem("cart")) || []
+      cart.push(itemToAdd)
+      localStorage.setItem("cart", JSON.stringify(cart))
+  
+      toast.success("Produto adicionado com sucesso!")
+      onOpen()
+  
+      setSelectedSize(null)
+      setQuantity(1)
+  
+    } catch(error){
+  
+    } finally{
+      setLoadingButton(false)
     }
   }
 
@@ -115,9 +148,8 @@ export default function ProductDetails(){
                   <p>{quantity}</p>
                   <button onClick={handleIncrement}>+</button>
                 </div>
-                <button className="add-cart"><RiShoppingBag4Line /> Adicionar ao Carrinho</button>
               </div>
-              <Link to={`/payment`}><button className="buy" onClick={scrollToTop}>COMPRAR AGORA</button></Link>
+              <button className="buy" onClick={handleAddToCart}>ADICIONAR AO CARRINHO</button>
               <img src={seloPagar}/>
             </aside>
           </section>
