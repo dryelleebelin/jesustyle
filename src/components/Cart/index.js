@@ -117,7 +117,7 @@ export default function Cart() {
                         <div className='container-sizes'>
                           {sizes.map((size, index) => (
                             <p
-                              key={`${product.id}-${size}`} // Utilizando key única para cada combinação de produto e tamanho
+                              key={`${product.id}-${size}`} 
                               className={`size ${product.size === size ? 'selected' : ''}`}
                               onClick={() => handleSizeSelection(product.id, size)}
                             >
@@ -132,7 +132,7 @@ export default function Cart() {
                         <div className='qtd'>
                           <button type='button' onClick={() => decreaseQuantity(product.id)}>-</button>
                           <p>{product.quantity}</p>
-                          <button type='button' onClick={() => increaseQuantity(product.id)}>+</button>
+                          <button type='button' onClick={() => increaseQuantity(product.id)} disabled={product.quantity >= 30}>+</button>
                         </div>
                       </div>
                     </div>

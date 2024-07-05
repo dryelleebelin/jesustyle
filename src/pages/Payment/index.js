@@ -9,11 +9,8 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
 import pagarme from '../../assets/seloPagarX.png'
-import item1 from '../../assets/mockups/shirt.png'
-import item2 from '../../assets/mockups/shirt1.png'
 
 import { Spinner } from '@chakra-ui/react'
-import { IoClose } from "react-icons/io5"
 import { FaAngleRight } from "react-icons/fa"
 import { BsFillCreditCardFill, BsFillPersonPlusFill } from 'react-icons/bs'
 

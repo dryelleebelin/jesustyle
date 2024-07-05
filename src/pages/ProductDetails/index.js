@@ -146,7 +146,7 @@ export default function ProductDetails(){
                 <div className="add">
                   <button onClick={handleDecrement}>-</button>
                   <p>{quantity}</p>
-                  <button onClick={handleIncrement}>+</button>
+                  <button onClick={handleIncrement} disabled={quantity >= 30}>+</button>
                 </div>
               </div>
               <button className="buy" onClick={handleAddToCart}>ADICIONAR AO CARRINHO</button>

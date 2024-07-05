@@ -14,17 +14,13 @@ import { IoIosArrowDown, IoIosLogOut } from "react-icons/io"
 
 export default function Header() {
   const navigate = useNavigate()
+  
   const [isOpenModalLogin, setIsOpenModalLogin] = useState(false)
-  const [userType, setUserType] = useState(null)
   const notificationsRef = useRef(null)
   const dropdownRef = useRef(null)
 
-  const handleOpenModalLogin = () => {
-    setIsOpenModalLogin(true)
-  }
-
-  const handleCloseModal = () => {
-    setIsOpenModalLogin(false)
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   useEffect(() => {
@@ -58,13 +54,12 @@ export default function Header() {
     }
   }, [notificationsRef.current, dropdownRef.current])
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  async function handleLogout(){
+    try{
 
-  const handleLogout = () => {
-    navigate('/')
-    scrollToTop()
+    } catch(error){
+      
+    }
   }
 
   return (
@@ -79,11 +74,12 @@ export default function Header() {
       </div>
       <nav>
         <Cart />
-        <button type="button" className="btn-login" onClick={handleOpenModalLogin}>
+        <button type="button" className="btn-login" onClick={() => {setIsOpenModalLogin(true)}}>
           Compre aqui <BsArrowRight />
         </button>
+        {/* nome do usuario */}
         <p ref={notificationsRef}>
-          Usuário <IoIosArrowDown />
+          Usuário <IoIosArrowDown />  
         </p>
       </nav>
 
@@ -96,7 +92,7 @@ export default function Header() {
       </div>
 
       {isOpenModalLogin && (
-        <Login isOpen={isOpenModalLogin} closeModal={handleCloseModal} />
+        <Login isOpen={isOpenModalLogin} closeModal={() => {setIsOpenModalLogin(false)}} />
       )}
     </header>
   )
