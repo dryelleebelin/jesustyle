@@ -52,24 +52,6 @@ export default function Home() {
 
   useEffect(() => {
     document.title = "Jesustyle | Inspire-se com Jesustyle"
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY
-      const windowHeight = window.innerHeight
-
-      if(scrollPosition >= windowHeight) {
-        setIsHeaderBlurred(true)
-        setButtonToTop(true)
-      } else{
-        setIsHeaderBlurred(false)
-        setButtonToTop(false)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
   }, [])
 
   return (
@@ -98,49 +80,16 @@ export default function Home() {
       </main>
 
       <span id="purpose"/>
-
       <section className="purpose">
-        <h1>Propósito</h1>
-        <div className="content">
-          <img src={purpose1} className="img-1"/>
-          <p className="p-1">Na JESUSTYLE, nossa jornada começou com um chamado simples, mas poderoso. Guiados por uma convicção profunda e uma fé inabalável, buscamos honrar a mensagem de amor e esperança que encontramos em Jesus Cristo. Como fundador e CEO, Thiago lidera nosso movimento, unindo um grupo dedicado de indivíduos por um propósito maior que nós mesmos.</p>
-          <img src={purpose2} className="img-2"/>
-          <p className="p-2">Nossa missão é clara e inabalável, moldada pelas verdades eternas da Bíblia. Somos chamados a ser o sal da terra, despertando uma sede por Jesus Cristo em todos aqueles que encontramos. Através da moda streetwear com propósito, inspiramos uma geração a abraçar sua identidade em Cristo e a viver de acordo com os valores do Reino.</p>
-          <img src={purpose3} className="img-3"/>
-          <p className="p-3">Além disso, nos comprometemos em ser agentes de mudança positiva em nossa comunidade, de eventos de serviço a iniciativas que promovem a fé e o amor ao próximo.</p>
-          <p className="p-4">Na JESUSTYLE, nossa humildade vem da compreensão de que somos instrumentos nas mãos de Deus. Enquanto Thiago lidera o caminho, permanecemos fiéis à nossa missão: espalhar a mensagem de Jesus Cristo através da moda, da comunidade e do serviço, deixando um impacto duradouro em um mundo que tanto precisa de esperança e luz. Esta é a nossa missão. <strong>Esta é a JESUSTYLE.</strong></p>
-          <img src={purposeCollage} className="purposeCollage"/>
-        </div>
+
       </section>
 
       <span id="store"/>
-
       <section className="store">
-        <article className="box1">
-          <div className="content">
-            <p>Jesus te fez Style</p>
-            <span>coleção 2024</span>
-            <Link to={`/products`}><button type="button" onClick={scrollToTop}>Compre agora</button></Link>
-          </div>
-          <div className="image">
-            <img src={model2} alt="Model"/>
-            <Link to={`/products`} onClick={scrollToTop}>Veja a Coleção <BsArrowRight/></Link>
-          </div>
-        </article>
 
-        <article className="box2">
-          <img src={model4} alt="Model"/>
-          <img src={model3} alt="Model"/>
-        </article>
-
-        <article className="box3">
-          <p>#AcoesComEsteLook <BsArrowRight/></p>
-          <img src={model1} alt="Model"/>
-        </article>
       </section>
 
       <span id="podcast"/>
-      
       <section className="podcast">
         <div className="container">
           <h1>Podcasts</h1>
@@ -149,9 +98,8 @@ export default function Home() {
       </section>
 
       <span id="actions"/>
-
       <section className="actions">
-        <h1>Ações</h1>
+        
       </section>
 
       <footer>

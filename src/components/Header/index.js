@@ -77,7 +77,6 @@ export default function Header() {
         <button type="button" className="btn-login" onClick={() => {setIsOpenModalLogin(true)}}>
           Compre aqui <BsArrowRight />
         </button>
-        {/* nome do usuario */}
         <p ref={notificationsRef}>
           Usuário <IoIosArrowDown />  
         </p>
