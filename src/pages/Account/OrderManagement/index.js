@@ -1,27 +1,41 @@
 import React, { useState, useEffect } from "react"
 import './ordermanagement.scss'
 import '../account.scss'
+import { products } from "../../AllProducts"
 
-import shirt1 from '../../../assets/mockups/shirt3.png'
-import shirt2 from '../../../assets/mockups/shirt4.png'
-import shirt3 from '../../../assets/mockups/shirt.png'
-import shirt4 from '../../../assets/mockups/shirt1.png'
-import shirt5 from '../../../assets/mockups/shirt2.png'
+import camisetaTrustInTheLordFront from '../../../assets/products/CamisetaTrustInTheLordFront.png'
+import camisetaGodisGoodFront from '../../../assets/products/CamisetaGodisGoodFront.png'
+import camisetaJesusLovesYouFront from '../../../assets/products/CamisetaJesusLovesYouFront.png'
+import moletomLikeJesusFront from '../../../assets/products/MoletomLikeJesusFront.png'
+import moletomGolaCarecaJesusSaves from '../../../assets/products/MoletomGolaCarecaJesusSaves.png'
+import calcaMoletomJesusSaves from '../../../assets/products/CalcaMoletomJesusSaves.png'
 
-import { FaTruck, FaInfoCircle, FaCalendarAlt, FaCog, FaCheckCircle, FaClock } from 'react-icons/fa'
+import { FaTruck, FaInfoCircle, FaCalendarAlt, FaCog, FaCheckCircle, FaClock, FaDollarSign } from 'react-icons/fa'
 
 const OrderDetails = ({ order, onBack }) => (
   <div className="order-details">
     <h3>Detalhes do pedido #{order.id}</h3>
     <p className="p-1"><FaCalendarAlt style={{ color: '#007bff' }} /> Data do pedido: <span>{new Date(order.date).toLocaleDateString('pt-BR')}</span></p>
     <p className="p-1"><FaInfoCircle style={{ color: '#28a745' }} /> Status do pedido: <span>{order.status}</span></p>
-    <ul>
-      {order.items.map((item, index) => (
-        <li key={index}>
-          {item.name} - Quantidade: {item.quantity} - Preço unitário: R${item.price.toFixed(2).replace('.', ',')}
-        </li>
-      ))}
-      <p>Total: R${order.total.toFixed(2).replace('.', ',')}</p>
+    <p className="p-1"><FaDollarSign style={{ color: '#1e3a8a' }} /> Total: R${order.total.toFixed(2).replace('.', ',')}</p>
+    <ul className="order-details-management">
+      <div>
+        {order.items.map((item, index) => (
+          <li key={index}>
+            {Array.isArray(item.src) ? item.src.map((imageSrc, imgIndex) => (
+              <img key={imgIndex} src={imageSrc} width={100} />
+            )) : (
+              <img src={item.src} width={100} />
+            )}
+            <div>
+              <p>{item.name}</p>
+              <p>Quantidade: {item.quantity}</p>
+              <p>Tamanho: {item.size}</p>
+              <p>Preço unitário: R${item.price.toFixed(2).replace('.', ',')}</p>
+            </div>
+          </li>
+        ))}
+      </div>
     </ul>
     {order.deliveryInfo ? (
       <>
@@ -71,10 +85,8 @@ const ProductList = ({ products }) => (
     <ul>
       {products.map((product) => (
         <li className="item" key={product.id}>
-          <img src={product.src} width={100}/>
-          <h6>{product.name}</h6>
-          <p>{product.description}</p>
-          <span>R$ {parseFloat(product.price).toFixed(2).replace('.', ',')}</span>
+          <img src={product.src}/>
+          <p>{product.name}</p>
         </li>
       ))}
     </ul>
@@ -107,10 +119,10 @@ export default function OrderManagement(){
       date: "2023-05-12",
       status: "Entregue",
       items: [
-        { name: "Produto 1", quantity: 1, price: 100 },
-        { name: "Produto 2", quantity: 2, price: 50 },
+        { name: "Camiseta Trust In The Lord", quantity: 1, price: 169, src: camisetaTrustInTheLordFront, size: "P" },
+        { name: "Camiseta God is Good", quantity: 2, price: 169, src: [ camisetaGodisGoodFront ], size: "M" },
       ],
-      total: 200,
+      total: 338,
       deliveryInfo: {
         name: "João da Silva",
         address: "Rua XYZ, 123",
@@ -122,10 +134,10 @@ export default function OrderManagement(){
       date: "2023-05-14",
       status: "Entregue",
       items: [
-        { name: "Produto 1", quantity: 1, price: 100 },
-        { name: "Produto 2", quantity: 2, price: 50 },
+        { name: "Camiseta God is Good", quantity: 1, price: 169, src: [ camisetaGodisGoodFront ], size: "M" },
+        { name: "Moletom Like Jesus", quantity: 2, price: 305, src: [ moletomLikeJesusFront ], size: "G" },
       ],
-      total: 100,
+      total: 474,
       deliveryInfo: {
         name: "Maria Oliveira",
         address: "Av. ABC, 456",
@@ -137,9 +149,9 @@ export default function OrderManagement(){
       date: "2023-05-14",
       status: "Em Andamento",
       items: [
-        { name: "Produto 3", quantity: 1, price: 150 },
+        { name: "Conjunto Jesus Saves (Moletom + Calça)", quantity: 1, price: 457, src: [ moletomGolaCarecaJesusSaves, calcaMoletomJesusSaves], size: "M" },
       ],
-      total: 150,
+      total: 457,
       deliveryInfo: null
     },
     {
@@ -147,9 +159,9 @@ export default function OrderManagement(){
       date: "2023-05-16",
       status: "Pedido Feito",
       items: [
-        { name: "Produto 4", quantity: 1, price: 200 },
+        { name: "Camiseta Jesus Loves You", quantity: 1, price: 169, src: [ camisetaJesusLovesYouFront ], size: "PP" },
       ],
-      total: 200,
+      total: 169,
       deliveryInfo: null 
     },
     {
@@ -157,9 +169,9 @@ export default function OrderManagement(){
       date: "2023-05-18",
       status: "Despachado",
       items: [
-        { name: "Produto 5", quantity: 1, price: 250 },
+        { name: "Moletom Like Jesus", quantity: 1, price: 305, src: [ moletomLikeJesusFront ], size: "M" },
       ],
-      total: 250,
+      total: 305,
       deliveryInfo: {
         name: "José Santos",
         address: "Rua ABC, 789",
@@ -167,14 +179,6 @@ export default function OrderManagement(){
       }
     },
   ])
-
-  const products = [
-    { id: 1, name: "Camiseta", price: 77, description: "Estilo e conforto em uma camiseta de qualidade.", src: shirt1, size: "M", category: "Blusas" },
-    { id: 2, name: "Camiseta", price: 55, description: "Clássica e elegante, ideal para o dia a dia.", src: shirt2, size: "P", category: "Blusas" },
-    { id: 3, name: "Camiseta", price: 99, description: "Trendy e único, feito para se destacar.", src: shirt3, size: "G", category: "Blusas" },
-    { id: 4, name: "Camiseta", price: 120, description: "Premium e confortável, para um estilo elevado.", src: shirt4, size: "M", category: "Moletons" },
-    { id: 5, name: "Camiseta", price: 45, description: "Vibrante e versátil, perfeita para qualquer ocasião.", src: shirt5, size: "P", category: "Moletons" }
-  ]
 
   const handleStatusFilter = (status) => {
     setSelectedOrderStatus(status);

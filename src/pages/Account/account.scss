@@ -1,5 +1,6 @@
 .account{
-  height: 90vh;
+  min-height: 90vh;
+  max-width: 100%;
   background-color: var(--background);
   color: var(--font-color-white);
   margin-top: 10vh;

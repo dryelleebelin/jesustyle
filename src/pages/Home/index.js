@@ -15,9 +15,11 @@ import img3 from '../../assets/home/img3.jpg'
 import img4 from '../../assets/home/img4.jpg'
 import img5 from '../../assets/home/img5.jpg'
 import img6 from '../../assets/home/img6.jpg'
-import img7 from '../../assets/home/img7.jpg'
+import img7 from '../../assets/home/img7.png'
+import img8 from '../../assets/home/img8.png'
+import img9 from '../../assets/home/img9.png'
+import logoKiliquinha from '../../assets/home/instituto_kiliquinha_logo.png'
 import bandeira from '../../assets/home/bandeira.jpg'
-import logoInstituto from '../../assets/home/logoInstituto.jpg'
 import CamisetaGodisGoodFront from '../../assets/products/CamisetaGodisGoodFront.png'
 import CamisetaGodisGoodBack from '../../assets/products/CamisetaGodisGoodBack.png'
 import CamisetaTrustInTheLordFront from '../../assets/products/CamisetaTrustInTheLordFront.png'
@@ -114,9 +116,9 @@ export default function Home() {
         <h1>PROPÓSITO</h1>
         <p>Na Jesustyle, acreditamos que cada peça de roupa pode contar uma história. Nosso propósito é unir estilo e valores cristãos para inspirar e transformar vidas. Cada coleção é desenhada com mensagens significativas que refletem a fé e o amor de Jesus Cristo. Vista-se com propósito e faça parte de um movimento que espalha esperança e luz ao mundo.</p>
         <aside>
-          <img src={img7}/>
-          <img src={img7}/>
-          <img src={img7}/>
+          <img src={img1}/>
+          <img src={img2}/>
+          <img src={img3}/>
         </aside>
       </section>
 
@@ -132,22 +134,22 @@ export default function Home() {
         </article>
         <aside>
           <div>
-            <img src={img1}/>
-            <img src={bandeira}/>
-            <img src={img3}/>
-            <img src={img1}/>
-          </div>
-          <div>
-            <img src={img6}/>
-            <img src={img6}/>
-            <img src={img6}/>
-            <img src={img6}/>
-          </div>
-          <div>
-            <img src={img2}/>
-            <img src={logoInstituto}/>
             <img src={img4}/>
+            <img src={bandeira}/>
             <img src={img5}/>
+            <img src={img6}/>
+          </div>
+          {/* <div>
+            <img src={img6}/>
+            <img src={img6}/>
+            <img src={img6}/>
+            <img src={img6}/>
+          </div> */}
+          <div>
+            <img src={img7}/>
+            <img src={img8}/>
+            <img src={logoKiliquinha}/>
+            <img src={img9}/>
           </div>
         </aside>
       </section>

@@ -113,7 +113,7 @@
       z-index: 0;
       object-fit: cover;
       object-position: 10vw -20vh;
-      opacity: 0.05;
+      opacity: 0.07;
     }
 
     h1{
@@ -156,11 +156,12 @@
 
       img:nth-child(2){
         width: 50vw;
-        object-position: 0 20%;
+        object-position: 0 70%;
       }
 
       img:nth-child(3){
         width: 25vw;
+        object-position: 0 60%;
       }
     }
   }
@@ -175,7 +176,7 @@
     z-index: 2;
 
     .background{
-      margin-top: -15vh;
+      margin-top: -17vh;
       position: absolute;
       height: auto;
       width: 100%;
@@ -264,20 +265,27 @@
       }
 
       div:nth-child(2){
+        margin-bottom: 5vh;
+
+        img:nth-child(1){
+          object-position: 0 30%;
+        }
         img:nth-child(3){
           transform: scale(1.2);
           border-radius: 18px;
+          background-color: var(--black);
+          object-fit: contain;
         }
       }
 
-      div:nth-child(3){
-        margin-bottom: 5vh;
+      // div:nth-child(3){
+      //   margin-bottom: 5vh;
 
-        img:nth-child(2){
-          transform: scale(1.2);
-          border-radius: 18px;
-        }
-      }
+      //   img:nth-child(2){
+      //     transform: scale(1.2);
+      //     border-radius: 18px;
+      //   }
+      // }
     }
   }
 
@@ -516,18 +524,6 @@
       }
     }
 
-    .purpose{
-
-    }
-  
-    .actions{
-  
-    }
-  
-    .store{
-  
-    }
-
     .podcast{
       height: 100%;
       margin: 0;
@@ -617,18 +613,6 @@
           font-size: 38px;
         }
       }
-    }
-  
-    .purpose{
-
-    }
-  
-    .actions{
-  
-    }
-  
-    .store{
-  
     }
   
     .podcast{

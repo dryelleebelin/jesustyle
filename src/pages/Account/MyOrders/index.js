@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from "react"
 import './myorders.scss'
 import '../account.scss'
 
-import shirt1 from '../../../assets/mockups/shirt3.png'
-import shirt2 from '../../../assets/mockups/shirt4.png'
-import shirt3 from '../../../assets/mockups/shirt.png'
+import camisetaTrustInTheLordFront from '../../../assets/products/CamisetaTrustInTheLordFront.png'
+import moletomLikeJesusFront from '../../../assets/products/MoletomLikeJesusFront.png'
+import camisetaJesusLovesYouFront from '../../../assets/products/CamisetaJesusLovesYouFront.png'
 
 import { FaRegStar, FaStar, FaClipboardList, FaBox, FaTruck, FaShippingFast } from "react-icons/fa"
 import { MdOutlinePhotoCamera } from "react-icons/md"
@@ -36,9 +36,9 @@ export default function MyOrders() {
   const [photo, setPhoto] = useState(null)
   const [errorMessage, setErrorMessage] = useState("")
   const [userOrders, setUserOrders] = useState([
-    { id: 1, image: shirt1, name: "Produto 1", size: "M", quantity: 1, price: 100, status: "Ativo" },
-    { id: 2, image: shirt2, name: "Produto 2", size: "L", quantity: 2, price: 50, status: "Ativo" },
-    { id: 3, image: shirt3, name: "Produto 2", size: "L", quantity: 2, price: 50, status: "Concluído" }
+    { id: 1, image: camisetaTrustInTheLordFront, name: "Camiseta Trust In The Lord", size: "M", quantity: 1, price: 169, status: "Ativo" },
+    { id: 2, image: moletomLikeJesusFront, name: "Moletom Like Jesus", size: "L", quantity: 2, price: 305, status: "Ativo" },
+    { id: 3, image: camisetaJesusLovesYouFront, name: "Camiseta Jesus Loves You", size: "L", quantity: 2, price: 169, status: "Concluído" }
   ])
   const [currentStep, setCurrentStep] = useState(3)
   const [isComplete, setIsComplete] = useState(false)
@@ -170,7 +170,7 @@ function OrderList({ orders, onTrackOrder, onAddComment, showAddCommentButton, e
         orders.map((order) => (
           <li key={order.id}>
             <div className="order-item">
-              <img src={order.image} alt={order.name} />
+              <img src={order.image}/>
               <div>
                 <p>{order.name}</p>
                 <p>Tamanho: {order.size} | Quantidade: {order.quantity}</p>
