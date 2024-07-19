@@ -471,41 +471,14 @@
           ul {
             li{
               img{
-                width: 150px;
+                width: 190px;
                 height: 150px;
+                border-radius: 6px;
               }
       
               .details{
-                div{
-                  p{
-                    font-size: 1.5rem;
-                  }
-      
-                  .container-sizes{
-                    .size{
-                      font-size: 1.3rem;
-                      width: 2.1vw;
-                      height: 2.1vw;
-                    }
-                  }
-      
-                  span{
-                    font-size: 1.4rem;
-                  }
-      
-                  svg{
-                    font-size: 36px;
-                  }
-      
-                  .qtd{
-                    button{
-                      font-size: 26px;
-                    }
-        
-                    p{
-                      font-size: 1.5rem;
-                    }
-                  }
+                p{
+                  font-size: 1.5rem;
                 }
               }
             }

@@ -7,6 +7,7 @@ import axios from 'axios'
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import CustomModal from '../../components/CustomModal'
 
 import pagarme from '../../assets/seloPagarX.png'
 
@@ -27,6 +28,7 @@ export default function Payment(){
   const [phone, setPhone] = useState('')
   const [cep, setCep] = useState('')
   const [residentialNumber, setResidentialNumber] = useState('')
+  const [termsAccepted, setTermsAccepted] = useState(false)
 
   const [street, setStreet] = useState('')
   const [neighborhood, setNeighborhood] = useState('')
@@ -40,6 +42,7 @@ export default function Payment(){
   const botaoClassName = botaoCor === 'green' ? 'botao-validar' : (botaoCor === 'red' ? 'botao-remover' : '')
   const [loading, setLoading] = useState(true)
   const [loadingButton, setLoadingButton] = useState(false) 
+  const [isOpenModalSuccess, setIsOpenModalSuccess] = useState(false)
 
   useEffect(() => {
     async function fetchData(){
@@ -142,32 +145,42 @@ export default function Payment(){
   }
 
   async function handlePayment(){
+    const fieldsToCheck = [
+      { field: cardName, message: 'Por favor, preencha o nome no cartão.' },
+      { field: cardNumber, message: 'Por favor, preencha o número do cartão.' },
+      { field: expiryDate, message: 'Por favor, preencha a data de validade.' },
+      { field: cvv, message: 'Por favor, preencha o CVV.' },
+      { field: installments, message: 'Por favor, selecione o número de parcelas.' },
+      { field: cpf, message: 'Por favor, preencha o CPF.' },
+      { field: phone, message: 'Por favor, preencha o telefone.' },
+      { field: cep, message: 'Por favor, preencha o CEP.' },
+      { field: residentialNumber, message: 'Por favor, preencha o número residencial.' }
+    ]
+
+    for(const field of fieldsToCheck){
+      if(!field.field){
+        toast.warning(field.message)
+        setLoadingButton(false)
+        return
+      }
+    }
+
+    if(!termsAccepted){
+      alert('Você deve aceitar os Termos de Serviço para finalizar a compra.')
+      setLoadingButton(false)
+      return
+    }
+
     try{
       setLoadingButton(true)
-      
-      const fieldsToCheck = [
-        { field: cardName, message: 'Por favor, preencha o nome no cartão.' },
-        { field: cardNumber, message: 'Por favor, preencha o número do cartão.' },
-        { field: expiryDate, message: 'Por favor, preencha a data de validade.' },
-        { field: cvv, message: 'Por favor, preencha o CVV.' },
-        { field: installments, message: 'Por favor, selecione o número de parcelas.' },
-        { field: cpf, message: 'Por favor, preencha o CPF.' },
-        { field: phone, message: 'Por favor, preencha o telefone.' },
-        { field: cep, message: 'Por favor, preencha o CEP.' },
-        { field: residentialNumber, message: 'Por favor, preencha o número residencial.' }
-      ]
 
-      for (const field of fieldsToCheck) {
-        if (!field.field) {
-          toast.warning(field.message)
-          setLoadingButton(false)
-          return
-        }
-      }
-      
+      setIsOpenModalSuccess(true)
+      await new Promise(resolve => setTimeout(resolve, 3000))
       navigate('/products')
 
+
     } catch(error){
+      console.log(error)
 
     } finally{
       setLoadingButton(false)
@@ -284,7 +297,7 @@ export default function Payment(){
             </div> */}
             <img className='purchase-details-img' src={pagarme}/>
             <div>
-              <label><input type='checkbox'/>Ao marcar esta opção, você concorda com os <a href='#'>Termos de Serviço</a>.</label>
+              <label><input type='checkbox' checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)}/>Ao marcar esta opção, você concorda com os <a href='#'>Termos de Serviço</a>.</label>
             </div>
             <button type='button' onClick={handlePayment} disabled={loadingButton}>
               {loadingButton ? <Spinner className="spinner-button" speed='0.70s'/> : 'Finalizar Compra'}
@@ -292,6 +305,8 @@ export default function Payment(){
           </section>
         </div>
       </main>
+
+      <CustomModal isOpen={isOpenModalSuccess} closeModal={() => {setIsOpenModalSuccess(false)}}/>
 
       <Footer/>
     </>

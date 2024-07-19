@@ -38,7 +38,7 @@ import { BsArrowRight } from "react-icons/bs"
 import { FaInstagram, FaYoutube, FaSpotify, FaVolumeMute, FaVolumeUp } from "react-icons/fa"
 import { IoMdMail } from "react-icons/io"
 
-export default function Home() {
+export default function Home(){
   const [isOpenModalLogin, setIsOpenModalLogin] = useState(false)
   const [isHeaderBlurred, setIsHeaderBlurred] = useState(false)
   const [isSoundEnabled, setIsSoundEnabled] = useState(false)
