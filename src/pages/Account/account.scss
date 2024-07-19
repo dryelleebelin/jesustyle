@@ -274,6 +274,19 @@
           padding: 0.6vh 4vw;
         }
       }
+
+      .order-tabs{
+        margin-bottom: 3vh;
+        gap: 4vw;
+  
+        button{
+          padding: 0.6vh 4.5vw;
+        }
+  
+        .active{
+          transform: scale(1.15);
+        }
+      }
   
       select{
         padding: 0.5vh 1vw;
@@ -347,6 +360,12 @@
       h2{
         font-size: 1.8rem;
   
+        button{
+          font-size: 1.3rem;
+        }
+      }
+
+      .order-tabs{
         button{
           font-size: 1.3rem;
         }
