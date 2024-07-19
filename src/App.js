@@ -4,11 +4,12 @@ import RoutesApp from './routes/routes'
 
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
+import './global.scss'
 
-export default function App() {
-  return (
+export default function App(){
+  return(
     <BrowserRouter>
-      <ToastContainer autoClose={3000}/>
+      <ToastContainer autoClose={3000} toastClassName="custom-toast-container"/>
       <RoutesApp/>
     </BrowserRouter>
   )

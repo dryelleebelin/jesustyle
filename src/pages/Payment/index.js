@@ -306,7 +306,11 @@ export default function Payment(){
         </div>
       </main>
 
-      <CustomModal isOpen={isOpenModalSuccess} closeModal={() => {setIsOpenModalSuccess(false)}}/>
+      <CustomModal isOpen={isOpenModalSuccess} closeModal={() => {setIsOpenModalSuccess(false)}}
+        headerText="Compra realizada com sucesso!"
+        paragraphText="Agradecemos por escolher nossa loja. Seu pedido está sendo processado e em breve você receberá um e-mail com todos os detalhes da sua compra."
+        spanText="Se precisar de mais informações ou suporte, não hesite em nos contatar."
+      />
 
       <Footer/>
     </>

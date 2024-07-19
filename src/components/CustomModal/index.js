@@ -6,7 +6,7 @@ import logo from '../../assets/logos/transparent.png'
 
 import { IoClose  } from "react-icons/io5"
 
-export default function CustomModal({ isOpen, closeModal }){
+export default function CustomModal({ isOpen, closeModal, headerText, paragraphText, spanText }){
   const customStyles = {
     content: {
       top: '50%',
@@ -25,9 +25,9 @@ export default function CustomModal({ isOpen, closeModal }){
         <IoClose onClick={closeModal} className="close"/>
         <div className="modal-content">
           <img src={logo}/>
-          <h2>Compra realizada com sucesso!</h2>
-          <p>Agradecemos por escolher nossa loja. Seu pedido está sendo processado e em breve você receberá um e-mail com todos os detalhes da sua compra.</p>
-          <span>Se precisar de mais informações ou suporte, não hesite em nos contatar.</span>
+          <h2>{headerText}</h2>
+          <p>{paragraphText}</p>
+          {spanText && <span>{spanText}</span>}
         </div>
       </div>
     </Modal>

@@ -78,6 +78,20 @@ a{
   }
 }
 
+/* for ultra large devices */
+@media only screen and (min-width: 1920px){
+  .custom-toast-container{
+    font-size: 1.5rem;
+    width: 23vw;
+    max-width: 23vw;
+    margin-left: -9vw;
+
+    .Toastify__toast-icon{
+      width: 30px;
+    }
+  }
+}
+
 ::-webkit-scrollbar{
   width: 7px;
   background-color: var(--background);
