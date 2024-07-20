@@ -69,6 +69,7 @@
         font-size: 1rem;
         font-weight: bold;
         border-radius: 0 12px 0 12px;
+        z-index: 1;
       } 
     }
 
@@ -200,6 +201,10 @@
 
 /* for mobile devices */
 @media only screen and (max-width: 480px){
+  .custom-swiper{
+    width: 80vw !important;
+  }
+
   .product-details{
     margin-top: 8vh;
     padding: 5vh 5vw;

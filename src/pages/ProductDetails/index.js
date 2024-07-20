@@ -7,6 +7,9 @@ import axios from 'axios'
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 import seloPagar from "../../assets/seloPagarX.png"
 
@@ -117,7 +120,16 @@ export default function ProductDetails(){
               {product.discountPrice > 0 && (
                 <span className="discount-percentage">{product.discountPercentage}% OFF</span>
               )}
-              <img src={hoveredItemId === product.id && product.hoverSrc ? product.hoverSrc : product.src} onMouseEnter={() => setHoveredItemId(product.id)} onMouseLeave={() => setHoveredItemId(null)} />
+              <Swiper className="custom-swiper" style={{ zIndex: 0 }} slidesPerView={1} pagination onMouseEnter={() => setHoveredItemId(product.id)} onMouseLeave={() => setHoveredItemId(null)}>
+                <SwiperSlide>
+                  <img src={product.src}/>
+                </SwiperSlide>
+                {product.hoverSrc && (
+                  <SwiperSlide>
+                    <img src={product.hoverSrc}/>
+                  </SwiperSlide>
+                )}
+              </Swiper>
             </article>
 
             <aside>

@@ -33,6 +33,10 @@
   }  
 }
 
+.chakra-modal__content-container{
+  z-index: 5 !important;
+}
+
 .cart-content{
   background-color: var(--black) !important;
   max-width: 35vw;

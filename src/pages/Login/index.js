@@ -32,7 +32,8 @@ export default function Login({ isOpen, closeModal }){
       right: 'auto',
       padding: '0',
       backgroundColor: 'transparent',
-      transform: 'translate(-50%, -50%)'
+      transform: 'translate(-50%, -50%)',
+      zIndex: 9
     }
   }  
 

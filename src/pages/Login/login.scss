@@ -1,3 +1,7 @@
+.ReactModal__Overlay{
+  z-index: 999 !important;
+}
+
 .ReactModal__Content{
   border: none !important;
 }
@@ -13,7 +17,8 @@
   width: 28vw;
   gap: 6%;
   overflow-y: hidden;
-  z-index: 9 !important;
+  position: relative;
+  z-index: 99 !important;
 
   div{
     display: flex;

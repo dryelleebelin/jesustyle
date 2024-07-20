@@ -7,6 +7,9 @@ import axios from 'axios'
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 import camisetaTrustInTheLordFront from '../../assets/products/CamisetaTrustInTheLordFront.png'
 import camisetaTrustInTheLordBack from '../../assets/products/CamisetaTrustInTheLordBack.png'
@@ -33,7 +36,7 @@ export const products = [
   { id: 7, name: "Calça Moletom Avulsa Jesus Saves", originalPrice: 258, discountPrice: 232, discountPercentage: 10, description: "[Descrição]", src: calcaMoletomJesusSaves, size: ["P", "G"], category: ["Calças"] }
 ]
 
-export default function AllProducts(){
+export default function AllProducts() {
   const navigate = useNavigate()
   //const [products, setProducts] = useState([])
 
@@ -48,12 +51,12 @@ export default function AllProducts(){
   }
 
   useEffect(() => {
-    async function fetchProducts(){
-      try{
+    async function fetchProducts() {
+      try {
 
-      } catch(error){
+      } catch (error) {
 
-      } finally{
+      } finally {
         setLoading(false)
       }
     }
@@ -101,7 +104,7 @@ export default function AllProducts(){
     { name: "Calças", count: products.filter(item => item.category.includes("Calças")).length },
     { name: "Moletons", count: products.filter(item => item.category.includes("Moletons")).length },
     { name: "Conjuntos", count: products.filter(item => item.category.includes("Conjuntos")).length }
-  ]    
+  ]
 
   const filteredProducts = products.filter(item => {
     if (selectedSizes.length > 0 && !selectedSizes.some(size => item.size.includes(size))) {
@@ -111,10 +114,10 @@ export default function AllProducts(){
       return false
     }
     return true
-  })  
+  })
 
   const sortedProducts = filteredProducts.sort((a, b) => {
-    switch(selectedSortOption) {
+    switch (selectedSortOption) {
       case "priceLowToHigh":
         return (a.discountPrice || a.originalPrice) - (b.discountPrice || b.originalPrice)
       case "priceHighToLow":
@@ -128,30 +131,30 @@ export default function AllProducts(){
     }
   })
 
-  return(
+  return (
     <>
-      <Header/>
+      <Header />
 
       {loading ? (
         <div className="spinner-page">
-          <Spinner className="spinner" speed='0.70s'/>
+          <Spinner className="spinner" speed='0.70s' />
         </div>
       ) : (
         <>
           <section className="banner-all-products"></section>
-        
+
           <main className="all-products">
             <aside>
               <h1>Coleção</h1>
               <div className="filters">
-                <p><FaListUl/> Filtros <span>(2)</span></p>
+                <p><FaListUl /> Filtros <span>(2)</span></p>
                 <span onClick={handleResetAll}>Limpar filtro</span>
               </div>
               <div className="category">
                 <h2>Categorias</h2>
                 {categories.map((category, index) => (
                   <p key={index} onClick={() => handleCategorySelection(category.name)}>
-                    {selectedCategories.includes(category.name) ? <MdCheckCircle/> : <MdOutlineCircle/>} {category.name} <span>({category.count})</span>
+                    {selectedCategories.includes(category.name) ? <MdCheckCircle /> : <MdOutlineCircle />} {category.name} <span>({category.count})</span>
                   </p>
                 ))}
               </div>
@@ -182,7 +185,16 @@ export default function AllProducts(){
                       {item.discountPrice > 0 && (
                         <span className="discount-percentage">{item.discountPercentage}% OFF</span>
                       )}
-                      <img src={hoveredItemId === item.id && item.hoverSrc ? item.hoverSrc : item.src} onMouseEnter={() => setHoveredItemId(item.id)} onMouseLeave={() => setHoveredItemId(null)} />
+                      <Swiper style={{ zIndex: 0 }} slidesPerView={1} pagination onMouseEnter={() => setHoveredItemId(item.id)} onMouseLeave={() => setHoveredItemId(null)}>
+                        <SwiperSlide>
+                          <img className="img" src={item.src}/>
+                        </SwiperSlide>
+                        {item.hoverSrc && (
+                          <SwiperSlide>
+                            <img className="img" src={item.hoverSrc}/>
+                          </SwiperSlide>
+                        )}
+                      </Swiper>
                       <h6>{item.name}</h6>
                       <p>{item.description}</p>
                       {item.discountPrice > 0 ? (
@@ -194,7 +206,7 @@ export default function AllProducts(){
                       ) : (
                         <span>R$ {parseFloat(item.originalPrice).toFixed(2).replace('.', ',')}</span>
                       )}
-                      <div>
+                      <div className="div">
                         <button type="button" onClick={() => { navigate(`/product/${item.id}`); scrollToTop(); }}>DETALHES</button>
                         <HiOutlineShoppingBag />
                       </div>
@@ -209,7 +221,7 @@ export default function AllProducts(){
         </>
       )}
 
-      <Footer/>
+      <Footer />
     </>
   )
 }

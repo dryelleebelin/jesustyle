@@ -153,14 +153,13 @@
         margin: 1.5vw;
         position: relative;
 
-        img{
+        .img{
           max-width: 100%;
           width: 290px;
           height: 40vh;
           object-fit: cover;
           border-radius: 14px;
           background-color: #b5b5b5b0;
-          box-shadow: 1px 1px 8px var(--shadow);
           cursor: pointer;
         }
 
@@ -174,6 +173,7 @@
           font-size: 0.9rem;
           font-weight: bold;
           border-radius: 0 8px 0 8px;
+          z-index: 1;
         }        
 
         h6{
@@ -198,7 +198,7 @@
           font-weight: 400;
         }
         
-        div{
+        .div{
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -346,7 +346,7 @@
           width: 100%;
           margin: 0vw;
   
-          img{
+          .img{
             width: 100%;
             height: 380px;
             border-radius: 10px;
@@ -378,7 +378,7 @@
             font-size: 1rem;
           }
           
-          div{
+          .div{
             height: 5vh;
             margin-top: 2vh;
             margin-bottom: 5vh;
@@ -468,8 +468,8 @@
   
       .items-container{
         .item{
-          img{
-            width: 380px;
+          .img{
+            width: 100% !important;
             border-radius: 18px;
           }
 
@@ -494,7 +494,7 @@
             font-size: 1.3rem;
           }
           
-          div{
+          .div{
             button{
               font-size: 1.4rem;
               border-radius: 30px;
