@@ -1,10 +1,10 @@
 .banner-all-products {
   position: relative;
-  height: 50vh;
+  height: 38vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../../assets/banners/banner10.png');
+  background-image: url('../../assets/banners/bannerWeb10.png');
   background-size: cover;
   background-position: center;
   margin-top: 10vh;
@@ -163,6 +163,67 @@
           cursor: pointer;
         }
 
+        .size-selection-overlay{
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255, 255, 255, 0.9);
+          border-radius: 14px;
+          height: 40vh;
+        
+          .size-selection-container{
+            padding: 0 10%;
+          
+            h2{
+              color: var(--accent-1);
+              font-size: 1.2rem;
+              text-align: center;
+              margin-bottom: 2vh;
+            }
+        
+            .size-options{
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              gap: 0.5vw;
+        
+              p{
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--font-color);
+                font-weight: 600;
+                padding: 1.2vh 1vw;
+                border: 1px solid var(--font-color);
+                margin: 0;
+                height: auto;
+                background: rgba(255, 255, 255, 0.6);
+                transition: 0.3s ease-in-out;
+                opacity: 1;
+        
+                &:hover{
+                  filter: brightness(0.9);
+                }
+              }
+            }
+        
+            svg{
+              color: var(--black);
+              font-size: 1.8rem;
+              margin-bottom: -6vh;
+              width: 100%;
+              cursor: pointer;
+            }
+          }
+        }
+
         .discount-percentage {
           position: absolute;
           top: 0;
@@ -249,6 +310,7 @@
 @media only screen and (max-width: 480px){
   .banner-all-products {
     height: 14vh;
+    background-image: url('../../assets/banners/banner10.png');
   }
 
   .all-products{
@@ -351,6 +413,33 @@
             height: 380px;
             border-radius: 10px;
             object-fit: cover;
+          }
+
+          .size-selection-overlay{
+            border-radius: 10px;
+            height: 380px;
+          
+            .size-selection-container{
+              h2{
+                font-size: 1.6rem;
+                padding: 0 10%;
+              }
+          
+              .size-options{
+                gap: 2.2vw;
+          
+                p{
+                  padding: 1vh 4vw;
+                  font-size: 1.2rem;
+                  border-radius: 2px;
+                }
+              }
+          
+              svg{
+                font-size: 2.4rem;
+                margin-bottom: -6vh;
+              }
+            }
           }
 
           .discount-percentage {
@@ -471,6 +560,26 @@
           .img{
             width: 100% !important;
             border-radius: 18px;
+          }
+
+          .size-selection-overlay{
+            border-radius: 18px;
+          
+            .size-selection-container{
+              h2{
+                font-size: 1.8rem;
+              }
+          
+              .size-options{
+                p{
+                  font-size: 1.2rem;
+                }
+              }
+          
+              svg{
+                font-size: 2.6rem;
+              }
+            }
           }
 
           .discount-percentage {

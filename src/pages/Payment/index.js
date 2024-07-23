@@ -121,18 +121,23 @@ export default function Payment(){
     setDesconto(0)
   }
 
+  const PROXY_URL = 'https://cors-anywhere.herokuapp.com/'  //problema de cors
+
   async function handleAddress(){
+    console.log('Iniciando busca por endereço...')
+
     if (cep && residentialNumber) {
       try {
-        const response = await axios.get(`https://viacep.com.br/ws/${cep}/${residentialNumber}/json/`)
+        console.log(`Buscando endereço para CEP: ${cep}, Número: ${residentialNumber}`)
+        const response = await axios.get(`${PROXY_URL}https://viacep.com.br/ws/${cep}/${residentialNumber}/json/`)
         const { data } = response
-
+        
         if (!data.erro) {
           setStreet(data.logradouro)
           setNeighborhood(data.bairro)
           setCity(data.localidade)
           setState(data.uf)
-
+          console.log('Endereço encontrado:', data)
         } else {
           console.error('CEP ou número não encontrado.')
         }
@@ -142,7 +147,7 @@ export default function Payment(){
     } else {
       console.error('Por favor, preencha o CEP e o número residencial.')
     }
-  }
+  }  
 
   async function handlePayment(){
     const fieldsToCheck = [

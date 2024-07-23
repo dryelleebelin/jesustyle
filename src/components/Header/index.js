@@ -12,10 +12,11 @@ import { BsShop } from "react-icons/bs"
 import { BsArrowRight } from "react-icons/bs"
 import { IoIosArrowDown, IoIosLogOut } from "react-icons/io"
 
-export default function Header() {
+export default function Header({ onSearch }) {
   const navigate = useNavigate()
   
   const [isOpenModalLogin, setIsOpenModalLogin] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
   const notificationsRef = useRef(null)
   const dropdownRef = useRef(null)
 
@@ -62,6 +63,11 @@ export default function Header() {
     }
   }
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value)
+    onSearch(event.target.value)
+  }
+
   return (
     <header className="header">
       <div className="container-logo">
@@ -69,17 +75,13 @@ export default function Header() {
         <Link to={`/products`} onClick={scrollToTop}>Loja</Link>
       </div>
       <div className="input">
-        <input type="text" placeholder="Procurar produtos" />
-        <IoSearch />
+        <input type="text" placeholder="Procurar produtos" value={searchTerm} onChange={handleSearchChange}/>
+        <IoSearch/>
       </div>
       <nav>
-        <Cart />
-        <button type="button" className="btn-login" onClick={() => {setIsOpenModalLogin(true)}}>
-          Compre aqui <BsArrowRight />
-        </button>
-        <p ref={notificationsRef}>
-          Usuário <IoIosArrowDown />  
-        </p>
+        <Cart/>
+        <button type="button" className="btn-login" onClick={() => {setIsOpenModalLogin(true)}}>Compre aqui <BsArrowRight /></button>
+        <p ref={notificationsRef}>Usuário <IoIosArrowDown/></p>
       </nav>
 
       <div ref={dropdownRef} className="dropdown_wrapper hide dropdown_wrapper--fade-in none">
@@ -90,9 +92,7 @@ export default function Header() {
         </div>
       </div>
 
-      {isOpenModalLogin && (
-        <Login isOpen={isOpenModalLogin} closeModal={() => {setIsOpenModalLogin(false)}} />
-      )}
+      {isOpenModalLogin && ( <Login isOpen={isOpenModalLogin} closeModal={() => {setIsOpenModalLogin(false)}} /> )}
     </header>
   )
 }
