@@ -118,9 +118,11 @@
 
         img{
           width: 110px;
+          min-width: 110px;
           height: 110px;
           object-fit: cover;
           border-radius: 4px;
+          background-color: rgba(181, 181, 181, 0.6901960784);
         }
 
         .cart-details{
@@ -360,6 +362,7 @@
         li{
           img{
             width: 160px;
+            min-width: 160px;
             height: 160px;
             border-radius: 6px;
           }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import './ordermanagement.scss'
 import '../account.scss'
 import { products } from "../../AllProducts"
+import Modal from "react-modal"
 
 import camisetaTrustInTheLordFront from '../../../assets/products/CamisetaTrustInTheLordFront.png'
 import camisetaGodisGoodFront from '../../../assets/products/CamisetaGodisGoodFront.png'
@@ -11,6 +12,8 @@ import moletomGolaCarecaJesusSaves from '../../../assets/products/MoletomGolaCar
 import calcaMoletomJesusSaves from '../../../assets/products/CalcaMoletomJesusSaves.png'
 
 import { FaTruck, FaInfoCircle, FaCalendarAlt, FaCog, FaCheckCircle, FaClock, FaDollarSign } from 'react-icons/fa'
+import { IoMdAdd } from "react-icons/io"
+import { IoClose  } from "react-icons/io5"
 
 const OrderDetails = ({ order, onBack }) => (
   <div className="order-details">
@@ -79,19 +82,72 @@ const OrderList = ({ orders, onOrderClick, selectedOrderStatus, onStatusFilterCh
   </>
 )
 
-const ProductList = ({ products }) => (
-  <div className="product-management">
-    <h3>Lista de Produtos</h3>
-    <ul>
-      {products.map((product) => (
-        <li className="item" key={product.id}>
-          <img src={product.src}/>
-          <p>{product.name}</p>
-        </li>
-      ))}
-    </ul>
-  </div>
-)
+const ProductList = ({ products }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [newProduct, setNewProduct] = useState({ name: "", description: "", src: "", price: null })
+
+  const handleOpenModal = () => setIsModalOpen(true)
+  const handleCloseModal = () => setIsModalOpen(false)
+
+  const handleAddProduct = () => {
+    console.log("Novo produto adicionado:", newProduct)
+    handleCloseModal()
+  }
+
+  const customStyles = {
+    content: {
+      top: '50%',
+      bottom: 'auto',
+      left: '50%',
+      right: 'auto',
+      padding: '4%',
+      backgroundColor: 'transparent',
+      transform: 'translate(-50%, -50%)'
+    }
+  }
+
+  return (
+    <div className="product-management">
+      <div className="product-management-header">
+        <h3>Lista de Produtos</h3>
+        <button onClick={handleOpenModal}><IoMdAdd/> Adicionar Produto</button>
+      </div>
+      <ul>
+        {products.map((product) => (
+          <li className="item" key={product.id}>
+            <img src={product.src} alt={product.name}/>
+            <p>{product.name}</p>
+          </li>
+        ))}
+      </ul>
+
+      <Modal style={customStyles} isOpen={isModalOpen} onRequestClose={handleCloseModal}>
+        <div className="modalAdicionarProduto">
+          <div className="modalAdicionarProdutoHeader">
+            <h2>Adicionar Novo Produto</h2>
+            <span>***estou finalizando</span>
+            <IoClose onClick={handleCloseModal}/>
+          </div>
+          <div className="modalAdicionarProdutoContent">
+            <label>Nome do Produto: <input type="text" value={newProduct.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}/></label>
+            <label>Categoria: <input type="text" value={newProduct.category} onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value.split(',') })} placeholder="Separe as categorias por vírgulas"/></label>
+            <label style={{ width: '100%' }}>Descrição: <textarea value={newProduct.description} onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}/></label>
+            <label>URL da Imagem: <input type="text" value={newProduct.src} onChange={(e) => setNewProduct({ ...newProduct, src: e.target.value })}/></label>
+            <label>URL da Imagem 2: <input type="text" value={newProduct.hoverSrc} onChange={(e) => setNewProduct({ ...newProduct, hoverSrc: e.target.value })}/></label>
+            <label>Preço Original: <input type="number" value={newProduct.originalPrice} onChange={(e) => setNewProduct({ ...newProduct, originalPrice: Number(e.target.value) })}/></label>
+            <label>Preço com Desconto: <input type="number" value={newProduct.discountPrice} onChange={(e) => setNewProduct({ ...newProduct, discountPrice: Number(e.target.value) })}/></label>
+            <label>Percentual de Desconto: <input type="number" value={newProduct.discountPercentage} onChange={(e) => setNewProduct({ ...newProduct, discountPercentage: Number(e.target.value) })}/></label>
+            <label>Tamanhos: <input type="text" value={newProduct.size} onChange={(e) => setNewProduct({ ...newProduct, size: e.target.value.split(',') })} placeholder="Separe os tamanhos por vírgulas"/></label>
+          </div>
+          <footer>
+            <button type="button" onClick={handleAddProduct}>Adicionar Produto</button>
+            <button type="button" onClick={handleCloseModal}>Fechar</button>
+          </footer>
+        </div>
+      </Modal>
+    </div>
+  )
+}
 
 const getStatusIcon = (status) => {
   switch (status) {

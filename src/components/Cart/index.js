@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure } from '@chakra-ui/react'
 import { RiShoppingBag3Fill } from "react-icons/ri"
 import { IoClose } from "react-icons/io5"
+import { products } from '../../pages/AllProducts'
 
 export default function Cart() {
   const navigate = useNavigate()
@@ -11,15 +12,14 @@ export default function Cart() {
   const btnRef = React.useRef()
 
   const [cartProducts, setCartProducts] = useState([])
-  const sizes = ["PP", "P", "M", "G"]
 
   useEffect(() => {
-    async function fetchCartProducts() {
+    async function fetchCartProducts(){
       try {
         const cartItems = JSON.parse(localStorage.getItem("cart")) || []
         setCartProducts(cartItems)
 
-      } catch (error) {
+      } catch(error){
         
       }
     }
@@ -110,17 +110,13 @@ export default function Cart() {
               <ul>
                 {cartProducts.map((product) => (
                   <li key={product.id}>
-                    <img src={product.src} alt={product.name} />
+                    <img src={product.src}/>
                     <div className='cart-details'>
                       <div>
                         <p>{product.name}</p>
                         <div className='container-sizes'>
-                          {sizes.map((size, index) => (
-                            <p
-                              key={`${product.id}-${size}`} 
-                              className={`size ${product.size === size ? 'selected' : ''}`}
-                              onClick={() => handleSizeSelection(product.id, size)}
-                            >
+                          {products.find(p => p.id === product.id).size.map((size, index) => (
+                            <p key={`${product.id}-${size}`} className={`size ${product.size === size ? 'selected' : ''}`} onClick={() => handleSizeSelection(product.id, size)}>
                               {size}
                             </p>
                           ))}

@@ -18,6 +18,10 @@ import img6 from '../../assets/home/img6.jpg'
 import img7 from '../../assets/home/img7.png'
 import img8 from '../../assets/home/img8.png'
 import img9 from '../../assets/home/img9.png'
+import img10 from '../../assets/home/img10.jpeg'
+import img11 from '../../assets/home/img11.jpeg'
+import img12 from '../../assets/home/img12.jpeg'
+import img13 from '../../assets/home/img13.jpeg'
 import logoKiliquinha from '../../assets/home/instituto_kiliquinha_logo.png'
 import bandeira from '../../assets/home/bandeira.jpg'
 import CamisetaGodisGoodFront from '../../assets/products/CamisetaGodisGoodFront.png'
@@ -139,16 +143,16 @@ export default function Home(){
             <img src={img5}/>
             <img src={img6}/>
           </div>
-          {/* <div>
-            <img src={img6}/>
-            <img src={img6}/>
-            <img src={img6}/>
-            <img src={img6}/>
-          </div> */}
+          <div>
+            <img src={img10}/>
+            <img src={img11}/>
+            <img src={img12}/>
+            <img src={img13}/>
+          </div>
           <div>
             <img src={img7}/>
-            <img src={img8}/>
             <img src={logoKiliquinha}/>
+            <img src={img8}/>
             <img src={img9}/>
           </div>
         </aside>
