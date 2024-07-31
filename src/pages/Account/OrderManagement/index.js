@@ -85,14 +85,20 @@ const OrderList = ({ orders, onOrderClick, selectedOrderStatus, onStatusFilterCh
 const ProductList = ({ products }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [newProduct, setNewProduct] = useState({ name: "", description: "", src: "", price: null })
+  const sizeOptions = ['PP', 'P', 'M', 'G']
 
   const handleOpenModal = () => setIsModalOpen(true)
   const handleCloseModal = () => setIsModalOpen(false)
 
   const handleAddProduct = () => {
-    console.log("Novo produto adicionado:", newProduct)
     handleCloseModal()
   }
+
+  const handleSizeChange = (size, isChecked) => {
+    const newSize = newProduct.size ? [...newProduct.size] : []
+    isChecked ? newSize.push(size) : newSize.splice(newSize.indexOf(size), 1)
+    setNewProduct({ ...newProduct, size: newSize })
+  }  
 
   const customStyles = {
     content: {
@@ -125,23 +131,38 @@ const ProductList = ({ products }) => {
         <div className="modalAdicionarProduto">
           <div className="modalAdicionarProdutoHeader">
             <h2>Adicionar Novo Produto</h2>
-            <span>***estou finalizando</span>
-            <IoClose onClick={handleCloseModal}/>
+            <IoClose onClick={handleCloseModal} />
           </div>
           <div className="modalAdicionarProdutoContent">
-            <label>Nome do Produto: <input type="text" value={newProduct.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}/></label>
-            <label>Categoria: <input type="text" value={newProduct.category} onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value.split(',') })} placeholder="Separe as categorias por vírgulas"/></label>
-            <label style={{ width: '100%' }}>Descrição: <textarea value={newProduct.description} onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}/></label>
-            <label>URL da Imagem: <input type="text" value={newProduct.src} onChange={(e) => setNewProduct({ ...newProduct, src: e.target.value })}/></label>
-            <label>URL da Imagem 2: <input type="text" value={newProduct.hoverSrc} onChange={(e) => setNewProduct({ ...newProduct, hoverSrc: e.target.value })}/></label>
-            <label>Preço Original: <input type="number" value={newProduct.originalPrice} onChange={(e) => setNewProduct({ ...newProduct, originalPrice: Number(e.target.value) })}/></label>
-            <label>Preço com Desconto: <input type="number" value={newProduct.discountPrice} onChange={(e) => setNewProduct({ ...newProduct, discountPrice: Number(e.target.value) })}/></label>
-            <label>Percentual de Desconto: <input type="number" value={newProduct.discountPercentage} onChange={(e) => setNewProduct({ ...newProduct, discountPercentage: Number(e.target.value) })}/></label>
-            <label>Tamanhos: <input type="text" value={newProduct.size} onChange={(e) => setNewProduct({ ...newProduct, size: e.target.value.split(',') })} placeholder="Separe os tamanhos por vírgulas"/></label>
+            <label>Nome do Produto: <input type="text" value={newProduct.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })} /></label>
+            <label>Categoria: 
+              <select value={newProduct.category} onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}>
+                <option value="">Selecione uma categoria</option>
+                <option value="Roupas">Camisetas</option>
+                <option value="Eletrônicos">Calças</option>
+                <option value="Livros">Moletons</option>
+                <option value="Móveis">Conjuntos</option>
+              </select>
+            </label>
+            <label style={{ width: '100%' }}>Descrição: <textarea value={newProduct.description} onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })} /></label>
+            <label>URL da Imagem: <input type="text" value={newProduct.src} onChange={(e) => setNewProduct({ ...newProduct, src: e.target.value })} /></label>
+            <label>URL da Imagem Adicional: <input type="text" value={newProduct.hoverSrc} onChange={(e) => setNewProduct({ ...newProduct, hoverSrc: e.target.value })} /></label>
+            <label>Preço Original: <input type="number" value={newProduct.originalPrice} onChange={(e) => setNewProduct({ ...newProduct, originalPrice: Number(e.target.value) })} /></label>
+            <label>Preço com Desconto: <input type="number" value={newProduct.discountPrice} onChange={(e) => setNewProduct({ ...newProduct, discountPrice: Number(e.target.value) })} /></label>
+            <label>Percentual de Desconto: <input type="number" value={newProduct.discountPercentage} onChange={(e) => setNewProduct({ ...newProduct, discountPercentage: Number(e.target.value) })} /></label>
+            <label className="sizes">Tamanhos:
+            <div>
+              {sizeOptions.map(size => (
+                <div>
+                  <input type="checkbox" value={size} checked={newProduct.size?.includes(size)} onChange={(e) => handleSizeChange(size, e.target.checked)}/>
+                  <p>{size}</p>
+                </div>
+              ))}
+            </div>
+            </label>
           </div>
           <footer>
             <button type="button" onClick={handleAddProduct}>Adicionar Produto</button>
-            <button type="button" onClick={handleCloseModal}>Fechar</button>
           </footer>
         </div>
       </Modal>

@@ -224,7 +224,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  padding: 5% 10%;
+  padding: 5% 8%;
   height: 80vh;
   width: 60vw;
   overflow-y: auto;
@@ -255,15 +255,54 @@
       flex-wrap: wrap;
       width: 48%;
 
-      input{
-        
+      input, textarea, select {
+        margin-bottom: 1vh;
+        background-color: transparent;
+        border: 1px solid var( --foreground);
+        color: var(--font-color-white);
+        outline: none;
+        padding: 0.8vh 0.8vw;
+        border-radius: 3px;
+        font-size: 0.9rem;
+
+        option{
+          background-color: var(--background);
+        }
       }
-      
+    }
+
+    .sizes{
+      div{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 70%;
+        gap: 0.5vw;
+
+        input{
+          margin: 0;
+        }
+      }
     }
   }
 
   footer{
     display: flex;
+    justify-content: flex-end;
+
+    button{
+      background-color: var(--foreground);
+      color: var(--font-color);
+      border: none;
+      padding: 0.6vh 1vw;
+      border-radius: 4px;
+      font-weight: 600;
+      box-shadow: 1px 1px 8px var(--shadow);
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 0.1vw;
+    }
   }
 }
 
@@ -425,8 +464,19 @@
   }
 
   .product-management{
-    h3{
-      font-size: 1.8rem;
+    .product-management-header{
+      h3{
+        font-size: 1.8rem;
+      }
+
+      button{
+        font-size: 1.2rem;
+        border-radius: 6px;
+  
+        svg{
+          height: 26px;
+        }
+      }
     }
   
     ul{
@@ -439,6 +489,42 @@
         p{
           font-size: 1.5rem;
         }
+      }
+    }
+  }
+
+  .modalAdicionarProduto{
+    border-radius: 16px;
+  
+    .modalAdicionarProdutoHeader{
+      h2{
+        font-size: 2.2rem;
+      }
+
+      svg{
+        font-size: 40px;
+      }
+    }
+  
+    .modalAdicionarProdutoContent{
+      label{
+        font-size: 1.5rem;
+  
+        input, textarea, select {
+          font-size: 1.4rem;
+        }
+
+        input[type="checkbox"]{
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  
+    footer{
+      button{
+        font-size: 1.2rem;
+        border-radius: 6px;
       }
     }
   }
