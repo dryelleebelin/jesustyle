@@ -188,14 +188,22 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
       justify-content: flex-start;
       width: 32%;
-      padding: 2vh 2vw;
+      padding: 4vh 2vw 2vh 2vw;
       border: 1px solid var(--border);
       box-shadow: 1px 1px 8px var(--shadow);
       transition: 0.3s ease-in-out;
-      cursor: pointer;
       gap: 1vh;
+
+      svg{
+        position: absolute;
+        top: 0.6vh;
+        right: 0.3vw;
+        font-size: 22px;
+        cursor: pointer;
+      }
 
       img{
         height: auto;
@@ -374,11 +382,56 @@
   
       li{
         width: 48%;
+        padding: 2vh 2vw;
+
+        svg{
+          font-size: 26px;
+        }
   
         img{
           width: 155px;
           height: 18vh;
         }
+      }
+    }
+  }
+
+  .modalAdicionarProduto{
+    padding: 5%;
+    height: 80vh;
+    width: 94vw;
+  
+    .modalAdicionarProdutoHeader{
+      h2{
+        font-size: 1.3rem;
+      }
+  
+      svg{
+        font-size: 28px;
+      }
+    }
+  
+    .modalAdicionarProdutoContent{
+      flex-direction: column;
+  
+      label{
+        width: 100%;
+  
+        input, textarea, select {
+          padding: 0.6vh 1.6vw;
+        }
+      }
+  
+      .sizes{
+        div{
+          gap: 1vw;
+        }
+      }
+    }
+  
+    footer{
+      button{
+        padding: 0.6vh 3.5vw;
       }
     }
   }
@@ -481,6 +534,10 @@
   
     ul{
       li{
+        svg{
+          font-size: 32px;
+        }
+
         img{
           width: 290px;
           border-radius: 6px;

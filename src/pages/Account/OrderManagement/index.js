@@ -13,7 +13,8 @@ import calcaMoletomJesusSaves from '../../../assets/products/CalcaMoletomJesusSa
 
 import { FaTruck, FaInfoCircle, FaCalendarAlt, FaCog, FaCheckCircle, FaClock, FaDollarSign } from 'react-icons/fa'
 import { IoMdAdd } from "react-icons/io"
-import { IoClose  } from "react-icons/io5"
+import { IoClose } from "react-icons/io5"
+import { MdEdit } from "react-icons/md"
 
 const OrderDetails = ({ order, onBack }) => (
   <div className="order-details">
@@ -86,6 +87,8 @@ const ProductList = ({ products }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [newProduct, setNewProduct] = useState({ name: "", description: "", src: "", price: null })
   const sizeOptions = ['PP', 'P', 'M', 'G']
+  const [selectedProduct, setSelectedProduct] = useState(null)
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false)
 
   const handleOpenModal = () => setIsModalOpen(true)
   const handleCloseModal = () => setIsModalOpen(false)
@@ -98,6 +101,16 @@ const ProductList = ({ products }) => {
     const newSize = newProduct.size ? [...newProduct.size] : []
     isChecked ? newSize.push(size) : newSize.splice(newSize.indexOf(size), 1)
     setNewProduct({ ...newProduct, size: newSize })
+  }  
+
+  const handleEditProduct = (product) => {
+    setSelectedProduct(product)
+    setIsProductModalOpen(true)
+  }  
+
+  const handleCloseProductModal = () => {
+    setIsProductModalOpen(false)
+    setSelectedProduct(null)
   }  
 
   const customStyles = {
@@ -121,6 +134,7 @@ const ProductList = ({ products }) => {
       <ul>
         {products.map((product) => (
           <li className="item" key={product.id}>
+            <MdEdit onClick={() => handleEditProduct(product)}/>
             <img src={product.src} alt={product.name}/>
             <p>{product.name}</p>
           </li>
