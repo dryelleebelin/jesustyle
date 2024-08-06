@@ -130,17 +130,17 @@ export default function ProductDetails(){
         ) : (
           <section>
             <article>
-              {product && product.discountPrice > 0 && (
-                <span className="discount-percentage">{product.discountPercentage}% OFF</span>
-              )}
               {hoverImages.length > 0 && (
-                <div className="product-images" style={{display: 'flex'}}>
+                <div className="product-images">
                   <div className="vertical-images">
                     {hoverImages.map((image, index) => (
-                      <img style={{width: '80px', height: '80px'}} key={index} src={image} onClick={() => handleImageClick(image)} />
+                      <img key={index} src={image} onClick={() => handleImageClick(image)} className={image === mainImage ? "selected-image" : ""}/>
                     ))}
                   </div>
                   <div className="main-image">
+                    {product && product.discountPrice > 0 && (
+                      <span className="discount-percentage">{product.discountPercentage}% OFF</span>
+                    )}
                     <img src={mainImage} />
                   </div>
                 </div>

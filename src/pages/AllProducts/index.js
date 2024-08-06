@@ -49,7 +49,7 @@ export const products = [
 
 export default function AllProducts(){
   const navigate = useNavigate()
-  //const [products, setProducts] = useState([])
+  //const [products, setProducts] = useState([])/
   const [isSizeSelectionVisible, setIsSizeSelectionVisible] = useState(false)
   const [productToAdd, setProductToAdd] = useState(null)
   const [selectedProductSize, setSelectedProductSize] = useState(null)

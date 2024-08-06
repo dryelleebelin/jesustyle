@@ -7,8 +7,6 @@
   margin-top: 10vh;
   padding: 5vh 10vw;
   height: 100%;
-  min-height: 90vh;
-  max-height: 96vh;
 
   .css-syhbcg {
     display: flex;
@@ -41,24 +39,58 @@
   section{
     display: flex;
     margin: 4vh 8vw;
-    padding: 1vh 2vw;
+    padding: 1vh 1vw;
     background-color: var(--background);
     filter: brightness(1.2);
     border-radius: 6px;
     border: 1px solid var(--shadow);
 
     article{
-      width: 28vw;
-      margin: 2%;
-      position: relative;
-  
-      img{
-        width: 26vw;
-        height: 420px;
-        border-radius: 8px;
-        object-fit: cover;
-        background-color: #dcc9b8;
-        cursor: pointer;
+      width: 50vw;
+      margin: 1%;
+
+      .product-images{
+        display: flex;
+        justify-content: space-between;
+
+        .vertical-images{
+          display: flex;
+          flex-direction: column;
+          gap: 1.5vh;
+
+          img{
+            width: 80px;
+            max-width: 80px;
+            height: 80px;
+            max-height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            background-color: #dcc9b8;
+            cursor: pointer;
+            box-sizing: border-box;
+          }
+
+          .selected-image {
+            height: 83px;
+            max-height: 83px;
+            border-bottom: 3px solid var(--accent-1);
+          }
+        }
+
+        .main-image{
+          position: relative;
+
+          img{
+            width: 41vw;
+            max-width: 41vw;
+            height: 650px;
+            max-height: 650px;
+            border-radius: 8px;
+            object-fit: cover;
+            background-color: #dcc9b8;
+            cursor: pointer;
+          }
+        }
       }
 
       .discount-percentage {
@@ -67,8 +99,8 @@
         left: 0;
         background-color: var(--accent-1);
         color: var(--font-color-white);
-        padding: 1.8%;
-        font-size: 1rem;
+        padding: 1.6%;
+        font-size: 1.1rem;
         font-weight: bold;
         border-radius: 0 12px 0 12px;
         z-index: 1;
@@ -76,7 +108,7 @@
     }
 
     aside{
-      width: 34vw;
+      width: 35vw;
       padding: 2%;
       display: flex;
       flex-direction: column;
@@ -209,23 +241,35 @@
 
   .product-details{
     margin-top: 8vh;
-    padding: 5vh 5vw;
+    padding: 5vh 3vw;
     height: 100%;
   
     section{
       margin: 4vh 0 1vh 0;
       flex-direction: column;
-      padding: 2vh 4vw;
+      padding: 2vh 3vw;
   
       article{
         width: 100%;
         padding: 0%;
-    
-        img{
-          width: 97%;
-          height: 380px;
-          border-radius: 10px;
-          object-fit: cover;
+
+        .product-images{
+          flex-direction: column-reverse;
+          gap: 1vh;
+  
+          .vertical-images{
+            flex-direction: row;
+            flex-wrap: wrap;
+          }
+  
+          .main-image{
+            img{
+              width: 100%;
+              max-width: 100%;
+              height: 490px;
+              max-height: 490px;
+            }
+          }
         }
       }
   
@@ -305,13 +349,34 @@
   
     section{
       article{
-        img{
-          height: 610px;
-          border-radius: 10px;
+        .product-images{
+          .vertical-images{
+            img{
+              width: 120px;
+              max-width: 120px;
+              height: 120px;
+              max-height: 120px;
+              border-radius: 10px;
+            }
+
+            .selected-image {
+              height: 123px;
+              max-height: 123px;
+              border-bottom: 5px solid var(--accent-1);
+            }
+          }
+  
+          .main-image{
+            img{
+              height: 980px;
+              max-height: 980px;
+              border-radius: 10px;
+            }
+          }
         }
 
         .discount-percentage {
-          font-size: 1.4rem;
+          font-size: 1.5rem;
           border-radius: 0 14px 0 14px;
         } 
       }
