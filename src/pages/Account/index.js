@@ -47,10 +47,10 @@ export default function Account(){
             selected={selectedItem === "Detalhes da Conta"} 
             onClick={handleItemClick} 
           />
-          <MenuItem label="Endereço" 
+          {/* <MenuItem label="Endereço" 
             selected={selectedItem === "Endereço"} 
             onClick={handleItemClick} 
-          />
+          /> */}
           <MenuItem label="Meus Pedidos" 
             selected={selectedItem === "Meus Pedidos"} 
             onClick={handleItemClick} 
