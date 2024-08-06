@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './cart.scss'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Button, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure } from '@chakra-ui/react'
 import { RiShoppingBag3Fill } from "react-icons/ri"
 import { IoClose } from "react-icons/io5"
 import { products } from '../../pages/AllProducts'
 
-export default function Cart() {
+export default function Cart(){
+  const location = useLocation()
   const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
@@ -36,6 +37,10 @@ export default function Cart() {
       window.removeEventListener('cartUpdated', handleCartUpdate)
     }
   }, [])
+
+  const formatPrice = (price) => {
+    return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+  }
 
   const updateLocalStorage = (updatedCart) => {
     localStorage.setItem("cart", JSON.stringify(updatedCart))
@@ -96,10 +101,12 @@ export default function Cart() {
 
   return (
     <>
-      <Button className='btn-cart' ref={btnRef} onClick={onOpen}>
-        <RiShoppingBag3Fill />
-        {cartQuantity >= 1 && <span className="cart-quantity">{cartQuantity}</span>}
-      </Button>
+      {location.pathname !== '/payment' && (
+        <Button className='btn-cart' ref={btnRef} onClick={onOpen}>
+          <RiShoppingBag3Fill />
+          {cartQuantity >= 1 && <span className="cart-quantity">{cartQuantity}</span>}
+        </Button>
+      )}
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef}>
         <DrawerOverlay onClick={onClose} />
         <DrawerContent className="cart-content">
@@ -131,7 +138,7 @@ export default function Cart() {
                             </p>
                           ))}
                         </div>
-                        <span>R$ {(product.price * product.quantity).toFixed(2).replace('.', ',')}</span>
+                        <span>{formatPrice(product.price * product.quantity)}</span>
                       </div>
                       <div>
                         <IoClose onClick={() => removeProduct(product.id)} />
@@ -149,9 +156,7 @@ export default function Cart() {
           </DrawerBody>
 
           <DrawerFooter className="cart-footer">
-            <p>Total:
-              <span>R$ {total.toFixed(2).replace('.', ',')}</span>
-            </p>
+            <p>Total: <span>{formatPrice(total)}</span></p>
             <button type='button' onClick={handleCheckout} disabled={cartProducts.length === 0}>Finalizar compra</button>
           </DrawerFooter>
         </DrawerContent>

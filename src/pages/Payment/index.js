@@ -32,9 +32,6 @@ export default function Payment(){
   const [termsAccepted, setTermsAccepted] = useState(false)
 
   const [street, setStreet] = useState('')
-  const [neighborhood, setNeighborhood] = useState('')
-  const [city, setCity] = useState('')
-  const [state, setState] = useState('')
 
   const [cupom, setCupom] = useState('')
   const [desconto, setDesconto] = useState(0)
@@ -64,6 +61,10 @@ export default function Payment(){
   }, [])
 
   const total = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
+
+  const formatPrice = (value) => {
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+  }
 
   const handleCardNameChange = (e) => {
     const value = e.target.value.replace(/[^a-zA-Z\s]/g, '')
@@ -213,6 +214,21 @@ export default function Payment(){
       throw error
     }
   }  
+
+  useEffect(() => {
+    const fetchAndSetAddress = async () => {
+      if(cep && residentialNumber){
+        try {
+          const addressData = await fetchAddressData(cep)
+          setStreet(`${addressData.street}, ${residentialNumber}, ${addressData.city}/${addressData.state} - ${cep}`)
+        }catch(error){
+          setStreet('')
+        }
+      }
+    }
+  
+    fetchAndSetAddress()
+  }, [cep, residentialNumber])  
 
   // const handleChangeCupom = (event) => {
   //   const selectedValue = event.target.value
@@ -506,9 +522,9 @@ export default function Payment(){
 
           <section className='purchase-details'>
             <h1>Resumo da Compra</h1>
-            <p className='purchase-details-p'>Local de Entrega: <span>{street}</span></p>
-            <p className='purchase-details-p'>Entrega Estimada: <span></span></p>
-            <p className='total-diviser purchase-details-p'></p>
+            {street && ( <p className="purchase-details-p">Local de Entrega: <span>{street}</span></p> )}
+            {/* <p className='purchase-details-p'>Entrega Estimada: <span></span></p> */}
+            {street && ( <p className='total-diviser purchase-details-p'></p> )}
             <aside className="product-body">
               <ul>
                 {cart.map(product => (
@@ -518,7 +534,7 @@ export default function Payment(){
                       <p>{product.name}</p>
                       <p>Quantidade: {product.quantity}</p>
                       <p>Tamanho: {product.size}</p>
-                      <p>R$ {(product.price * product.quantity).toFixed(2).replace('.', ',')}</p>
+                      <p>{formatPrice(product.price * product.quantity)}</p>
                     </div>
                   </li>
                 ))}
@@ -526,12 +542,12 @@ export default function Payment(){
             </aside>
             <p className='total-diviser purchase-details-p'></p>
             <p className='purchase-details-p'>Parcelamento: <span>{installments}</span></p>
-            <p className='total purchase-details-p'>
-              Total: <span>
+            <p className='purchase-details-p' style={{display: 'flex', justifyContent: 'space-between'}}>Total: <span>{formatPrice(total)}</span></p>
+            {/* <p className='total purchase-details-p'>Total: <span>
                 {desconto > 0 && <h6 className='perc-desconto'>- R$ {desconto.toFixed(2).replace('.', ',')}</h6>}
                 R$ {(total - desconto).toFixed(2).replace('.', ',')}
               </span>
-            </p>
+            </p> */}
             {/* <div className='cupom-de-desconto'>
               <p>Código de cupom</p>
               <div>
