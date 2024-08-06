@@ -48,5 +48,6 @@
   "devDependencies": {
     "@types/react-modal": "^3.16.3",
     "sass": "^1.76.0"
-  }
+  },
+  "proxy": "https://api.pagar.me"
 }
