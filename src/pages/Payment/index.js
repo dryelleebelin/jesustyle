@@ -209,7 +209,7 @@ export default function Payment(){
         throw new Error("CEP não encontrado.")
       }
     } catch(error){
-      console.error("Erro ao buscar endereço:", error)
+      toast.error("Não foi possível encontrar o endereço para o CEP fornecido.")
       throw error
     }
   }  
@@ -266,35 +266,6 @@ export default function Payment(){
   //   }))
   //   setDesconto(0)
   // }
-
- 
-  //problema de cors
-
-  // async function handleAddress(){
-  //   console.log('Iniciando busca por endereço...')
-
-  //   if (cep && residentialNumber) {
-  //     try {
-  //       console.log(`Buscando endereço para CEP: ${cep}, Número: ${residentialNumber}`)
-  //       const response = await axios.get(`${PROXY_URL}https://viacep.com.br/ws/${cep}/${residentialNumber}/json/`)
-  //       const { data } = response
-        
-  //       if (!data.erro) {
-  //         setStreet(data.logradouro)
-  //         setNeighborhood(data.bairro)
-  //         setCity(data.localidade)
-  //         setState(data.uf)
-  //         console.log('Endereço encontrado:', data)
-  //       } else {
-  //         console.error('CEP ou número não encontrado.')
-  //       }
-  //     } catch (error) {
-  //       console.error('Erro ao buscar endereço:', error)
-  //     }
-  //   } else {
-  //     console.error('Por favor, preencha o CEP e o número residencial.')
-  //   }
-  // }  
 
   async function handlePayment() {
     const fieldsToCheck = [
@@ -435,8 +406,10 @@ export default function Payment(){
       })
 
       if(response.data.status === 'paid'){
+        console.log(paymentData)
         setIsOpenModalSuccess(true)
-        await new Promise(resolve => setTimeout(resolve, 3000))
+        await new Promise(resolve => setTimeout(resolve, 4000))
+        localStorage.removeItem("cart")
         navigate('/products')
 
        }else{

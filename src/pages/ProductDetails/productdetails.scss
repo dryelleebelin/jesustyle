@@ -6,7 +6,9 @@
   color: var(--font-color-white);
   margin-top: 10vh;
   padding: 5vh 10vw;
-  height: 90vh;
+  height: 100%;
+  min-height: 90vh;
+  max-height: 96vh;
 
   .css-syhbcg {
     display: flex;
@@ -55,7 +57,7 @@
         height: 420px;
         border-radius: 8px;
         object-fit: cover;
-        background-color: #b5b5b5b0;
+        background-color: #dcc9b8;
         cursor: pointer;
       }
 
@@ -63,9 +65,9 @@
         position: absolute;
         top: 0;
         left: 0;
-        background-color: #ff5733;
+        background-color: var(--accent-1);
         color: var(--font-color-white);
-        padding: 1.6%;
+        padding: 1.8%;
         font-size: 1rem;
         font-weight: bold;
         border-radius: 0 12px 0 12px;
@@ -74,7 +76,7 @@
     }
 
     aside{
-      width: 30vw;
+      width: 34vw;
       padding: 2%;
       display: flex;
       flex-direction: column;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react"
 import './home.scss'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import Login from "../Login"
 import CarouselActions from "../../components/CarouselActions"
@@ -9,6 +9,9 @@ import transparentLogo from '../../assets/logos/transparent.png'
 import whiteLogo from '../../assets/logos/white.png'
 import horizontalVideo from '../../assets/videos/horizontalTeaser.mp4'
 import verticalVideo from '../../assets/videos/horizontalTeaser.mp4'
+import esThiagoKarine from '../../assets/estudio/esMoletomJesusSavesTK.jpg'
+import esThiagoKarine2 from '../../assets/estudio/esMoletomJesusSavesTK2.jpg'
+import esThiagoKarine3 from '../../assets/estudio/esCamisetaJesusLovesTK.jpg'
 import img1 from '../../assets/home/img1.jpg'
 import img2 from '../../assets/home/img2.jpg'
 import img3 from '../../assets/home/img3.jpg'
@@ -47,6 +50,7 @@ export default function Home(){
   const [isHeaderBlurred, setIsHeaderBlurred] = useState(false)
   const [isSoundEnabled, setIsSoundEnabled] = useState(false)
   const videoRef = useRef(null)
+  const navigate = useNavigate()
 
   const handleOpenModalLogin = () => {
     setIsOpenModalLogin(true)
@@ -67,6 +71,10 @@ export default function Home(){
     if (videoRef.current) {
       videoRef.current.muted = !isSoundEnabled
     }
+  }
+
+  const handleImageClick = (id) => {
+    navigate(`/product/${id}`)
   }
 
   useEffect(() => {
@@ -94,9 +102,9 @@ export default function Home(){
       <header className={`${isHeaderBlurred ? 'blurred' : ''}`}>
         <img src={transparentLogo} alt="Logo Jesustyle" onClick={scrollToTop}/>
         <nav>
-          <a onClick={() => scrollTo('purpose')}>Propósito</a>
-          <a onClick={() => scrollTo('actions')}>Ações</a>
           <a onClick={() => scrollTo('store')}>Loja</a>
+          <a onClick={() => scrollTo('purpose')}>Propósito</a>
+          {/* <a onClick={() => scrollTo('actions')}>Ações</a> */}
           {/* <a onClick={() => scrollTo('podcast')}>Podcast</a> */}
           <button type="button" onClick={handleOpenModalLogin}>Compre aqui <BsArrowRight/></button>
         </nav>
@@ -114,19 +122,38 @@ export default function Home(){
         </div>
       </main>
 
+      <span id="store"/>
+      <section className="store">
+        <img className="background" src={iconBackground}/>
+        <h1>LOJA</h1>
+        <article>
+          <img src={CamisetaGodisGoodFront} onClick={() => { handleImageClick(2); scrollToTop(); }}/>
+          <img src={CamisetaGodisGoodBack} onClick={() => { handleImageClick(2); scrollToTop(); }}/>
+          <img src={CamisetaTrustInTheLordFront} onClick={() => { handleImageClick(1); scrollToTop(); }}/>
+          <img src={CamisetaTrustInTheLordBack} onClick={() => { handleImageClick(1); scrollToTop(); }}/>
+          <img src={CamisetaJesusLovesYouFront} onClick={() => { handleImageClick(3); scrollToTop(); }}/>
+          <img src={CamisetaJesusLovesYouBack} onClick={() => { handleImageClick(3); scrollToTop(); }}/>
+          <img src={CalcaMoletomJesusSaves} onClick={() => { handleImageClick(7); scrollToTop(); }}/>
+          <img src={MoletomGolaCarecaJesusSaves} onClick={() => { handleImageClick(6); scrollToTop(); }}/>
+          <img src={MoletomLikeJesusBack} onClick={() => { handleImageClick(4); scrollToTop(); }}/>
+          <img src={MoletomLikeJesusFront} onClick={() => { handleImageClick(4); scrollToTop(); }}/>
+        </article>
+        <Link to={`/products`} onClick={scrollToTop}><h1>COMPRE AGORA <BsArrowRight/></h1></Link>
+      </section>
+
       <span id="purpose"/>
       <section className="purpose">
         <img className="background" src={iconBlueBackground}/>
         <h1>PROPÓSITO</h1>
         <p>Na Jesustyle, acreditamos que cada peça de roupa pode contar uma história. Nosso propósito é unir estilo e valores cristãos para inspirar e transformar vidas. Cada coleção é desenhada com mensagens significativas que refletem a fé e o amor de Jesus Cristo. Vista-se com propósito e faça parte de um movimento que espalha esperança e luz ao mundo.</p>
         <aside>
-          <img src={img1}/>
-          <img src={img2}/>
-          <img src={img3}/>
+          <img src={esThiagoKarine2}/>
+          <img src={esThiagoKarine3}/>
+          <img src={esThiagoKarine}/>
         </aside>
       </section>
 
-      <span id="actions"/>
+      {/* <span id="actions"/>
       <section className="actions">
         <img className="background" src={logoBackground}/>
         <h1>AÇÕES</h1>
@@ -156,26 +183,7 @@ export default function Home(){
             <img src={img9}/>
           </div>
         </aside>
-      </section>
-
-      <span id="store"/>
-      <section className="store">
-        <img className="background" src={iconBackground}/>
-        <h1>LOJA</h1>
-        <article>
-          <img src={CamisetaGodisGoodFront}/>
-          <img src={CamisetaGodisGoodBack}/>
-          <img src={CamisetaTrustInTheLordFront}/>
-          <img src={CamisetaTrustInTheLordBack}/>
-          <img src={CalcaMoletomJesusSaves}/>
-          <img src={MoletomGolaCarecaJesusSaves}/>
-          <img src={CamisetaJesusLovesYouFront}/>
-          <img src={CamisetaJesusLovesYouBack}/>
-          <img src={MoletomLikeJesusBack}/>
-          <img src={MoletomLikeJesusFront}/>
-        </article>
-        <Link to={`/products`} onClick={scrollToTop}><h1>COMPRE AGORA <BsArrowRight/></h1></Link>
-      </section>
+      </section> */}
 
       {/* <span id="podcast"/>
       <section className="podcast">
@@ -190,9 +198,9 @@ export default function Home(){
           <img src={whiteLogo} onClick={scrollToTop}/>
           <div className="links-column">
             <h2>Navegação</h2>
-            <a onClick={() => scrollTo('purpose')}>Propósito</a>
-            <a onClick={() => scrollTo('actions')}>Ações</a>
             <a onClick={() => scrollTo('store')}>Loja</a>
+            <a onClick={() => scrollTo('purpose')}>Propósito</a>
+            {/* <a onClick={() => scrollTo('actions')}>Ações</a> */}
             {/* <a onClick={() => scrollTo('podcast')}>Podcast</a> */}
           </div>
           <div className="links-column socials-column">
@@ -201,7 +209,7 @@ export default function Home(){
             <div className="socials">
               <a href="https://www.instagram.com/jesustyle.br/" target="_blank" rel="noopener noreferrer"><FaInstagram/></a>
               <a href="https://www.youtube.com/channel/UCcT7mMwhBDrGYOGB2cX59zQ" target="_blank" rel="noopener noreferrer"><FaYoutube/></a>
-              <a><FaSpotify/></a>
+              {/* <a><FaSpotify/></a> */}
               <a href="mailto:contatojesustyle@gmail.com" target="_blank" rel="noopener noreferrer"><IoMdMail/></a>
             </div>
           </div>

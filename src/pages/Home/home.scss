@@ -102,6 +102,7 @@
     flex-direction: column;
     align-items: center;
     padding-top: 15vh;
+    margin-bottom: 15vh;
     position: relative;
 
     .background{
@@ -145,23 +146,24 @@
 
       img{
         width: auto;
-        height: 45vh;
+        height: 50vh;
         object-fit: cover;
         box-shadow: 2px 2px 8px var(--shadow);
       }
 
       img:nth-child(1){
         width: 25vw;
+        object-position: 0 30%;
       }
 
       img:nth-child(2){
-        width: 50vw;
-        object-position: 0 70%;
+        width: 45vw;
+        object-position: 0 10%;
       }
 
       img:nth-child(3){
-        width: 25vw;
-        object-position: 0 60%;
+        width: 30vw;
+        object-position: 40% 0%;
       }
     }
   }
@@ -294,7 +296,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 15vh;
+    //margin-top: 15vh;
     padding-bottom: 15vh;
     background-color: var(--foreground);
 
@@ -308,7 +310,8 @@
     }
 
     h1{
-      margin-top: -3.5vh;
+      //margin-top: -3.5vh;
+      margin-top: 15vh;
       height: 7vh;
       font-weight: 600;
       font-size: 2rem;
@@ -326,7 +329,7 @@
     }
 
     article{
-      margin-top: 10vh;
+      margin-top: 6vh;
       width: 80%;
       display: flex;
       flex-wrap: wrap;
@@ -338,6 +341,7 @@
         width: 240px;
         height: 250px;
         object-fit: cover;
+        cursor: pointer;
       }
     }
 
@@ -526,10 +530,11 @@
     .purpose{
       height: 100%;
       padding-top: 5vh;
+      margin-bottom: 6vh;
   
       .background{
         margin-top: -5vh;
-        width: 40%;
+        width: 46%;
         object-position: 8vw -2vh;
       }
   
@@ -555,13 +560,13 @@
         }
   
         img:nth-child(2){
-          width: 50vw;
-          object-position: 55% 0%;
+          width: 40vw;
+          object-position: 45% 0%;
         }
   
         img:nth-child(3){
-          width: 25vw;
-          object-position: 0 0%;
+          width: 35vw;
+          object-position: 40% 0%;
         }
       }
     }
@@ -630,19 +635,20 @@
     }
 
     .store{
-      margin-top: 8vh;
-      padding-bottom: 8vh;
+      //margin-top: 8vh;
+      padding-bottom: 7vh;
   
       h1{
-        margin-top: -3vh;
+        //margin-top: -3vh;
+        margin-top: 5vh;
         height: 6vh;
         font-size: 1.9rem;
-        padding: 0 6vw;
+        padding: 0 8vw;
         border-radius: 40px;
       }
   
       article{
-        margin-top: 5vh;
+        margin-top: 4vh;
         width: 100%;
   
         img{

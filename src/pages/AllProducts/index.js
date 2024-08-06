@@ -8,9 +8,6 @@ import axios from 'axios'
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/pagination'
 
 import camisetaTrustInTheLordFront from '../../assets/products/CamisetaTrustInTheLordFront.png'
 import camisetaTrustInTheLordBack from '../../assets/products/CamisetaTrustInTheLordBack.png'
@@ -23,18 +20,31 @@ import moletomLikeJesusBack from '../../assets/products/MoletomLikeJesusBack.png
 import moletomGolaCarecaJesusSaves from '../../assets/products/MoletomGolaCarecaJesusSaves.png'
 import calcaMoletomJesusSaves from '../../assets/products/CalcaMoletomJesusSaves.png'
 
+import esCamisetaGodIsGood from '../../assets/estudio/esCamisetaGodIsGood.jpg'
+import esCamisetaGodIsGood2 from '../../assets/estudio/esCamisetaGodIsGood2.jpg'
+import esCamisetaTrustLord from '../../assets/estudio/esCamisetaTrustLord.jpg'
+import esCamisetaTrustLord2 from '../../assets/estudio/esCamisetaTrustLord2.jpg'
+import esCamisetaJesusLovesTK from '../../assets/estudio/esCamisetaJesusLovesTK.jpg'
+import esCamisetaJesusLoves2 from '../../assets/estudio/esCamisetaJesusLoves2.jpg'
+import esMoletomLikeJesus from '../../assets/estudio/esMoletomLikeJesus.jpg'
+import esMoletomLikeJesus2 from '../../assets/estudio/esMoletomLikeJesus2.jpg'
+import esMoletomJesusSavesTK from '../../assets/estudio/esMoletomJesusSavesTK.jpg'
+import esMoletomJesusSavesTK2 from '../../assets/estudio/esMoletomJesusSavesTK2.jpg'
+import esMoletomJesusSaves3 from '../../assets/estudio/esMoletomJesusSaves3.jpg'
+
 import { FaListUl } from "react-icons/fa"
 import { MdOutlineCircle, MdCheckCircle } from "react-icons/md"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
+import { FaArrowUpRightFromSquare } from "react-icons/fa6"
 
 export const products = [
-  { id: 1, name: "Camiseta Trust In The Lord", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaTrustInTheLordFront, hoverSrc: camisetaTrustInTheLordBack, size: ["PP", "P", "M", "G"], category: ["Camisetas"] },
-  { id: 2, name: "Camiseta God is Good", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaGodisGoodFront, hoverSrc: camisetaGodisGoodBack, size: ["P", "M", "G"], category: ["Camisetas"] },
-  { id: 3, name: "Camiseta Jesus Loves You", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "[Descrição]", src: camisetaJesusLovesYouFront, hoverSrc: camisetaJesusLovesYouBack, size: ["PP", "P", "M"], category: ["Camisetas"] },
-  { id: 4, name: "Moletom Like Jesus", originalPrice: 339, discountPrice: 305, discountPercentage: 10, description: "[Descrição]", src: moletomLikeJesusFront, hoverSrc: moletomLikeJesusBack, size: ["P", "M", "G"], category: ["Moletons"] },
-  { id: 5, name: "Conjunto Jesus Saves (Moletom + Calça)", originalPrice: 508, discountPrice: 457, discountPercentage: 10, description: "[Descrição]", src: moletomGolaCarecaJesusSaves, hoverSrc: calcaMoletomJesusSaves, size: ["P", "M", "G"], category: ["Conjuntos", "Calças"] },
-  { id: 6, name: "Moletom Gola Careca Avulso Jesus Saves", originalPrice: 304, discountPrice: 274, discountPercentage: 10, description: "[Descrição]", src: moletomGolaCarecaJesusSaves, hoverSrc: null, size: ["P", "M", "G"], category: ["Moletons"] },
-  { id: 7, name: "Calça Moletom Avulsa Jesus Saves", originalPrice: 258, discountPrice: 232, discountPercentage: 10, description: "[Descrição]", src: calcaMoletomJesusSaves, size: ["P", "G"], category: ["Calças"] }
+  { id: 1, name: "Camiseta Trust In The Lord", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "“Confie no Senhor de todo o coração e não se apoie na sua própria inteligência.” – Provérbios 3:5", src: esCamisetaTrustLord2, hoverSrc: [esCamisetaTrustLord, camisetaTrustInTheLordFront, camisetaTrustInTheLordBack], size: ["PP", "P", "M", "G"], category: ["Camisetas"] },
+  { id: 2, name: "Camiseta God is Good", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "“Deem graças ao Senhor porque ele é bom; o seu amor dura para sempre.” – Salmos 136:1", src: esCamisetaGodIsGood, hoverSrc: [esCamisetaGodIsGood2, camisetaGodisGoodFront, camisetaGodisGoodBack], size: ["P", "M", "G"], category: ["Camisetas"] },
+  { id: 3, name: "Camiseta Jesus Loves You", originalPrice: 186, discountPrice: 169, discountPercentage: 10, description: "“Nós amamos porque Deus nos amou primeiro.” – 1 João 4:19", src: esCamisetaJesusLovesTK, hoverSrc: [esCamisetaJesusLoves2, camisetaJesusLovesYouFront, camisetaJesusLovesYouBack], size: ["PP", "P", "M"], category: ["Camisetas"] },
+  { id: 4, name: "Moletom Like Jesus", originalPrice: 339, discountPrice: 305, discountPercentage: 10, description: "“Aquele que diz que permanece nele deve andar como ele andou.” – 1 João 2:6", src: esMoletomLikeJesus2, hoverSrc: [esMoletomLikeJesus, moletomLikeJesusFront, moletomLikeJesusBack], size: ["P", "M", "G"], category: ["Moletons"] },
+  { id: 5, name: "Conjunto Jesus Saves (Moletom + Calça)", originalPrice: 508, discountPrice: 457, discountPercentage: 10, description: "“Pois o Filho do Homem veio buscar e salvar o que estava perdido.” – Lucas 19:10", src: esMoletomJesusSavesTK, hoverSrc: [esMoletomJesusSavesTK2, esMoletomJesusSaves3, moletomGolaCarecaJesusSaves, calcaMoletomJesusSaves], size: ["P", "M", "G"], category: ["Conjuntos", "Calças"] },
+  { id: 6, name: "Moletom Gola Careca Avulso Jesus Saves", originalPrice: 304, discountPrice: 274, discountPercentage: 10, description: "“E em nenhum outro há salvação, pois não há nenhum outro nome debaixo do céu dado aos homens pelo qual devamos ser salvos.” – Atos 4:12", src: moletomGolaCarecaJesusSaves, hoverSrc: [esMoletomJesusSavesTK, esMoletomJesusSavesTK2], size: ["P", "M", "G"], category: ["Moletons"] },
+  { id: 7, name: "Calça Moletom Avulsa Jesus Saves", originalPrice: 258, discountPrice: 232, discountPercentage: 10, description: "“Porque Deus enviou o seu Filho ao mundo, não para condenar o mundo, mas para que o mundo fosse salvo por meio dele.” – João 3:17", src: calcaMoletomJesusSaves, hoverSrc: [esMoletomJesusSavesTK2, esMoletomJesusSaves3], size: ["P", "G"], category: ["Calças"] }
 ]
 
 export default function AllProducts(){
@@ -48,7 +58,6 @@ export default function AllProducts(){
   const [selectedCategories, setSelectedCategories] = useState([])
   const [selectedSortOption, setSelectedSortOption] = useState("priceLowToHigh")
   const [searchTerm, setSearchTerm] = useState('')
-  const [hoveredItemId, setHoveredItemId] = useState(null)
   const [loading, setLoading] = useState(true)
 
   const scrollToTop = () => {
@@ -226,16 +235,8 @@ export default function AllProducts(){
                       {item.discountPrice > 0 && (
                         <span className="discount-percentage">{item.discountPercentage}% OFF</span>
                       )}
-                      <Swiper style={{ zIndex: 0 }} slidesPerView={1} pagination onMouseEnter={() => setHoveredItemId(item.id)} onMouseLeave={() => setHoveredItemId(null)}>
-                        <SwiperSlide>
-                          <img className="img" src={item.src}/>
-                        </SwiperSlide>
-                        {item.hoverSrc && (
-                          <SwiperSlide>
-                            <img className="img" src={item.hoverSrc}/>
-                          </SwiperSlide>
-                        )}
-                      </Swiper>
+                      <FaArrowUpRightFromSquare className="item-arrow-up" onClick={() => { navigate(`/product/${item.id}`); scrollToTop() }}/>
+                      <img className="img" src={item.src}/>
                       {isSizeSelectionVisible && productToAdd && productToAdd.id === item.id && (
                         <div className="size-selection-overlay">
                           <div className="size-selection-container">
@@ -265,7 +266,6 @@ export default function AllProducts(){
                       <div className="div">
                         <button type="button" onClick={() => { navigate(`/product/${item.id}`); scrollToTop() }}>DETALHES</button>
                         <HiOutlineShoppingBag onClick={() => handleAddToCart(item)}/>
-                        
                       </div>
                     </div>
                   ))

@@ -21,6 +21,8 @@ import { products } from "../AllProducts"
 export default function ProductDetails(){
   const { id } = useParams()
   const [product, setProduct] = useState(null)
+  const [mainImage, setMainImage] = useState(null)
+  const [hoverImages, setHoverImages] = useState([])
 
   const [selectedSize, setSelectedSize] = useState(null)
   const [quantity, setQuantity] = useState(1)
@@ -35,9 +37,16 @@ export default function ProductDetails(){
         const foundProduct = products.find(product => product.id === parseInt(id))
         setProduct(foundProduct)
 
+        if (foundProduct) {
+          const allImages = [foundProduct.src, ...foundProduct.hoverSrc]
+          setMainImage(allImages[0])
+          setHoverImages(allImages)
+        }
+
         document.title = `Jesustyle | Detalhes do Produto - ${foundProduct ? foundProduct.name : ""}`
 
       } catch(error){
+        console.log(error)
 
       } finally{
         setLoading(false)
@@ -46,6 +55,10 @@ export default function ProductDetails(){
 
     fetchProduct()
   }, [id])
+
+  const handleImageClick = (image) => {
+    setMainImage(image)
+  }
 
   const handleSizeSelection = (size) => {
     setSelectedSize(size)
@@ -117,19 +130,21 @@ export default function ProductDetails(){
         ) : (
           <section>
             <article>
-              {product.discountPrice > 0 && (
+              {product && product.discountPrice > 0 && (
                 <span className="discount-percentage">{product.discountPercentage}% OFF</span>
               )}
-              <Swiper className="custom-swiper" style={{ zIndex: 0 }} slidesPerView={1} pagination onMouseEnter={() => setHoveredItemId(product.id)} onMouseLeave={() => setHoveredItemId(null)}>
-                <SwiperSlide>
-                  <img src={product.src}/>
-                </SwiperSlide>
-                {product.hoverSrc && (
-                  <SwiperSlide>
-                    <img src={product.hoverSrc}/>
-                  </SwiperSlide>
-                )}
-              </Swiper>
+              {hoverImages.length > 0 && (
+                <div className="product-images" style={{display: 'flex'}}>
+                  <div className="vertical-images">
+                    {hoverImages.map((image, index) => (
+                      <img style={{width: '80px', height: '80px'}} key={index} src={image} onClick={() => handleImageClick(image)} />
+                    ))}
+                  </div>
+                  <div className="main-image">
+                    <img src={mainImage} />
+                  </div>
+                </div>
+              )}
             </article>
 
             <aside>
