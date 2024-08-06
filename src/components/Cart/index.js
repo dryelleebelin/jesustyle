@@ -20,11 +20,21 @@ export default function Cart() {
         setCartProducts(cartItems)
 
       } catch(error){
-        
+        console.log(error)
       }
     }
 
     fetchCartProducts()
+
+    const handleCartUpdate = (event) => {
+      setCartProducts(event.detail)
+    }
+  
+    window.addEventListener('cartUpdated', handleCartUpdate)
+  
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate)
+    }
   }, [])
 
   const updateLocalStorage = (updatedCart) => {

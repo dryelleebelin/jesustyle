@@ -429,7 +429,7 @@ export default function Payment(){
       <Header/>
 
       <main className='payment'>
-        <Breadcrumb className="breadcrumb" spacing="8px" separator={<FaAngleRight/>}>
+        {/* <Breadcrumb className="breadcrumb" spacing="8px" separator={<FaAngleRight/>}>
           <BreadcrumbItem className="breadcrumb-item">
             <Link to={`/products`}>Produtos</Link>
           </BreadcrumbItem>
@@ -439,7 +439,7 @@ export default function Payment(){
           <BreadcrumbItem className="breadcrumb-item">
             <Link className="active">Finalização da Compra</Link>
           </BreadcrumbItem>
-        </Breadcrumb>
+        </Breadcrumb> */}
 
         <div className='payment-container'>
           <section className='checkout-section'>

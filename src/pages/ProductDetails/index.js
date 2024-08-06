@@ -92,12 +92,16 @@ export default function ProductDetails(){
         key: `${product.id}-${selectedSize}`,
         src: hoveredItemId === product.id && product.hoverSrc ? product.hoverSrc : product.src,
       }
+
       const cart = JSON.parse(localStorage.getItem("cart")) || []
       cart.push(itemToAdd)
       localStorage.setItem("cart", JSON.stringify(cart))
   
-      toast.success("Produto adicionado com sucesso!")
+      toast.success("Adicionado ao carrinho com sucesso!")
       onOpen()
+
+      const event = new CustomEvent('cartUpdated', { detail: cart })
+      window.dispatchEvent(event)
   
       setSelectedSize(null)
       setQuantity(1)

@@ -175,7 +175,11 @@ export default function AllProducts(){
       cart.push(itemToAdd)
       localStorage.setItem('cart', JSON.stringify(cart))
 
-      toast.success('Produto adicionado com sucesso!')
+      toast.success('Adicionado ao carrinho com sucesso!')
+
+      const event = new CustomEvent('cartUpdated', { detail: cart })
+      window.dispatchEvent(event)
+
     } catch (error) {
       toast.error('Erro ao adicionar produto ao carrinho.')
     }
